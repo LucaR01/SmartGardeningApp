@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'splash.dart';
+import 'screens/home/home_screen.dart';
+import 'screens/splash/splash_screen.dart';
+
+//TODO: Creare una ColorsUtils.dart?
 
 void main() {
   runApp(const App());

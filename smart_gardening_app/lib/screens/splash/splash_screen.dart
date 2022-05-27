@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'home.dart';
+import '../home/home_screen.dart';
+
+//TODO: rename class in SplashScreen?
+
+//TODO: add a gradient.
+//TODO: add animation effect.
+//TODO: Add some plants
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
@@ -21,7 +27,7 @@ class _SplashState extends State<Splash> {
     Navigator.pushReplacement(
       context, 
       MaterialPageRoute(
-        builder: (context) => const HomePage(
+        builder: (context) => HomePage(
           title: "Smart Gardening App"
         )
       ));
