@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../splash/splash_screen.dart';
 import 'home_header.dart';
 
 //TODO: stateless widget con SafeArea.
@@ -20,6 +21,6 @@ class Body extends StatelessWidget {
           )
       )
     );*/
-    return HomeHeader();
+    return HomeHeader(); //TODO: aggiungere anche le altre pagine.
   }
 }

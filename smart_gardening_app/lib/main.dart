@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import 'screens/home/home_screen.dart';
 import 'screens/splash/splash_screen.dart';
 
-//TODO: Creare una ColorsUtils.dart?
+//TODO: flutter run --release per lanciare in release mode
 
-void main() {
-  runApp(const App());
-}
+void main() => runApp(const App());
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -16,6 +14,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false, // per rimuovere il debug tag
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -29,7 +28,9 @@ class App extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.green,
       ),
-      home: const Splash(), //const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const Splash(),
+      //TODO: initialRoute
+      //TODO: routes
     );
   }
 }
