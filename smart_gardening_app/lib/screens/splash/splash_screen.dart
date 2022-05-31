@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../values/strings_constants.dart';
 import '../home/home_screen.dart';
 
 //TODO: rename class in SplashScreen?
@@ -10,6 +11,8 @@ import '../home/home_screen.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
+
+  static String routeName = "/splash";
 
   @override
   State<Splash> createState() => _SplashState();
@@ -27,9 +30,7 @@ class _SplashState extends State<Splash> {
     Navigator.pushReplacement(
       context, 
       MaterialPageRoute(
-        builder: (context) => HomePage(
-          title: "Smart Gardening App"
-        )
+        builder: (context) => const HomePage()
       ));
   }
 
@@ -41,7 +42,7 @@ class _SplashState extends State<Splash> {
           alignment: Alignment.topRight,
           padding: const EdgeInsets.only(top: 60.0, right: 30.0),
           child: const Text(
-            "Smart Gardening App", 
+            kAppName, 
             style: TextStyle(
               fontSize: 36,
               //fontFamily: 'RailWay'

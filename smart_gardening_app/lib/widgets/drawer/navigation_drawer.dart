@@ -106,7 +106,7 @@ class NavigationDrawerWidget extends StatelessWidget {
     switch (page) {
       case Pages.home:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => HomePage(title: ""), //TODO: remove title
+          builder: (context) => const HomePage(),
         ));
         break;
       case Pages.myPlants:
