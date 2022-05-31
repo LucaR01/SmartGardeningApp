@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:smart_gardening_app/widgets/drawer/navigation_drawer.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({Key? key}) : super(key: key);
@@ -8,7 +9,7 @@ class HomeHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       //backgroundColor: Colors.green[100], //TODO: remove
-      drawer: const Drawer(), // È il menù.
+      drawer: const NavigationDrawerWidget(), // È il menù.
       appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0.0,
