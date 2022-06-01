@@ -7,4 +7,4 @@ import 'package:flutter/material.dart';
 //TODO: rename variable name in kPrimaryColor?
 //TODO: use k prefix?
 
-//const Color appMainColor = Color();  //TODO: uncomment when color will be added.
+//const Color kPrimaryColor = Color(#);  //TODO: uncomment when color will be added. kAppMainColor
