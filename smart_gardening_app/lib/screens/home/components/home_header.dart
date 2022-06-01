@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:smart_gardening_app/widgets/drawer/navigation_drawer.dart';
 
+import '../../../widgets/FAB/FABWidget.dart';
+import '../../../widgets/bottom_navigation_bar/bottom_navigation_bar.dart';
+
 class HomeHeader extends StatelessWidget {
   const HomeHeader({Key? key}) : super(key: key);
 
@@ -10,6 +13,9 @@ class HomeHeader extends StatelessWidget {
     return Scaffold(
       //backgroundColor: Colors.green[100], //TODO: remove
       drawer: const NavigationDrawerWidget(), // È il menù.
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: const FABWidget(),
+      bottomNavigationBar: const BottomNavigationBarWidget(),
       appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0.0,
