@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:smart_gardening_app/widgets/drawer/navigation_drawer.dart';
 
 import '../../../widgets/FAB/FABWidget.dart';
+import '../../../widgets/app_bar/app_bar.dart';
 import '../../../widgets/bottom_navigation_bar/bottom_navigation_bar.dart';
 
 class HomeHeader extends StatelessWidget {
@@ -16,7 +17,8 @@ class HomeHeader extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: const FABWidget(),
       bottomNavigationBar: const BottomNavigationBarWidget(),
-      appBar: AppBar(
+      appBar: const AppBarWidget(), //TODO: uncomment
+      /*appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           iconTheme: const IconThemeData(
@@ -33,7 +35,7 @@ class HomeHeader extends StatelessWidget {
               ) //TODO: update e mettere l'icona scan.
           )
         ],
-      ),
+      ),*/
 
     );
   }
