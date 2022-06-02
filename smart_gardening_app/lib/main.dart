@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_gardening_app/routes/routes_generator.dart';
 
 import 'screens/home/home_screen.dart';
 import 'screens/splash/splash_screen.dart';
@@ -28,9 +29,8 @@ class App extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.green,
       ),
-      home: const Splash(),
-      //TODO: initialRoute
-      //TODO: routes
+      initialRoute: '/splash',
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }

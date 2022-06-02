@@ -105,9 +105,10 @@ class NavigationDrawerWidget extends StatelessWidget {
 
     switch (page) {
       case Pages.home:
-        Navigator.of(context).push(MaterialPageRoute(
+        /*Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => const HomePage(),
-        ));
+        ));*/
+        Navigator.of(context).pushNamed('/');
         break;
       case Pages.myPlants:
         /*Navigator.of(context).push(MaterialPageRoute(
@@ -140,6 +141,7 @@ class NavigationDrawerWidget extends StatelessWidget {
         ));*/ //TODO: uncomment
         break;
       default:
+        //TODO: forse non serve il default.
         /*Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => , 
         ));*/ //TODO: uncomment

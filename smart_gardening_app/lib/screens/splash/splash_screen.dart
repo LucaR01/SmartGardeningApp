@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../values/strings_constants.dart';
+import '../../constants/strings_constants.dart';
 import '../home/home_screen.dart';
 
 //TODO: rename class in SplashScreen?
@@ -27,7 +27,7 @@ class _SplashState extends State<Splash> {
 
   void _navigateToHome() async {
     await Future.delayed(const Duration(milliseconds: 1800), () {});
-    Navigator.pushReplacement(
+    Navigator.pushReplacement( //TODO: update with routes
       context, 
       MaterialPageRoute(
         builder: (context) => const HomePage()
