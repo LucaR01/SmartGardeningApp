@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../../screens/pages.dart';
+import '../../utils/utils.dart';
+
+//TODO: rinominare in CustomBottomNavigationBarWidget?
 
 class BottomNavigationBarWidget extends StatelessWidget {
   const BottomNavigationBarWidget({Key? key}) : super(key: key);
@@ -18,24 +24,24 @@ class BottomNavigationBarWidget extends StatelessWidget {
             children: [
               IconButton(
                 //TODO: metterlo in una funzione
-                icon: Icon(Icons.home), //TODO: update icon
-                onPressed: () {},
+                icon: const Icon(FontAwesomeIcons.seedling),
+                onPressed: () => Utils.navigateToPage(context: context, page: Pages.myPlants, shouldPop: false), //il false serve altrimenti chiude e mi da errore.
               ),
               IconButton(
                 //TODO: metterlo in una funzione
-                icon: Icon(Icons.home), //TODO: update icon
-                onPressed: () {},
+                icon: const Icon(Icons.task),
+                onPressed: () => Utils.navigateToPage(context: context, page: Pages.tasks, shouldPop: false),
               ),
               const SizedBox(width: 24),
               IconButton(
                 //TODO: metterlo in una funzione
-                icon: Icon(Icons.home), //TODO: update icon
-                onPressed: () {},
+                icon: const Icon(FontAwesomeIcons.stethoscope),
+                onPressed: () => Utils.navigateToPage(context: context, page: Pages.diagnosis, shouldPop: false),
               ),
               IconButton(
                 //TODO: metterlo in una funzione
-                icon: Icon(Icons.settings),
-                onPressed: () {},
+                icon: const Icon(Icons.settings),
+                onPressed: () => Utils.navigateToPage(context: context, page: Pages.settings, shouldPop: false),
               ),
             ],
           ),

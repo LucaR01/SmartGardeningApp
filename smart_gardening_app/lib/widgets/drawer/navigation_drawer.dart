@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../screens/home/home_screen.dart';
 import '../../screens/pages.dart';
+import '../../utils/utils.dart';
+
+//TODO: rinominare in CustomNavigationDrawerWidget?
 
 class NavigationDrawerWidget extends StatelessWidget {
   const NavigationDrawerWidget({Key? key}) : super(key: key);
@@ -23,47 +27,47 @@ class NavigationDrawerWidget extends StatelessWidget {
             buildMenuItem(
               text: 'Home',
               icon: Icons.home,
-              onClicked: () => selectedItem(context, Pages.home),
+              onClicked: () => Utils.navigateToPage(context: context, page: Pages.home),
             ),
             const SizedBox(height: 16),
             buildMenuItem(
               text: 'My Plants',
-              icon: Icons.home, //TODO: update
-              //onClicked: () => selectedItem(context, 1), //TODO: uncomment
+              icon: FontAwesomeIcons.seedling, 
+              onClicked: () => Utils.navigateToPage(context: context, page: Pages.myPlants),
             ),
             const SizedBox(height: 16),
             buildMenuItem(
               text: 'Tasks',
               icon: Icons.task,
-              //onClicked: () => selectedItem(context, 2), //TODO: uncomment
+              onClicked: () => Utils.navigateToPage(context: context, page: Pages.tasks),
             ),
             const SizedBox(height: 16),
             buildMenuItem(
               text: 'Diagnosis',
-              icon: Icons.home, //TODO: update
-              //onClicked: () => selectedItem(context, 3), //TODO: uncomment
+              icon: FontAwesomeIcons.stethoscope, 
+              onClicked: () => Utils.navigateToPage(context: context, page: Pages.diagnosis), 
             ),
             const SizedBox(height: 24),
-            Divider(color: Colors.white70), //TODO: get color from constants
+            const Divider(color: Colors.white70), //TODO: get color from constants
             const SizedBox(height: 24),
 
             const SizedBox(height: 16),
             buildMenuItem(
               text: 'Settings',
               icon: Icons.settings,
-              //onClicked: () => selectedItem(context, 4), //TODO: uncomment
+              onClicked: () => Utils.navigateToPage(context: context, page: Pages.settings), //TODO: uncomment
             ),
 
             const SizedBox(height: 16),
             buildMenuItem(
               text: 'Notifications',
               icon: Icons.notifications,
-              //onClicked: () => selectedItem(context, 5), //TODO: uncomment
+              //onClicked: () => Utils.navigateToPage(context: context, page: Pages.home), //TODO: uncomment
             ),
 
             const SizedBox(height: 16),
             buildMenuItem(text: 'Privacy Policy', icon: Icons.privacy_tip
-                //onClicked: () => selectedItem(context, 6), //TODO: uncomment
+                //onClicked: () => Utils.navigateToPage(context: context, page: Pages.home), //TODO: uncomment
                 ),
           ],
         ),
@@ -72,6 +76,7 @@ class NavigationDrawerWidget extends StatelessWidget {
   }
 
   //TODO: required Image image?
+  //TODO: remove?
   Widget buildHeader({VoidCallback? onClicked}) => InkWell(
         onTap: onClicked,
         child: Container(
