@@ -1,21 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:smart_gardening_app/screens/my_plants/my_plants_screen.dart';
+import 'package:smart_gardening_app/screens/settings/settings_screen.dart';
+import 'package:smart_gardening_app/screens/tasks/tasks_screen.dart';
 
 import '../main.dart';
+import '../screens/diagnosis/diagnosis_screen.dart';
 import '../screens/home/home_screen.dart';
 import '../screens/splash/splash_screen.dart';
+
+//TODO: o chiamarli tutti screen o chiamarli tutti pages!
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
 
-    //TODO: aggiungere le altre routes
     switch (settings.name) {
-      case '/': //TODO: update
+      case '/home': 
         return MaterialPageRoute(builder: (_) => HomePage());
       case '/splash':
         return MaterialPageRoute(builder: (_) => Splash());
-      /*case '/home':
-        return MaterialPageRoute(builder: (_) => HomePage());*/
+      case '/myplants':
+        return MaterialPageRoute(builder: (_) => MyPlantsScreen());
+      case '/tasks':
+        return MaterialPageRoute(builder: (_) => TasksScreen());
+      case '/diagnosis':
+        return MaterialPageRoute(builder: (_) => DiagnosisScreen());
+      case '/settings':
+        return MaterialPageRoute(builder: (_) => SettingsScreen());
       default:
         return _errorRoute();
     }
