@@ -5,6 +5,7 @@ import '../../screens/pages.dart';
 import '../../utils/utils.dart';
 
 //TODO: rinominare in CustomBottomNavigationBarWidget?
+//TODO: usare bottomNavBar item
 
 class BottomNavigationBarWidget extends StatelessWidget {
   const BottomNavigationBarWidget({Key? key}) : super(key: key);
@@ -25,23 +26,23 @@ class BottomNavigationBarWidget extends StatelessWidget {
               IconButton(
                 //TODO: metterlo in una funzione
                 icon: const Icon(FontAwesomeIcons.seedling),
-                onPressed: () => Utils.navigateToPage(context: context, page: Pages.myPlants, shouldPop: false), //il false serve altrimenti chiude e mi da errore.
+                onPressed: () => Utils.navigateToPage(context: context, page: Pages.myPlants),
               ),
               IconButton(
                 //TODO: metterlo in una funzione
                 icon: const Icon(Icons.task),
-                onPressed: () => Utils.navigateToPage(context: context, page: Pages.tasks, shouldPop: false),
+                onPressed: () => Utils.navigateToPage(context: context, page: Pages.tasks),
               ),
               const SizedBox(width: 24),
               IconButton(
                 //TODO: metterlo in una funzione
                 icon: const Icon(FontAwesomeIcons.stethoscope),
-                onPressed: () => Utils.navigateToPage(context: context, page: Pages.diagnosis, shouldPop: false),
+                onPressed: () => Utils.navigateToPage(context: context, page: Pages.diagnosis),
               ),
               IconButton(
                 //TODO: metterlo in una funzione
                 icon: const Icon(Icons.settings),
-                onPressed: () => Utils.navigateToPage(context: context, page: Pages.settings, shouldPop: false),
+                onPressed: () => Utils.navigateToPage(context: context, page: Pages.settings),
               ),
             ],
           ),
