@@ -39,9 +39,12 @@ class Utils {
       case Pages.scan:
         Navigator.of(context).pushNamed('/scan');
         break;
+      case Pages.scanResult:
+        Navigator.of(context).pushNamed('/scan_result');
+        break;
       default:
         //TODO: forse non serve il default.
-        Navigator.of(context).pushNamed('/home');
+        Navigator.of(context).pushNamed('/');
         break;
     }
   }

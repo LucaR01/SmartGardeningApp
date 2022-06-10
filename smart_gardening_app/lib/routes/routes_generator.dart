@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_gardening_app/screens/error_screen/error_screen.dart';
 import 'package:smart_gardening_app/screens/my_plants/my_plants_screen.dart';
+import 'package:smart_gardening_app/screens/scan_result_screen/scan_result_screen.dart';
 import 'package:smart_gardening_app/screens/settings/settings_screen.dart';
 import 'package:smart_gardening_app/screens/tasks/tasks_screen.dart';
 
@@ -18,6 +19,7 @@ class RouteGenerator {
 
     switch (settings.name) {
       case '/': 
+      case '/home': //TODO: remove
         return MaterialPageRoute(builder: (_) => HomePage());
       case '/splash':
         return MaterialPageRoute(builder: (_) => Splash());
@@ -31,6 +33,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => SettingsScreen());
       case '/scan':
         return MaterialPageRoute(builder: (_) => ScanPage());
+      case '/scan_result':
+        return MaterialPageRoute(builder: (_) => ScanResultPage());
       default:
         return _errorRoute();
     }
