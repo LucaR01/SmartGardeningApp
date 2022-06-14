@@ -27,25 +27,25 @@ class NavigationDrawerWidget extends StatelessWidget {
             buildMenuItem(
               text: 'Home',
               icon: Icons.home,
-              onClicked: () => Utils.navigateToPage(context: context, page: Pages.home),
+              onClicked: () => Utils.navigateToPage(context: context, page: Pages.home, shouldPop: true),
             ),
             const SizedBox(height: 16),
             buildMenuItem(
               text: 'My Plants',
               icon: FontAwesomeIcons.seedling, 
-              onClicked: () => Utils.navigateToPage(context: context, page: Pages.myPlants),
+              onClicked: () => Utils.navigateToPage(context: context, page: Pages.myPlants, shouldPop: true),
             ),
             const SizedBox(height: 16),
             buildMenuItem(
               text: 'Tasks',
               icon: Icons.task,
-              onClicked: () => Utils.navigateToPage(context: context, page: Pages.tasks),
+              onClicked: () => Utils.navigateToPage(context: context, page: Pages.tasks, shouldPop: true),
             ),
             const SizedBox(height: 16),
             buildMenuItem(
               text: 'Diagnosis',
               icon: FontAwesomeIcons.stethoscope, 
-              onClicked: () => Utils.navigateToPage(context: context, page: Pages.diagnosis), 
+              onClicked: () => Utils.navigateToPage(context: context, page: Pages.diagnosis, shouldPop: true), 
             ),
             const SizedBox(height: 24),
             const Divider(color: Colors.white70), //TODO: get color from constants
@@ -55,19 +55,19 @@ class NavigationDrawerWidget extends StatelessWidget {
             buildMenuItem(
               text: 'Settings',
               icon: Icons.settings,
-              onClicked: () => Utils.navigateToPage(context: context, page: Pages.settings), //TODO: uncomment
+              onClicked: () => Utils.navigateToPage(context: context, page: Pages.settings, shouldPop: true), //TODO: uncomment
             ),
 
             const SizedBox(height: 16),
             buildMenuItem(
               text: 'Notifications',
               icon: Icons.notifications,
-              //onClicked: () => Utils.navigateToPage(context: context, page: Pages.home), //TODO: uncomment
+              //onClicked: () => Utils.navigateToPage(context: context, page: Pages.home, shouldPop: true), //TODO: uncomment
             ),
 
             const SizedBox(height: 16),
             buildMenuItem(text: 'Privacy Policy', icon: Icons.privacy_tip
-                //onClicked: () => Utils.navigateToPage(context: context, page: Pages.home), //TODO: uncomment
+                //onClicked: () => Utils.navigateToPage(context: context, page: Pages.home, shouldPop: true), //TODO: uncomment
                 ),
           ],
         ),
@@ -103,54 +103,5 @@ class NavigationDrawerWidget extends StatelessWidget {
       title: Text(text, style: TextStyle(color: color)),
       onTap: onClicked,
     );
-  }
-
-  void selectedItem(BuildContext context, Pages page) {
-    Navigator.of(context).pop(); // Così si chiude il navigation drawer
-
-    switch (page) {
-      case Pages.home:
-        /*Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => const HomePage(),
-        ));*/
-        Navigator.of(context).pushNamed('/');
-        break;
-      case Pages.myPlants:
-        /*Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => , 
-        ));*/ //TODO: uncomment
-        break;
-      case Pages.tasks:
-        /*Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => , 
-        ));*/ //TODO: uncomment
-        break;
-      case Pages.diagnosis:
-        /*Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => , 
-        ));*/ //TODO: uncomment
-        break;
-      case Pages.settings:
-        /*Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => , 
-        ));*/ //TODO: uncomment
-        break;
-      case Pages.notifications:
-        /*Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => , 
-        ));*/ //TODO: uncomment
-        break;
-      case Pages.privacyPolicy:
-        /*Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => , 
-        ));*/ //TODO: uncomment
-        break;
-      default:
-        //TODO: forse non serve il default.
-        /*Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => , 
-        ));*/ //TODO: uncomment
-        break;
-    }
   }
 }
