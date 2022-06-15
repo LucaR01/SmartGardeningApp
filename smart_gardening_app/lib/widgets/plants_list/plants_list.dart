@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_gardening_app/models/plant/plant.dart';
+import 'package:smart_gardening_app/screens/pages.dart';
+import 'package:smart_gardening_app/utils/utils.dart';
 
 class PlantsList extends StatefulWidget {
   const PlantsList({Key? key}) : super(key: key);
@@ -23,9 +25,9 @@ final GlobalKey _listKey = GlobalKey();
     //TODO: vanno recuperati o dal database o dalla memoria locale dell'utente.
     List<Plant> _plants = [
       Plant(name: 'Gelsomino', family: 'Famiglia Gelsomino', waterAmount: 12, sunAmount: 13, 
-      description: 'Descrizione Gelsomino', otherDescription: 'Altra Descrizione Gelsomino', plantAccuracy: 56.7, img: ''),
+      description: 'Descrizione Gelsomino', otherDescription: 'Altra Descrizione Gelsomino', plantAccuracy: 56.7, img: 'gelsomono_mamertino.png'),
       Plant(name: 'Margherita', family: 'Famiglia Margherita', waterAmount: 12, sunAmount: 13, 
-      description: 'Descrizione Margherita', otherDescription: 'Altra Descrizione Margherita', plantAccuracy: 72.9, img: ''),
+      description: 'Descrizione Margherita', otherDescription: 'Altra Descrizione Margherita', plantAccuracy: 72.9, img: 'margherita-grande-come-curare-come-si-coltiva.png'),
     ];
 
     _plants.forEach((Plant plant) {
@@ -45,9 +47,10 @@ final GlobalKey _listKey = GlobalKey();
     );
   }
 
+  //TODO: potrei fare una card per pianta piuttosto.
   Widget _buildPlant(Plant plant) {
     return ListTile(
-      onTap: () {},
+      onTap: () => Utils.navigateToPage(context: context, page: Pages.myPlantsDetails, plant: plant),
       contentPadding: EdgeInsets.all(24),
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,14 +65,14 @@ final GlobalKey _listKey = GlobalKey();
           ),
         ],
       ),
-      /*leading: ClipRect(
+      leading: ClipRect(
         //TODO: borderRadius:
         child: Image.asset(
           'assets/images/scan/${plant.img}',
           height: 50.0, //TODO: 60.0
         ),
-      ),*/
-      //TODO: trailing: ,
+      ),
+      trailing: Icon(Icons.favorite), //TODO: HeartWidget()
     );
   }
 }
