@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:smart_gardening_app/models/plant/plant.dart';
 
 import '../screens/home/home_screen.dart';
 import '../screens/pages.dart';
 
 class Utils {
   //TODO: magari cambiare il valore di default dello shouldPop in false al posto di true.
-  static void navigateToPage({required BuildContext context, required Pages page, bool shouldPop = false}) {
+  static void navigateToPage({required BuildContext context, required Pages page, bool shouldPop = false, 
+  Plant? plant}) {
   
 	//TODO: final bool shouldPop;
 	//TODO: (...,this.shouldPop)
@@ -16,10 +18,13 @@ class Utils {
 
     switch (page) {
       case Pages.home:
-        Navigator.of(context).pushNamed('/');
+        Navigator.of(context).pushReplacementNamed('/');
         break;
       case Pages.myPlants:
-        Navigator.of(context).pushNamed('/myplants'); 
+        Navigator.of(context).pushNamed('/myplants');
+        break;
+      case Pages.myPlantsDetails:
+        Navigator.of(context).pushNamed('/myplants/details', arguments: plant);
         break;
       case Pages.tasks:
         Navigator.of(context).pushNamed('/tasks'); 

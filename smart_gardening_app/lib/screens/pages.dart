@@ -1,2 +1,2 @@
 //TODO: rename in screens?
-enum Pages { home, myPlants, tasks, diagnosis, settings, notifications, privacyPolicy, scan, scanResult }
+enum Pages { home, myPlants, myPlantsDetails, tasks, diagnosis, settings, notifications, privacyPolicy, scan, scanResult }

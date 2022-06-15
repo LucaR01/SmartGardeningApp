@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:smart_gardening_app/models/plant/plant.dart';
 import 'package:smart_gardening_app/screens/error_screen/error_screen.dart';
 import 'package:smart_gardening_app/screens/my_plants/my_plants_screen.dart';
+import 'package:smart_gardening_app/screens/plant_details/plant_details.dart';
 import 'package:smart_gardening_app/screens/scan_result_screen/scan_result_screen.dart';
 import 'package:smart_gardening_app/screens/settings/settings_screen.dart';
 import 'package:smart_gardening_app/screens/tasks/tasks_screen.dart';
@@ -25,6 +27,14 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => Splash());
       case '/myplants':
         return MaterialPageRoute(builder: (_) => MyPlantsScreen());
+      case '/myplants/details':
+        //return MaterialPageRoute(builder: (_) => PlantDetails(plant: args);
+        if(args is Plant) {
+          return MaterialPageRoute(
+            builder: (_) => PlantDetails(plant: args)
+          );
+        }
+        return _errorRoute();
       case '/tasks':
         return MaterialPageRoute(builder: (_) => TasksScreen());
       case '/diagnosis':
