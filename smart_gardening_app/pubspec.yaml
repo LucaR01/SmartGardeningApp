@@ -72,7 +72,8 @@ flutter:
     - assets/
     - assets/icons/
     - assets/images/
-  #   - assets/scan/
+    - assets/images/scan/ #TODO: oppure metterlo in assets/scan/ #TODO: rinominare in scanned?
+    #- assets/scan/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
