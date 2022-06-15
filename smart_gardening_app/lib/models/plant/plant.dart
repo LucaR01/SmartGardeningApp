@@ -14,7 +14,8 @@ class Plant {
   final String description;
   final String otherDescription;
   final double plantAccuracy; //TODO: float or Float
+  final String img;
 
   Plant({required this.name, required this.family, required this.waterAmount, required this.sunAmount, 
-  required this.description, required this.otherDescription, required this.plantAccuracy});
+  required this.description, required this.otherDescription, required this.plantAccuracy, required this.img});
 }
