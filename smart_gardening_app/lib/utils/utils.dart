@@ -45,7 +45,7 @@ class Utils {
         Navigator.of(context).pushNamed('/scan');
         break;
       case Pages.scanResult:
-        Navigator.of(context).pushNamed('/scan_result');
+        Navigator.of(context).pushReplacementNamed('/scan_result');
         break;
       default:
         //TODO: forse non serve il default.
