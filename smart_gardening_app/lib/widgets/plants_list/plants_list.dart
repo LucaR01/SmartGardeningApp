@@ -72,7 +72,7 @@ final GlobalKey _listKey = GlobalKey();
           height: 50.0, //TODO: 60.0
         ),
       ),
-      trailing: Icon(Icons.favorite), //TODO: HeartWidget()
+      trailing: Icon(Icons.favorite), //TODO: FavoriteWidget()
     );
   }
 }

@@ -28,13 +28,13 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
           ),
         ),
       ),*/
-      body: Container(
+      body: Container( //TODO: dovrà diventare una SingleChildScrollView per quando aumenteranno.
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             SizedBox(height: 30),
             SizedBox(
-              height: 160,
+              height: 60,
               child: Text(
                 'My Plants',
                 style: TextStyle(
@@ -44,7 +44,7 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
                 ),
               ),
             ),
-            Flexible(
+            Flexible( //TODO: ListView?, SingleChildScrollView?
               child: PlantsList(),
             ),
           ],
