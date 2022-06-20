@@ -7,7 +7,6 @@ import 'package:smart_gardening_app/screens/scan_result_screen/scan_result_scree
 import 'package:smart_gardening_app/screens/settings/settings_screen.dart';
 import 'package:smart_gardening_app/screens/tasks/tasks_screen.dart';
 
-import '../main.dart';
 import '../screens/diagnosis/diagnosis_screen.dart';
 import '../screens/home/home_screen.dart';
 import '../screens/scan/scan_screen.dart';
@@ -44,7 +43,13 @@ class RouteGenerator {
       case '/scan':
         return MaterialPageRoute(builder: (_) => ScanPage());
       case '/scan_result':
-        return MaterialPageRoute(builder: (_) => ScanResultPage());
+        if(args is Plant) {
+          return MaterialPageRoute(
+            builder: (_) => ScanResultScreen(plant: args) //TODO: ScanResultPage
+          );
+        }
+        return _errorRoute();
+        
       default:
         return _errorRoute();
     }
