@@ -37,8 +37,9 @@ dependencies:
   font_awesome_flutter: '>= 10.1.0'
 
   #TODO: remove
-  camera: ^0.9.8
+  #camera: ^0.9.8
   image_picker: ^0.8.5+3
+  #image_picker_web: any
   image_cropper: ^2.0.3
   #path: ^1.8.2 # per questo usare override_dependencies altrimenti mi da errore col flutter_test sdk
   path_provider: ^2.0.11
