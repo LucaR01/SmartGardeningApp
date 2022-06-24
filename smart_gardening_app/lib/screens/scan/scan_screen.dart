@@ -14,6 +14,7 @@ import 'package:smart_gardening_app/utils/utils.dart';
 import 'package:smart_gardening_app/widgets/FAB/FABWidget.dart';
 import 'package:smart_gardening_app/widgets/app_bar/app_bar.dart';
 import 'package:smart_gardening_app/widgets/bottom_navigation_bar/custom_bottom_navigation_bar.dart';
+import 'package:tflite/tflite.dart';
 
 //TODO: scan_screens/scan_screen/
 //TODO: scan_screens/scan_result_screen/
@@ -32,6 +33,38 @@ class ScanPage extends StatefulWidget {
 class _ScanPageState extends State<ScanPage> {
 
   File? image;
+  final _picker = ImagePicker();
+
+  late List _outputs;
+  bool _loading = false;
+
+  /*Future getImage() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }*/
+
+  @override
+  void initState() {
+    super.initState();
+    _loadModel().then((value) {
+      setState(() {
+        _loading = false;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    Tflite.close(); //TODO: remove?
+    super.dispose();
+  }
 
   Future pickImage(ImageSource source) async {
     try {
@@ -42,9 +75,54 @@ class _ScanPageState extends State<ScanPage> {
       setState(() {
         this.image = tempImage;
       }); // () => this.image = tempImage 
+
+      _detectImage(tempImage);
+
     } on PlatformException catch(e){
       print('Failed to pick image: $e');
     }
+  }
+
+  _loadModel() async {
+    await Tflite.loadModel(
+      model: 'assets/plants/plant_model.tflite', //TODO: 
+      labels: 'assets/plants/plant_labels.txt', //TODO: 
+    );
+  }
+
+  //TODO: rename in detectPlant?
+  _detectImage(File image) async {
+    var output = await Tflite.runModelOnImage(
+      path: image.path,
+      imageMean: 0.0,
+      imageStd: 255.0,
+      numResults: 2,
+      threshold: 0.2,
+      asynch: true
+    );
+    setState(() {
+      _loading = false;
+      _outputs = output!;
+      //_outputs.add(output);
+
+      print("output: ${output}"); //TODO: remove
+
+      String str = output[0]["label"];
+
+      print("str: ${str}"); //TODO: remove
+
+      String _name = str.substring(2); //TODO: put in class
+
+      print("name: ${_name}"); //TODO: remove
+
+      //TODO: rename in accuracy
+      //String _confidence = output != null ? (output[0]["confidence"]*100.0).toString().substring(0, 2) + "%" : "";
+
+      //print("confidence/accuracy: ${_name}"); //TODO: remove
+
+    });
+
+    
   }
 
   @override
@@ -89,7 +167,7 @@ class _ScanPageState extends State<ScanPage> {
                   ElevatedButton(
                     onPressed: () => pickImage(ImageSource.gallery), 
                     child: IconButton(
-                      onPressed: () => pickImage(ImageSource.camera),
+                      onPressed: () => pickImage(ImageSource.gallery),
                       icon: const Icon(Icons.scanner),
                     ),
                     )
