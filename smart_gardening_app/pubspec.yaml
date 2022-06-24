@@ -44,6 +44,8 @@ dependencies:
   #path: ^1.8.2 # per questo usare override_dependencies altrimenti mi da errore col flutter_test sdk
   path_provider: ^2.0.11
 
+  tflite: ^1.1.2
+
   #flutter_svg: ^1.1.0
 
 dev_dependencies:
@@ -74,6 +76,7 @@ flutter:
     - assets/icons/
     - assets/images/
     - assets/images/scan/ #TODO: oppure metterlo in assets/scan/ #TODO: rinominare in scanned?
+    - assets/plants/
     #- assets/scan/
 
   # An image asset can refer to one or more resolution-specific "variants", see
