@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:smart_gardening_app/models/plant/plant.dart';
 
 import '../screens/home/home_screen.dart';
@@ -52,5 +56,30 @@ class Utils {
         Navigator.of(context).pushNamed('/');
         break;
     }
+  }
+
+  //TODO: remove?
+  static Future<File?> pickImage(ImageSource source) async {
+    try {
+      final image = await ImagePicker().pickImage(source: source); //TODO: Questo da eccezione!
+      if(image == null) return null;
+
+      final tempImage = File(image.path);
+
+      //_detectImage(tempImage); //TODO: remove
+
+      /*setState(() {
+        this.image = tempImage;
+      });*/ // () => this.image = tempImage 
+
+      //_detectImage(tempImage);
+
+      return tempImage;
+
+    } on PlatformException catch(e){
+      print('Failed to pick image: $e');
+    }
+
+    return null;
   }
 }
