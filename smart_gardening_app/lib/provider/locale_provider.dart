@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:smart_gardening_app/l10n/languages.dart';
 
 class LocaleProvider extends ChangeNotifier {
-  Locale _locale = const Locale('en'); //TODO: 
+  Locale _locale = const Locale('en');
 
   Locale get locale => _locale;
   
@@ -14,7 +14,7 @@ class LocaleProvider extends ChangeNotifier {
   }
 
   void clearLocale() {
-    _locale = const Locale('en'); //TODO: 
+    _locale = const Locale('en');
     notifyListeners();
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:smart_gardening_app/screens/pages.dart';
 import 'package:smart_gardening_app/utils/utils.dart';
+import 'package:smart_gardening_app/widgets/language_picker/language_picker.dart';
 
 import '../../constants/strings_constants.dart';
 
@@ -29,7 +30,8 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         color: Colors.black,
       ),
       actions: [
-        //SizedBox(width: 24), //TODO: remove?
+        LanguagePickerWidget(),
+        SizedBox(width: 12), //TODO: remove?
         IconButton(
           icon: const Icon(Icons.search),
           onPressed: () {},
