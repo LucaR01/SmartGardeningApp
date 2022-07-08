@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_gardening_app/provider/locale_provider.dart';
+import 'package:smart_gardening_app/provider/theme_provider.dart';
 import 'package:smart_gardening_app/routes/routes_generator.dart';
 
 //import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:smart_gardening_app/themes/themes.dart';
 
 import 'screens/home/home_screen.dart'; //TODO: package:smart_gardening_app/home/home_screen.dart
 import 'screens/splash/splash_screen.dart'; //TODO: package:smart_gardening_app/splash/splash_screen.dart
@@ -24,15 +26,26 @@ class App extends StatelessWidget {
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) => ChangeNotifierProvider (
-    create: (context) => LocaleProvider(),
+  Widget build(BuildContext context) => MultiProvider (
+    providers: [
+      ChangeNotifierProvider<LocaleProvider>(
+                create: (context) => LocaleProvider()
+      ),
+      ChangeNotifierProvider<ThemeProvider>(
+                create: (context) => ThemeProvider()
+      ),
+    ],
     builder: (context, child) {
-      final provider = Provider.of<LocaleProvider>(context);
+      final localeProvider = Provider.of<LocaleProvider>(context);
+      final themeProvider = Provider.of<ThemeProvider>(context);
 
       return MaterialApp(
       debugShowCheckedModeBanner: false, // per rimuovere il debug tag
       title: 'Smart Gardening App',
-      locale: provider.locale, 
+      themeMode: themeProvider.themeMode,
+      theme: Themes.lightTheme,
+      darkTheme: Themes.darkTheme,
+      locale: localeProvider.locale,
       localizationsDelegates: [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -48,18 +61,9 @@ class App extends StatelessWidget {
       //localizationsDelegates: AppLocalizations.localizationsDelegates,
       //supportedLocales: AppLocalizations.supportedLocales,
 
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
+      /*theme: ThemeData( //TODO: remove
         primarySwatch: Colors.green,
-      ),
+      ),*/
       initialRoute: '/splash',
       onGenerateRoute: RouteGenerator.generateRoute,
     );

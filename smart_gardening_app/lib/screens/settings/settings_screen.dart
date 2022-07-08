@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_gardening_app/widgets/app_bar/app_bar.dart';
+import 'package:smart_gardening_app/widgets/switch_theme/switch_theme.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -51,7 +52,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
             Divider(height: 20, thickness: 1),
             SizedBox(height: 10),
             _buildOption(context, 'Lingua'), //TODO: use string constants
-            _buildSlideOption('Tema', isDarkTheme, onChangeTheme),
+            _buildSlideOption('Tema', isDarkTheme, onChangeTheme), //TODO: remove
+            SwitchThemeWidget(),
             SizedBox(height: 40),
             Row(
               children: [
