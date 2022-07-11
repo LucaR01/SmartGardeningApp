@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:smart_gardening_app/screens/pages.dart';
+import 'package:smart_gardening_app/utils/utils.dart';
 
 import '../../constants/strings_constants.dart';
 import '../home/home_screen.dart';
@@ -27,11 +29,7 @@ class _SplashState extends State<Splash> {
 
   void _navigateToHome() async {
     await Future.delayed(const Duration(milliseconds: 1800), () {});
-    Navigator.pushReplacement( //TODO: update with routes
-      context, 
-      MaterialPageRoute(
-        builder: (context) => const HomePage()
-      ));
+    Utils.navigateToPage(context: context, page: Pages.home);
   }
 
   @override
@@ -41,8 +39,8 @@ class _SplashState extends State<Splash> {
         child: Container(
           alignment: Alignment.topRight,
           padding: const EdgeInsets.only(top: 60.0, right: 30.0),
-          child: const Text(
-            kAppName, 
+          child: Text(
+            kAppName,
             style: TextStyle(
               fontSize: 36,
               //fontFamily: 'RailWay'
