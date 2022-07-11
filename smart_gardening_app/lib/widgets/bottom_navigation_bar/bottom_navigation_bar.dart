@@ -14,10 +14,10 @@ class BottomNavigationBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomAppBar(
       shape: const CircularNotchedRectangle(),
-      color: Theme.of(context).colorScheme.primary, //TODO: usare color constants.
+      color: Theme.of(context).iconTheme.color, //TODO: usare color constants.
       child: IconTheme(
         data: IconThemeData(
-            color: Theme.of(context).colorScheme.onPrimary), //TODO: usare color constants
+            color: Theme.of(context).backgroundColor), //TODO: usare color constants colorScheme.onPrimary
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Row(

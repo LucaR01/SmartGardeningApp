@@ -19,6 +19,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      iconTheme: Theme.of(context).iconTheme, //TODO: remove?
       backgroundColor: Colors.transparent,
       elevation: 0.0,
       title: Text(title), //TODO: spostare il titolo
@@ -26,9 +27,9 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         color: Colors.grey[800], //TODO: black?
         fontSize: 36, //TODO: più piccolo?
       ),
-      iconTheme: const IconThemeData(
+      /*iconTheme: const IconThemeData( //TODO: remove?
         color: Colors.black,
-      ),
+      ),*/
       actions: [
         LanguagePickerWidget(),
         SizedBox(width: 12), //TODO: remove?
