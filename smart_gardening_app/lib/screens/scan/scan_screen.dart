@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 //import 'package:camera/camera.dart'; //TODO: remove
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:smart_gardening_app/api/notifications_api.dart';
 import 'package:smart_gardening_app/models/plant/plant.dart';
 //import 'package:path_provider/path_provider.dart';
 import 'package:smart_gardening_app/screens/pages.dart';
@@ -14,7 +15,9 @@ import 'package:smart_gardening_app/utils/utils.dart';
 import 'package:smart_gardening_app/widgets/FAB/FABWidget.dart';
 import 'package:smart_gardening_app/widgets/app_bar/app_bar.dart';
 import 'package:smart_gardening_app/widgets/bottom_navigation_bar/custom_bottom_navigation_bar.dart';
-import 'package:tflite/tflite.dart';
+//import 'package:tflite/tflite.dart'; //TODO: uncomment
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart'; //TODO: uncomment
 
 //TODO: scan_screens/scan_screen/
 //TODO: scan_screens/scan_result_screen/
@@ -33,38 +36,30 @@ class ScanPage extends StatefulWidget {
 class _ScanPageState extends State<ScanPage> {
 
   File? image;
-  final _picker = ImagePicker();
 
-  late List _outputs;
+  List _outputs = [];
   bool _loading = false;
 
-  /*Future getImage() async {
-    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+  //late Plant _scannedPlant; //TODO: uncomment
 
-    setState(() {
-      if (pickedFile != null) {
-        image = File(pickedFile.path);
-      } else {
-        print('No image selected.');
-      }
-    });
-  }*/
+  String _scannedPlantName = "";
 
-  @override
+  /*@override
   void initState() {
     super.initState();
-    _loadModel().then((value) {
+    _loadModel().then((value) { //TODO: uncomment
       setState(() {
         _loading = false;
       });
     });
+    print("initState()"); //TODO: remove
   }
 
   @override
   void dispose() {
     Tflite.close(); //TODO: remove?
     super.dispose();
-  }
+  }*/
 
   Future pickImage(ImageSource source) async {
     try {
@@ -72,26 +67,29 @@ class _ScanPageState extends State<ScanPage> {
       if(image == null) return;
 
       final tempImage = File(image.path);
+
+      //_detectImage(tempImage); //TODO: remove
+
       setState(() {
         this.image = tempImage;
       }); // () => this.image = tempImage 
 
-      _detectImage(tempImage);
+      //_detectImage(tempImage); //TODO: uncomment
 
     } on PlatformException catch(e){
       print('Failed to pick image: $e');
     }
   }
 
-  _loadModel() async {
+  /*_loadModel() async { //TODO: uncomment
     await Tflite.loadModel(
-      model: 'assets/plants/plant_model.tflite', //TODO: 
-      labels: 'assets/plants/plant_labels.txt', //TODO: 
+      model: 'assets/plants/model_unquant.tflite', //TODO: 
+      labels: 'assets/plants/labels.txt', //TODO: 
     );
   }
 
   //TODO: rename in detectPlant?
-  _detectImage(File image) async {
+  _detectImage(File image) async { //TODO: uncomment
     var output = await Tflite.runModelOnImage(
       path: image.path,
       imageMean: 0.0,
@@ -102,7 +100,16 @@ class _ScanPageState extends State<ScanPage> {
     );
     setState(() {
       _loading = false;
-      _outputs = output!;
+
+      _scannedPlantName = output![0]["label"];
+
+      print(_scannedPlantName);
+
+      _outputs = output;
+
+      print(_outputs);
+      print(output);
+
       //_outputs.add(output);
 
       print("output: ${output}"); //TODO: remove
@@ -120,10 +127,16 @@ class _ScanPageState extends State<ScanPage> {
 
       //print("confidence/accuracy: ${_name}"); //TODO: remove
 
+      //TODO: scannedPlant = Plant();
+
     });
 
+    print(_scannedPlantName);
+    print(output);
+    print(_outputs);
+
     
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -145,11 +158,11 @@ class _ScanPageState extends State<ScanPage> {
                         "assets/images/camera-focus-frame-objective-photo.png"),
                         //width: 256, //TODO: remove?
                   ),
-                  //cameraPreview(), //TODO: remove
-                  const Text(
-                    "Posizionare la pianta al centro del riquadro.",
+                  Text(
+                    AppLocalizations.of(context).helloWorld, //"Posizionare la pianta al centro del riquadro.", //TODO:
                     textAlign: TextAlign.center,
                     style: TextStyle(
+                      color: Theme.of(context).iconTheme.color,
                       fontSize: 24,
                     ),
                   ),
@@ -158,6 +171,16 @@ class _ScanPageState extends State<ScanPage> {
                     icon: const Icon(Icons.scanner), //TODO: update icon
                     onPressed: () => Utils.navigateToPage(context: context, page: Pages.scanResult, plant: _getScannedPlant()), //TODO: pickImage(ImageSource.camera), 
                     ),
+                  IconButton( //TODO: remove
+                    icon: const Icon(Icons.scanner), //TODO: update icon
+                    onPressed: () => NotificationsAPI.showNotification(title: 'Prova notifica', body: 'Ciao questa è una prova', payload: 'prova.abs'), //pickImage(ImageSource.gallery), //TODO: pickImage(ImageSource.camera), 
+                    ),
+                  Text( //TODO: remove
+                    _scannedPlantName,
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
                   const Text(
                     'Scan',
                     style: TextStyle(
@@ -165,9 +188,9 @@ class _ScanPageState extends State<ScanPage> {
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: () => pickImage(ImageSource.gallery), 
+                    onPressed: () => NotificationsAPI.showNotification(title: 'Prova notifica', body: 'Ciao questa è una prova', payload: 'prova.abs'), //pickImage(ImageSource.gallery), //TODO: rimettere questo
                     child: IconButton(
-                      onPressed: () => pickImage(ImageSource.gallery),
+                      onPressed: () => NotificationsAPI.showNotification(title: 'Prova notifica', body: 'Ciao questa è una prova', payload: 'prova.abs'), //pickImage(ImageSource.gallery), //TODO: rimettere questo
                       icon: const Icon(Icons.scanner),
                     ),
                     )
