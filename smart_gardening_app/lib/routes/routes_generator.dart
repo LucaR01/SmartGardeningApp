@@ -4,6 +4,7 @@ import 'package:smart_gardening_app/screens/error_screen/error_screen.dart';
 import 'package:smart_gardening_app/screens/my_plants/my_plants_screen.dart';
 import 'package:smart_gardening_app/screens/plant_details/plant_details.dart';
 import 'package:smart_gardening_app/screens/scan_result_screen/scan_result_screen.dart';
+import 'package:smart_gardening_app/screens/sensors/sensors_screen.dart';
 import 'package:smart_gardening_app/screens/settings/settings_screen.dart';
 import 'package:smart_gardening_app/screens/tasks/tasks_screen.dart';
 
@@ -22,7 +23,7 @@ class RouteGenerator {
       case '/': 
       case '/home': //TODO: remove
         return MaterialPageRoute(builder: (_) => HomePage());
-      case '/splash':
+      case '/splash': //TODO: settare lo splash screen come '/'?
         return MaterialPageRoute(builder: (_) => Splash());
       case '/myplants':
         return MaterialPageRoute(builder: (_) => MyPlantsScreen());
@@ -49,7 +50,17 @@ class RouteGenerator {
           );
         }
         return _errorRoute();
-        
+
+      case '/diagnosis/scan/result':
+        if(args is Plant) {
+          //TODO: uncomment
+          /*return MaterialPageRoute(
+            builder: (_) => ScanResultScreen(plant: args) //TODO: DiagnosisScanResultPage
+          );*/
+        }
+        return _errorRoute();
+      case '/sensors':
+        return MaterialPageRoute(builder: (_) => SensorPage());
       default:
         return _errorRoute();
     }
