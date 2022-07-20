@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
+//TODO: rename folder from 'api' to 'services'?
+
 class NotificationsAPI {
   static final _notifications = FlutterLocalNotificationsPlugin();
   //static final onNotifications = BehaviorSubject<String?>(); //TODO: uncomment
@@ -11,8 +13,10 @@ class NotificationsAPI {
         'channel id',
         'channel name',
         //'channel description', //TODO: remove?
-        //channelDescription: 'channel description', // Questo da errore!
+        channelDescription: 'description', // Questo da errore!
         importance: Importance.max,
+        //priority: Priority.max, //TODO: uncomment
+        //playSound: true,
       ),
       iOS: IOSNotificationDetails(),
     );
@@ -37,6 +41,6 @@ class NotificationsAPI {
     String? title,
     String? body,
     String? payload,
-  }) async => _notifications.show(id, title, body, await _notificationsDetails(), payload: payload);
+  }) async => _notifications.show(id, title, body, await _notificationsDetails(), payload: payload); 
 
 }
