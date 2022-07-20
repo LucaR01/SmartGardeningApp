@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:smart_gardening_app/api/notifications_api.dart';
+import 'package:smart_gardening_app/models/shared_preferences/user_preferences.dart';
 import 'package:smart_gardening_app/provider/locale_provider.dart';
 import 'package:smart_gardening_app/provider/theme_provider.dart';
 import 'package:smart_gardening_app/routes/routes_generator.dart';
@@ -19,10 +21,25 @@ import 'screens/splash/splash_screen.dart'; //TODO: package:smart_gardening_app/
 
 //TODO: Localization per iOS
 
-void main() => runApp(const App()); //TODO: const MaterialApp();
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await UserPreferences.init(); //TODO: metterlo in App?
+  runApp(const App()); //TODO: const MaterialApp();
+} 
 
+//TODO: in initState() { super.initState(); NotificationsAPI.init(); listenNotifications(); } //TODO: quindi trasformare in un StatefulWidget
+
+//TODO: spostare App class in un altro file a parte?
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
+
+  //TODO: uncomment
+  /*void listenNotifications() => NotificationsAPI.onNotifications.stream.listen(onClickedNotification);
+
+  void onClickedNotification(String? payload) => 
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => ScanPage(payload: payload),
+    ));*/
 
   // This widget is the root of your application.
   @override

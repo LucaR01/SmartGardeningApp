@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_gardening_app/models/shared_preferences/user_preferences.dart';
 import 'package:smart_gardening_app/widgets/app_bar/app_bar.dart';
 import 'package:smart_gardening_app/widgets/switch_theme/switch_theme.dart';
 
@@ -14,6 +15,29 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   bool isDarkTheme = false;
   bool areNotificationsOn = false;
+  String language = '';
+
+  @override
+  void initState() {
+    super.initState();
+
+    isDarkTheme = UserPreferences.getIsDarkTheme() ?? false; // ?? vuol dire che se è null, mette il valore false.
+    language = UserPreferences.getLanguage() ?? 'en'; //TODO: per la lingua mi serve un Locale, non una stringa, quindi faccio Locale(language);
+
+    test(true, 'it'); //TODO: remove
+  }
+
+  //TODO: remove test function
+  void test(bool isDark, String lang) {
+    print(isDarkTheme);
+    print(language);
+
+    isDarkTheme = isDark;
+    language = lang;
+
+    print(isDarkTheme);
+    print(language);
+  }
 
   onChangeTheme(bool isDark) {
     setState(() {
@@ -83,7 +107,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () async {
+                  await UserPreferences.setTheme(isDarkTheme);
+                  await UserPreferences.setLanguage(language);
+                },
                 child: Text(
                   'SALVA',
                   style: TextStyle(
@@ -111,8 +138,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 content: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text('Option 1'), //TODO: update
-                    Text('Option 2'), //TODO: update
+                    Text('Italiano'), //TODO: usare localization
+                    Text('Inglese'), //TODO: usare localization
                   ],
                 ),
                 actions: [
