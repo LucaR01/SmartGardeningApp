@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_gardening_app/models/shared_preferences/user_preferences.dart';
+import 'package:smart_gardening_app/provider/theme_provider.dart';
 import 'package:smart_gardening_app/widgets/app_bar/app_bar.dart';
 import 'package:smart_gardening_app/widgets/switch_theme/switch_theme.dart';
 
@@ -12,8 +13,10 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  static const bool DEFAULT_THEME = false; //TODO: put in constants
+  static const String DEFAULT_LANGUAGE = 'en'; //TODO: put in constants
 
-  bool isDarkTheme = false;
+  bool isDarkTheme = false; //TODO: recuperare dal ThemeProvider
   bool areNotificationsOn = false;
   String language = '';
 
@@ -21,30 +24,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
   void initState() {
     super.initState();
 
-    isDarkTheme = UserPreferences.getIsDarkTheme() ?? false; // ?? vuol dire che se è null, mette il valore false.
-    language = UserPreferences.getLanguage() ?? 'en'; //TODO: per la lingua mi serve un Locale, non una stringa, quindi faccio Locale(language);
-
-    test(true, 'it'); //TODO: remove
+    isDarkTheme = UserPreferences.getIsDarkTheme() ?? DEFAULT_THEME; // ?? vuol dire che se è null, mette il valore false.
+    language = UserPreferences.getLanguage() ?? DEFAULT_LANGUAGE; //TODO: per la lingua mi serve un Locale, non una stringa, quindi faccio Locale(language);
   }
 
-  //TODO: remove test function
-  void test(bool isDark, String lang) {
-    print(isDarkTheme);
-    print(language);
-
-    isDarkTheme = isDark;
-    language = lang;
-
-    print(isDarkTheme);
-    print(language);
-  }
-
+  //TODO: remove
   onChangeTheme(bool isDark) {
     setState(() {
       isDarkTheme = isDark;
     });
   }
 
+  //TODO: remove
   onChangeNotifications(bool areNotifications) {
     setState(() {
       areNotificationsOn = areNotifications;
@@ -76,8 +67,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
             Divider(height: 20, thickness: 1),
             SizedBox(height: 10),
             _buildOption(context, 'Lingua'), //TODO: use string constants
-            _buildSlideOption('Tema', isDarkTheme, onChangeTheme), //TODO: remove
-            SwitchThemeWidget(),
+            //_buildSlideOption('Tema', isDarkTheme, onChangeTheme), //TODO: remove
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget> [
+                const SizedBox(width: 20),
+                Text(
+                  'Tema',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500, //TODO:
+                    color: Colors.grey[600],
+                  ),
+                ),
+                const SizedBox(width: 30),
+                const SwitchThemeWidget(),
+              ],
+            ),
             SizedBox(height: 40),
             Row(
               children: [
@@ -97,29 +103,65 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             Divider(height: 20, thickness: 1),
             SizedBox(height: 10),
-            _buildSlideOption('Notifiche', areNotificationsOn, onChangeNotifications),
-            SizedBox(height: 50),
-            Center(
-              child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(horizontal: 40),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
+            _buildSlideOption(
+                'Notifiche', areNotificationsOn, onChangeNotifications),
+            const SizedBox(height: 60),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    padding: EdgeInsets.symmetric(horizontal: 40),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  onPressed: () async {
+                    await UserPreferences.setTheme(isDarkTheme);
+                    await UserPreferences.setLanguage(language);
+
+                    print('SALVATAGGIO IMPOSTAZIONI');
+                    print('theme: $isDarkTheme');
+                    print('language: $language');
+                  },
+                  child: const Text(
+                    'SALVA',
+                    style: TextStyle(
+                      fontSize: 18,
+                      letterSpacing: 2.1,
+                      color: Colors.black, //TODO: use color constants
+                    ),
                   ),
                 ),
-                onPressed: () async {
-                  await UserPreferences.setTheme(isDarkTheme);
-                  await UserPreferences.setLanguage(language);
-                },
-                child: Text(
-                  'SALVA',
-                  style: TextStyle(
-                    fontSize: 18,
-                    letterSpacing: 2.1,
-                    color: Colors.black, //TODO: use color constants
+                const SizedBox(width: 20),
+                OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    padding: EdgeInsets.symmetric(horizontal: 40.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  onPressed: () async {
+                    await UserPreferences.setTheme(DEFAULT_THEME);
+                    await UserPreferences.setLanguage(DEFAULT_LANGUAGE);
+
+                    isDarkTheme = DEFAULT_THEME;
+                    language = DEFAULT_LANGUAGE;
+
+                    print('RESET IMPOSTAZIONI');
+                    print('theme: $isDarkTheme');
+                    print('language: $language');
+                  },
+                  child: const Text(
+                    'RESET',
+                    style: TextStyle(
+                      fontSize: 18,
+                      letterSpacing: 2.1,
+                      color: Colors.black, //TODO: use color constants
+                    ),
                   ),
                 ),
-              ), //TODO: volendo aggiungere il pulsante 'RESET'
+              ],
             ),
           ],
         ),
