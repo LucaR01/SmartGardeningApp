@@ -27,5 +27,20 @@
     "reset": "RESET",
     "@reset": {
       "description": "To reset the app's settings."
+    },
+
+    "english": "English",
+    "@english": {
+      "description": "The english language."
+    },
+
+    "italian": "Italian",
+    "@italian": {
+      "description": "The italian language."
+    },
+
+    "close": "Close",
+    "@close": {
+      "description": "To close a tab."
     }
 }

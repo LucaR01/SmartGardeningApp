@@ -4,5 +4,8 @@
     "settings": "Impostazioni",
     "notifications": "Notifiche",
     "save": "SALVA",
-    "reset": "RESET"
+    "reset": "RESET",
+    "english": "Inglese",
+    "italian": "Italiano",
+    "close": "Chiudi"
 }

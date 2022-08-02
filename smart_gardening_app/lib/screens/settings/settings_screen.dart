@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:smart_gardening_app/models/shared_preferences/user_preferences.dart';
+import 'package:smart_gardening_app/provider/locale_provider.dart';
+import 'package:smart_gardening_app/provider/theme_provider.dart';
 import 'package:smart_gardening_app/widgets/app_bar/app_bar.dart';
 import 'package:smart_gardening_app/widgets/switch_theme/switch_theme.dart';
 
@@ -19,7 +22,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   bool isDarkTheme = false; //TODO: recuperare dal ThemeProvider
   bool areNotificationsOn = false;
-  String language = '';
+  String language = ''; //TODO: recuperare da quale tema è al momento impostato.
 
   @override
   void initState() {
@@ -30,21 +33,40 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   //TODO: remove
-  onChangeTheme(bool isDark) {
-    setState(() {
-      isDarkTheme = isDark;
-    });
-  }
-
-  //TODO: remove
   onChangeNotifications(bool areNotifications) {
     setState(() {
       areNotificationsOn = areNotifications;
     });
   }
 
+  bool _getThemeMode() { //TODO: => isDarkTheme
+    return this.isDarkTheme;
+  }
+
+  void _setThemeMode({required bool isDarkMode}) {
+    isDarkTheme = isDarkMode;
+  }
+
+  String _getLang() { //TODO: => language;
+    return language;
+  }
+
+  void _setLang({required String language}) {
+    this.language = language;
+  }
+
   @override
   Widget build(BuildContext context) {
+    /*final provider = Provider.of<LocaleProvider>(context); //TODO: remove
+    final locale = provider.locale;
+    String lang = locale.languageCode;*/
+
+    /*final themeProvider = Provider.of<ThemeProvider>(context);
+    bool isDarkMode = themeProvider.isDarkMode;*/
+
+    _setThemeMode(isDarkMode: Provider.of<ThemeProvider>(context).isDarkMode);
+    _setLang(language: Provider.of<LocaleProvider>(context).locale.languageCode);
+
     return Scaffold(
       appBar: AppBarWidget(),
       body: Container(
@@ -122,7 +144,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     await UserPreferences.setLanguage(language);
 
                     print('SALVATAGGIO IMPOSTAZIONI');
-                    print('theme: $isDarkTheme');
+                    print('isDarkTheme: $isDarkTheme');
                     print('language: $language');
                   },
                   child: Text(
@@ -149,8 +171,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     isDarkTheme = DEFAULT_THEME;
                     language = DEFAULT_LANGUAGE;
 
+                    _setLanguage(language: DEFAULT_LANGUAGE);
+                    _setTheme(isDarkTheme: DEFAULT_THEME);
+
                     print('RESET IMPOSTAZIONI');
-                    print('theme: $isDarkTheme');
+                    print('isDarkTheme: $isDarkTheme');
                     print('language: $language');
                   },
                   child: Text(
@@ -181,8 +206,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 content: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text('Italiano'), //TODO: usare localization
-                    Text('Inglese'), //TODO: usare localization
+                    TextButton(
+                      onPressed: () => _setLanguage(language: 'it'),
+                      child: Text(AppLocalizations.of(context).italian),
+                    ),
+                    TextButton(
+                      onPressed: () => _setLanguage(language: 'en'),
+                      child: Text(AppLocalizations.of(context).english),
+                    ),
                   ],
                 ),
                 actions: [
@@ -190,7 +221,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     onPressed: () {
                       Navigator.of(context).pop(); //TODO: update
                     },
-                    child: Text('Close'), //TODO: update
+                    child: Text(AppLocalizations.of(context).close),
                   ),
                 ],
               );
@@ -247,5 +278,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ],
       ),
     );
+  }
+
+  void _setLanguage({required String language}) {
+    final provider = Provider.of<LocaleProvider>(context, listen: false);
+    this.language = language;
+    provider.setLocale(Locale(this.language));
+  }
+
+  void _setTheme({required bool isDarkTheme}) {
+    final provider = Provider.of<ThemeProvider>(context, listen: false);
+    provider.toggleTheme(isDarkTheme);
   }
 }
