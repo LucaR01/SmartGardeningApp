@@ -1,6 +1,31 @@
 {
-    "helloWorld": "Hello World!",
-    "@helloWorld": {
-      "description": "The conventional newborn programmer greeting"
+    "language": "Language",
+    "@language": {
+      "description": "The language of the app"
+    },
+
+    "theme": "Theme",
+    "@theme": {
+      "description": "The theme of the app"
+    },
+
+    "settings": "Settings",
+    "@settings": {
+      "description": "The app's settings"
+    },
+
+    "notifications": "Notifications",
+    "@notifications": {
+      "description": "The app's notifications"
+    },
+
+    "save": "SAVE",
+    "@save": {
+      "description": "To save in-app settings."
+    },
+
+    "reset": "RESET",
+    "@reset": {
+      "description": "To reset the app's settings."
     }
 }

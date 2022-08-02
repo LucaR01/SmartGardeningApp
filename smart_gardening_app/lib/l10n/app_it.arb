@@ -1,3 +1,8 @@
 {
-    "helloWorld": "Ciao Mondo!"
+    "language": "Lingua",
+    "theme": "Tema",
+    "settings": "Impostazioni",
+    "notifications": "Notifiche",
+    "save": "SALVA",
+    "reset": "RESET"
 }

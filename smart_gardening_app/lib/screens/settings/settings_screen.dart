@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_gardening_app/models/shared_preferences/user_preferences.dart';
-import 'package:smart_gardening_app/provider/theme_provider.dart';
 import 'package:smart_gardening_app/widgets/app_bar/app_bar.dart';
 import 'package:smart_gardening_app/widgets/switch_theme/switch_theme.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -59,21 +60,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 SizedBox(width: 10),
                 Text(
-                  'Impostazioni', //TODO: use string constants
+                  AppLocalizations.of(context).settings,
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
             Divider(height: 20, thickness: 1),
             SizedBox(height: 10),
-            _buildOption(context, 'Lingua'), //TODO: use string constants
+            _buildOption(context, AppLocalizations.of(context).language), //TODO: use string constants
             //_buildSlideOption('Tema', isDarkTheme, onChangeTheme), //TODO: remove
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget> [
                 const SizedBox(width: 20),
                 Text(
-                  'Tema',
+                  AppLocalizations.of(context).theme,
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500, //TODO:
@@ -93,7 +94,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 SizedBox(height: 10),
                 Text(
-                  'Notifications', //TODO: use string constants
+                  AppLocalizations.of(context).notifications, 
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -104,7 +105,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             Divider(height: 20, thickness: 1),
             SizedBox(height: 10),
             _buildSlideOption(
-                'Notifiche', areNotificationsOn, onChangeNotifications),
+                AppLocalizations.of(context).notifications, areNotificationsOn, onChangeNotifications),
             const SizedBox(height: 60),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -124,8 +125,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     print('theme: $isDarkTheme');
                     print('language: $language');
                   },
-                  child: const Text(
-                    'SALVA',
+                  child: Text(
+                    AppLocalizations.of(context).save,
                     style: TextStyle(
                       fontSize: 18,
                       letterSpacing: 2.1,
@@ -152,8 +153,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     print('theme: $isDarkTheme');
                     print('language: $language');
                   },
-                  child: const Text(
-                    'RESET',
+                  child: Text(
+                    AppLocalizations.of(context).reset,
                     style: TextStyle(
                       fontSize: 18,
                       letterSpacing: 2.1,

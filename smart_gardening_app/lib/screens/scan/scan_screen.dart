@@ -44,14 +44,16 @@ class _ScanPageState extends State<ScanPage> {
 
   String _scannedPlantName = "";
 
+  //TODO: uncomment
   /*@override
   void initState() {
     super.initState();
-    _loadModel().then((value) { //TODO: uncomment
+    /*_loadModel().then((value) { //TODO: uncomment
       setState(() {
         _loading = false;
       });
-    });
+    });*/
+    _loadModel();
     print("initState()"); //TODO: remove
   }
 
@@ -59,32 +61,12 @@ class _ScanPageState extends State<ScanPage> {
   void dispose() {
     Tflite.close(); //TODO: remove?
     super.dispose();
-  }*/
-
-  Future pickImage(ImageSource source) async {
-    try {
-      final image = await ImagePicker().pickImage(source: source); //TODO: Questo da eccezione!
-      if(image == null) return;
-
-      final tempImage = File(image.path);
-
-      //_detectImage(tempImage); //TODO: remove
-
-      setState(() {
-        this.image = tempImage;
-      }); // () => this.image = tempImage 
-
-      //_detectImage(tempImage); //TODO: uncomment
-
-    } on PlatformException catch(e){
-      print('Failed to pick image: $e');
-    }
   }
 
-  /*_loadModel() async { //TODO: uncomment
+  _loadModel() async { //TODO: uncomment
     await Tflite.loadModel(
-      model: 'assets/plants/model_unquant.tflite', //TODO: 
-      labels: 'assets/plants/labels.txt', //TODO: 
+      model: 'assets/plants/model_unquant.tflite', //TODO: assets/plants/model_unquant.tflite ; D:\\Documenti\\Flutter\\SmartGardeningApp\\smart_gardening_app\\assets\\plants\\model_unquant.tflite
+      labels: 'assets/plants/labels.txt', //TODO: assets/plants/labels.txt ;
     );
   }
 
@@ -136,7 +118,33 @@ class _ScanPageState extends State<ScanPage> {
     print(_outputs);
 
     
+  }
+
+  //TODO: remove
+  temp() {
+    final tempImage = File('assets/images/scan/gelsomono_mamertino.png');
+    _detectImage(tempImage);
   }*/
+
+  Future pickImage(ImageSource source) async {
+    try {
+      final image = await ImagePicker().pickImage(source: source); //TODO: Questo da eccezione!
+      if(image == null) return;
+
+      final tempImage = File(image.path);
+
+      //_detectImage(tempImage); //TODO: remove
+
+      setState(() {
+        this.image = tempImage;
+      }); // () => this.image = tempImage 
+
+      //_detectImage(tempImage); //TODO: uncomment
+
+    } on PlatformException catch(e){
+      print('Failed to pick image: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -159,7 +167,7 @@ class _ScanPageState extends State<ScanPage> {
                         //width: 256, //TODO: remove?
                   ),
                   Text(
-                    AppLocalizations.of(context).helloWorld, //"Posizionare la pianta al centro del riquadro.", //TODO:
+                    "Posizionare la pianta al centro del riquadro.", //TODO:
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Theme.of(context).iconTheme.color,
@@ -173,7 +181,7 @@ class _ScanPageState extends State<ScanPage> {
                     ),
                   IconButton( //TODO: remove
                     icon: const Icon(Icons.scanner), //TODO: update icon
-                    onPressed: () => NotificationsAPI.showNotification(title: 'Prova notifica', body: 'Ciao questa è una prova', payload: 'prova.abs'), //pickImage(ImageSource.gallery), //TODO: pickImage(ImageSource.camera), 
+                    onPressed: () => pickImage(ImageSource.gallery), //TODO: pickImage(ImageSource.camera), 
                     ),
                   Text( //TODO: remove
                     _scannedPlantName,
