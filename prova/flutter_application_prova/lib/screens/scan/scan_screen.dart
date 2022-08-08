@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-//import 'package:camera/camera.dart'; //TODO: remove
 import 'package:flutter/services.dart';
+import 'package:flutter_application_prova/utils/utils.dart';
 import 'package:flutter_application_prova/widgets/FAB/FABWidget.dart';
 import 'package:flutter_application_prova/widgets/app_bar/app_bar.dart';
 import 'package:flutter_application_prova/widgets/bottom_navigation_bar/custom_bottom_navigation_bar.dart';
@@ -158,57 +158,38 @@ class _ScanPageState extends State<ScanPage> {
       floatingActionButton: const FABWidget(),
       appBar: const AppBarWidget(),
       bottomNavigationBar: const CustomBottomNavigationBar(),
-      body: SafeArea(
+      body: SingleChildScrollView(
         child: Center(
-          child: ScrollConfiguration(
-            behavior: ScrollConfiguration.of(context).copyWith(scrollbars: true), //ScrollConfiguration.of(context).copyWith(scrollbars: false), //TODO: 
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const Image(
-                    image: AssetImage(
-                        "assets/images/camera-focus-frame-objective-photo.png"),
-                  ),
-                  Text(
-                    "Posizionare la pianta al centro del riquadro.", //TODO: use localization
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Theme.of(context).iconTheme.color,
-                      fontSize: 24,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  IconButton(
-                    icon: const Icon(Icons.scanner), //TODO: update icon
-                    onPressed: () => pickImage(ImageSource.gallery), //TODO: pickImage(ImageSource.camera), 
-                    ),
-                  IconButton( //TODO: remove
-                    icon: const Icon(Icons.scanner), //TODO: update icon
-                    onPressed: () => temp(), //TODO: pickImage(ImageSource.gallery), //TODO: pickImage(ImageSource.camera), 
-                    ),
-                  Text( //TODO: remove
-                    _scannedPlantName,
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-                  const Text(
-                    'Scan',
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {}, //pickImage(ImageSource.gallery), //TODO: rimettere questo
-                    child: IconButton(
-                      onPressed: () {}, //pickImage(ImageSource.gallery), //TODO: rimettere questo
-                      icon: const Icon(Icons.scanner),
-                    ),
-                    )
-                ],
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Image(
+                image: AssetImage(
+                    "assets/images/camera-focus-frame-objective-photo.png"),
               ),
-            ),
+              Text(
+                "Posizionare la pianta al centro del riquadro.", //TODO: use localization
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Theme.of(context).iconTheme.color,
+                  fontSize: 24,
+                ),
+              ),
+              const SizedBox(height: 20),
+              Utils.buildButton(label: 'Pick Image from Gallery', icon: Icons.image, onPressed: () => pickImage(ImageSource.gallery)),
+              const SizedBox(height: 10),
+              Utils.buildButton(label: 'Pick Image from Camera', icon: Icons.camera_alt_outlined, onPressed: () => pickImage(ImageSource.camera)),
+              Text( //TODO: remove
+                _scannedPlantName,
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+              IconButton(
+                onPressed: () {}, //pickImage(ImageSource.gallery), //TODO: rimettere questo
+                icon: const Icon(Icons.scanner),
+              )
+            ],
           ),
         ),
       ),

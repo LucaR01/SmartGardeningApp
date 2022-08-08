@@ -90,31 +90,26 @@ class Utils {
     return null;
   }
 
-  //TODO: remove?
-  static Widget buildImagePickerButton({
-    required String text,
+  static Widget buildButton({
+    required String label,
     required IconData icon,
-    required VoidCallback onClick,
+    required VoidCallback? onPressed,
+    ButtonStyle? style, //TODO: questo non lo sto usando!
   }) {
-    return Container(
-      width: 240,
-      color: Colors.green,
-      child: ElevatedButton(
-        onPressed: () => onClick,
-        child: Row(
-          children: [
-            Icon(icon),
-            const SizedBox(width: 20),
-            Text(
-              text,
-              style: TextStyle(
-                color: Colors.white, //TODO: use color constants
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
+    return ElevatedButton.icon(
+    onPressed: () => onPressed,
+    label: Text(
+      label,
+      style: const TextStyle(
+        color: Colors.white, //TODO: use color constants
+        fontWeight: FontWeight.bold,
       ),
+    ),
+    style: ElevatedButton.styleFrom(
+      primary: Colors.green[600], //[900] TODO: use color constants and themeColor
+      onPrimary: Colors.white, //TODO: use color constants and themeColor
+    ),
+    icon: Icon(icon),
     );
   }
 
