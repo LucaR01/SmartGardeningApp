@@ -7,5 +7,7 @@
     "reset": "RESET",
     "english": "Inglese",
     "italian": "Italiano",
-    "close": "Chiudi"
+    "close": "Chiudi",
+    "pick_image_from_gallery": "Scegli immagine dalla Galleria",
+    "pick_image_from_camera": "Scatta una foto"
 }

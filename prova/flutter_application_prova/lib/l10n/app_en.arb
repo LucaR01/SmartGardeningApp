@@ -42,5 +42,15 @@
     "close": "Close",
     "@close": {
       "description": "To close a tab."
+    },
+
+    "pick_image_from_gallery": "Pick Image from Gallery",
+    "@pick_image_from_gallery": {
+      "description": "To pick an image from the gallery of the user."
+    },
+
+    "pick_image_from_camera": "Pick Image from Camera",
+    "@pick_image_from_camera": {
+      "description": "To pick an image from the camera of the user."
     }
 }

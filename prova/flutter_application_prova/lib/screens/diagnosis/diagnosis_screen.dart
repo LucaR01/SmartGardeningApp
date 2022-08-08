@@ -13,6 +13,8 @@ import 'package:flutter_application_prova/widgets/app_bar/app_bar.dart';
 import 'package:flutter_application_prova/widgets/bottom_navigation_bar/bottom_navigation_bar.dart';
 import 'package:tflite/tflite.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class DiagnosisScreen extends StatefulWidget {
   const DiagnosisScreen({Key? key}) : super(key: key);
 
@@ -113,9 +115,9 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-              Utils.buildButton(label: 'Pick Image from Gallery', icon: Icons.image, onPressed: () => pickImage(ImageSource.gallery)),
+              Utils.buildButton(label: AppLocalizations.of(context).pick_image_from_gallery, icon: Icons.image, onPressed: () => pickImage(ImageSource.gallery)),
               const SizedBox(height: 10),
-              Utils.buildButton(label: 'Pick Image from Camera', icon: Icons.camera_alt_outlined, onPressed: () => pickImage(ImageSource.camera)),
+              Utils.buildButton(label: AppLocalizations.of(context).pick_image_from_camera, icon: Icons.camera_alt_outlined, onPressed: () => pickImage(ImageSource.camera)),
             ],
           ),
         ),

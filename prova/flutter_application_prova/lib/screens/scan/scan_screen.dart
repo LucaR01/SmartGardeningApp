@@ -11,7 +11,9 @@ import 'package:flutter_application_prova/widgets/bottom_navigation_bar/custom_b
 import 'package:image_picker/image_picker.dart';
 //import 'package:path_provider/path_provider.dart';
 
-import 'package:tflite/tflite.dart'; //TODO: uncomment
+import 'package:tflite/tflite.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 //TODO: scan_screens/scan_screen/
 //TODO: scan_screens/scan_result_screen/
@@ -176,9 +178,9 @@ class _ScanPageState extends State<ScanPage> {
                 ),
               ),
               const SizedBox(height: 20),
-              Utils.buildButton(label: 'Pick Image from Gallery', icon: Icons.image, onPressed: () => pickImage(ImageSource.gallery)),
+              Utils.buildButton(label: AppLocalizations.of(context).pick_image_from_gallery, icon: Icons.image, onPressed: () => pickImage(ImageSource.gallery)),
               const SizedBox(height: 10),
-              Utils.buildButton(label: 'Pick Image from Camera', icon: Icons.camera_alt_outlined, onPressed: () => pickImage(ImageSource.camera)),
+              Utils.buildButton(label: AppLocalizations.of(context).pick_image_from_camera, icon: Icons.camera_alt_outlined, onPressed: () => pickImage(ImageSource.camera)),
               Text( //TODO: remove
                 _scannedPlantName,
                 style: TextStyle(
