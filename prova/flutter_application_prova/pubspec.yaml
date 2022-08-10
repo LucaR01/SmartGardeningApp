@@ -51,8 +51,6 @@ dependencies:
 
   flutter_local_notifications: ^9.7.0
 
-  flutter_svg: ^1.0.3 # for snackbar's flashcards
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -79,7 +77,6 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
-    - assets/icons/
     - assets/plants/
     - assets/images/
     - assets/images/scan/

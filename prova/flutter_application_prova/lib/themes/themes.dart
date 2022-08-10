@@ -10,6 +10,11 @@ class Themes {
     brightness: Brightness.light,
     primarySwatch: Colors.green,
     primaryColor: Colors.green[500],
+    textTheme: const TextTheme(
+      bodyText1: TextStyle(
+        color: Colors.black,
+      ),
+    ),
     iconTheme: IconThemeData(color: Colors.green[600], opacity: 0.8),
   );
 
@@ -18,6 +23,11 @@ class Themes {
     colorScheme: ColorScheme.dark(),
     brightness: Brightness.dark,
     primaryColor: Colors.grey[700],
+    textTheme: const TextTheme(
+      bodyText1: TextStyle(
+        color: Colors.white,
+      ),
+    ),
     iconTheme: IconThemeData(color: Colors.green[900], opacity: 0.8),
   );
 }
