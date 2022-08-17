@@ -53,6 +53,12 @@ dependencies:
 
   http: ^0.13.5
 
+  #oauth2: ^2.0.0 #TODO: remove?
+  #flutter_secure_storage: 5.0.2
+  oauth2_client: ^2.4.2
+  #flutter_secure_storage: ^5.1.0 #TODO: remove
+  #flutter_web_auth: ^0.4.1 #TODO: remove
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -69,6 +75,10 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+  #plugin: #TODO: remove
+        #platforms:
+          #ios:
+            #pluginClass: AppDelegate
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
