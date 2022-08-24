@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_prova/widgets/FAB/FABWidget.dart';
+import 'package:flutter_application_prova/widgets/app_bar/app_bar.dart';
 import 'package:flutter_application_prova/widgets/bottom_navigation_bar/custom_bottom_navigation_bar.dart';
 import 'package:flutter_application_prova/widgets/plants_list/plants_list.dart';
-
-import '../../widgets/app_bar/app_bar.dart';
 
 class MyPlantsScreen extends StatefulWidget {
   const MyPlantsScreen({Key? key}) : super(key: key);
@@ -28,7 +27,7 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
           ),
         ),
       ),*/
-      body: Container( //TODO: dovrà diventare una SingleChildScrollView per quando aumenteranno.
+      body: Container( //TODO: dovrà diventare una SingleChildScrollView per quando aumenteranno. (la SingleChildScrollView dava errore)
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[

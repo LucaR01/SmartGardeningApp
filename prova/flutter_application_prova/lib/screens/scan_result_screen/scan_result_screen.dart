@@ -35,7 +35,7 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "<Nome Pianta> ${widget.plant.name}", //TODO: 
+                        "<Nome Pianta> ${widget.plant.pid}", //TODO: 
                         style:TextStyle(fontSize: 28),
                       ),
                       Text(
@@ -192,6 +192,6 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
   
   //TODO: in questa procedura dovrò salvare questa pianta in locale o su un database e passare alla lista delle piante nello screen "MyPlants".
   void _addToMyPlants() {
-    print('Addded ${widget.plant.name} to MyPlants');
+    print('Addded ${widget.plant.pid} to MyPlants');
   }
 }

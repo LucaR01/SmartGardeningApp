@@ -4,6 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
+import 'package:flutter_application_prova/api/plant_api/plant_api.dart';
+import 'package:flutter_application_prova/api/snackbar_messages/custom_snackbar_message.dart';
+import 'package:flutter_application_prova/api/snackbar_messages/error_codes.dart';
+import 'package:flutter_application_prova/models/plant/plant.dart';
 import 'package:flutter_application_prova/utils/utils.dart';
 import 'package:flutter_application_prova/widgets/FAB/FABWidget.dart';
 import 'package:flutter_application_prova/widgets/app_bar/app_bar.dart';
@@ -17,8 +21,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 //TODO: scan_screens/scan_screen/
 //TODO: scan_screens/scan_result_screen/
-
-//TODO: Add pick image from gallery
 
 //TODO: aggiungere animazione per il caricamento del risultato.
 
@@ -36,9 +38,10 @@ class _ScanPageState extends State<ScanPage> {
   List _outputs = [];
   bool _loading = false;
 
-  //late Plant _scannedPlant; //TODO: uncomment
+  late Plant _scannedPlant;
 
   String _scannedPlantName = "";
+  double _confidence = 0.0;
 
   //TODO: uncomment
   @override
@@ -50,7 +53,9 @@ class _ScanPageState extends State<ScanPage> {
       });
     });*/
     print("initState()"); //TODO: remove
-    _loadModel();
+    //_loadModel();
+    //PlantAPI.getData(); //TODO: remove
+    //PlantAPI.getData(plantPID: 'jasminum floridum', accuracy: 8.2); //TODO: remove
   }
 
   @override
@@ -109,9 +114,11 @@ class _ScanPageState extends State<ScanPage> {
       print("name: ${_name}"); //TODO: remove
 
       //TODO: rename in accuracy
-      //String _confidence = output != null ? (output[0]["confidence"]*100.0).toString().substring(0, 2) + "%" : "";
+      //_confidence = (output != null ? (output[0]["confidence"]*100.0).toString().substring(0, 2) + "%" : "") as double; //TODO: fixare
+      String accuracy = output != null ? (output[0]["confidence"]*100.0).toString().substring(0, 2) + "%" : "";
 
-      //print("confidence/accuracy: ${_name}"); //TODO: remove
+      //print("confidence/accuracy: ${_confidence}");
+      print("accuracy: ${accuracy}");
 
       //TODO: scannedPlant = Plant();
 
@@ -121,14 +128,10 @@ class _ScanPageState extends State<ScanPage> {
     print(output);
     print(_outputs);
 
+    //TODO: aggiornare i valori, recuperarli dall'API e se non riesce mostrare tipo un errore.
+    //TODO: la pianta scannerizzata va aggiunta alla lista di piante scannerizzate o attraverso un database o attraverso shared preferences.
+    _scannedPlant = Plant(accuracy: output![0]["confidence"], alias: '', displayPid: '', imageUrl: '', maxEnvHumid: 0, maxLightLux: 0, maxLightMmol: 0, maxSoilEC: 0, maxSoilMoist: 0, maxTemp: 0, minEnvHumid: 0, minLightLux: 0, minLightMmol: 0, minSoilEC: 0, minSoilMoist: 0, minTemp: 0, pid: '' ); 
     
-  }
-
-  //TODO: remove
-  temp() {
-    final tempImage = File('assets/images/scan/gelsomono_mamertino.png');
-    print('temp(): tempImage: ${tempImage}');
-    _detectImage(tempImage);
   }
 
   Future pickImage(ImageSource source) async {
@@ -180,17 +183,13 @@ class _ScanPageState extends State<ScanPage> {
               const SizedBox(height: 20),
               Utils.buildButton(label: AppLocalizations.of(context).pick_image_from_gallery, icon: Icons.image, onPressed: () => pickImage(ImageSource.gallery)),
               const SizedBox(height: 10),
-              Utils.buildButton(label: AppLocalizations.of(context).pick_image_from_camera, icon: Icons.camera_alt_outlined, onPressed: () => pickImage(ImageSource.camera)),
+              Utils.buildButton(label: AppLocalizations.of(context).pick_image_from_camera, icon: Icons.camera_alt_outlined, onPressed: () => pickImage(ImageSource.camera)), 
               Text( //TODO: remove
                 _scannedPlantName,
                 style: TextStyle(
                   fontSize: 18,
                 ),
               ),
-              IconButton(
-                onPressed: () {}, //pickImage(ImageSource.gallery), //TODO: rimettere questo
-                icon: const Icon(Icons.scanner),
-              )
             ],
           ),
         ),

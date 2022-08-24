@@ -20,7 +20,7 @@ class PlantDetails extends StatelessWidget {
           children: <Widget> [
             ClipRect(
               child: Image.asset(
-                'assets/images/scan/${plant.img}',
+                'assets/images/scan/${plant.imageUrl}',
                 height: 360,
                 fit: BoxFit.cover,
                 alignment: Alignment.topCenter,
@@ -29,7 +29,7 @@ class PlantDetails extends StatelessWidget {
             SizedBox(height: 30),
             ListTile(
               title: Text(
-                plant.name,
+                plant.pid,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
@@ -37,7 +37,7 @@ class PlantDetails extends StatelessWidget {
                 ),
               ),
               subtitle: Text(
-                'Famiglia: ${plant.family}', //TODO: use strings constants
+                'Famiglia: ${plant.alias}', //TODO: use strings constants
                 style: TextStyle(
                   letterSpacing: 0.9,
                   fontSize: 14,
@@ -61,7 +61,7 @@ class PlantDetails extends StatelessWidget {
                   children: <Widget> [
                     //Icon(Icons.water),
                     Text( //TODO: implementare qualche sorta di grafica/barra //TODO: magari metterlo affianco al titolo e sottotitolo
-                      'Acqua/giorno: ${plant.waterAmount}, Sole/giorno: ${plant.sunAmount}', //TODO: use strings constants
+                      'Acqua/giorno: ${plant.maxSoilMoist.toString()}, Sole/giorno: ${plant.maxLightLux.toString()}', //TODO: use strings constants
                       style: TextStyle(
                         color: Colors.grey[200], //TODO: use color constants
                       ),
@@ -84,7 +84,7 @@ class PlantDetails extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      plant.description,
+                      plant.minTemp.toString(),
                       style: TextStyle(
                         height: 1.4,
                         color: Colors.grey[300], //TODO: use color constants
@@ -102,7 +102,7 @@ class PlantDetails extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      plant.otherDescription,
+                      plant.accuracy.toString(),
                       style: TextStyle(
                         height: 1.4,
                         color: Colors.grey[300], //TODO: use color constants

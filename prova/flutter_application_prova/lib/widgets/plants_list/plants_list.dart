@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_prova/models/plant/plant.dart';
 import 'package:flutter_application_prova/screens/pages.dart';
@@ -24,10 +26,8 @@ final GlobalKey _listKey = GlobalKey();
   void _getPlants() {
     //TODO: vanno recuperati o dal database o dalla memoria locale dell'utente.
     List<Plant> _plants = [
-      Plant(name: 'Gelsomino', family: 'Famiglia Gelsomino', waterAmount: 12, sunAmount: 13, 
-      description: 'Descrizione Gelsomino', otherDescription: 'Altra Descrizione Gelsomino', plantAccuracy: 56.7, img: 'gelsomono_mamertino.png'),
-      Plant(name: 'Margherita', family: 'Famiglia Margherita', waterAmount: 12, sunAmount: 13, 
-      description: 'Descrizione Margherita', otherDescription: 'Altra Descrizione Margherita', plantAccuracy: 72.9, img: 'margherita-grande-come-curare-come-si-coltiva.png'),
+      Plant(pid: 'Gelsomino', displayPid: 'Gelsomino', alias: 'gelsomino', maxLightMmol: 0, minLightMmol: 0, maxLightLux: 0, minLightLux: 0, maxTemp: 0, minTemp: 0, maxEnvHumid: 0, minEnvHumid: 0, maxSoilMoist: 0, minSoilMoist: 0, maxSoilEC: 0, minSoilEC: 0, imageUrl: 'gelsomono_mamertino.png', accuracy: 7.9),
+      Plant(pid: 'Margherita', displayPid: 'Margherita', alias: 'margherita', maxLightMmol: 0, minLightMmol: 0, maxLightLux: 0, minLightLux: 0, maxTemp: 0, minTemp: 0, maxEnvHumid: 0, minEnvHumid: 0, maxSoilMoist: 0, minSoilMoist: 0, maxSoilEC: 0, minSoilEC: 0, imageUrl: 'margherita-grande-come-curare-come-si-coltiva.png', accuracy: 9.2)
     ];
 
     _plants.forEach((Plant plant) {
@@ -56,7 +56,7 @@ final GlobalKey _listKey = GlobalKey();
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget> [
           Text(
-            'Nome: ${plant.name}', //TODO: use string constants
+            'Nome: ${plant.pid}', //TODO: use string constants
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
@@ -68,7 +68,7 @@ final GlobalKey _listKey = GlobalKey();
       leading: ClipRect(
         //TODO: borderRadius:
         child: Image.asset(
-          'assets/images/scan/${plant.img}',
+          'assets/images/scan/${plant.imageUrl}',
           height: 50.0, //TODO: 60.0
         ),
       ),
