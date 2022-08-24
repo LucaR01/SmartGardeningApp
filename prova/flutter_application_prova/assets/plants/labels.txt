@@ -1,4 +1,4 @@
-0 Gelsomino
-1 Margherita
-2 Fiordaliso
-3 Lavanda
+0 jasminum floridum
+1 leucanthemum maximum
+2 centaurea cyanus
+3 lavandula angustifolia blue river
