@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_application_prova/api/notifications_api.dart';
+import 'package:flutter_application_prova/api/notifications/notifications_api.dart';
 import 'package:flutter_application_prova/models/shared_preferences/user_preferences.dart';
 import 'package:flutter_application_prova/provider/locale_provider.dart';
 import 'package:flutter_application_prova/provider/theme_provider.dart';
