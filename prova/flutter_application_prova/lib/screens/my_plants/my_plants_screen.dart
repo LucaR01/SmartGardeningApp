@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_prova/models/database/database_helper.dart';
+import 'package:flutter_application_prova/models/plant/plant.dart';
 import 'package:flutter_application_prova/widgets/FAB/FABWidget.dart';
 import 'package:flutter_application_prova/widgets/app_bar/app_bar.dart';
 import 'package:flutter_application_prova/widgets/bottom_navigation_bar/custom_bottom_navigation_bar.dart';
@@ -46,6 +48,25 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
             Flexible( //TODO: ListView?, SingleChildScrollView?
               child: PlantsList(),
             ),
+            //TODO: 
+            /*FutureBuilder<List<Plant>>(
+              future: DatabaseHelper.instance.getPlants(),
+              builder: (BuildContext context, AsyncSnapshot<List<Plant>> snapshot) {
+                if(!snapshot.hasData) {
+                  return Center(child: Text('Loading...'));
+                }
+                return snapshot.data!.isEmpty ? 
+                Center(child: Text('No plants in List.'))
+                : ListView(
+                  children: snapshot.data!.map((plant) {
+                    return Center(
+                      child: ListTile(title: Text(plant.pid), //TODO: volendo wrappare ListTile con Card
+                      )
+                    );
+                  }).toList(), //TODO: 
+                );
+              }
+            ),*/
           ],
         ),
       ),

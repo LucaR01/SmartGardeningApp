@@ -23,8 +23,9 @@ final GlobalKey _listKey = GlobalKey();
     //TODO: getPlantsFromDatabase/Local Memory
   }
 
+  //TODO: rinominare in getPlantsFromDB() or getPlantsFromDatabase()
   void _getPlants() {
-    //TODO: vanno recuperati o dal database o dalla memoria locale dell'utente.
+    //TODO: chiamare getPlants()
     List<Plant> _plants = [
       Plant(pid: 'Gelsomino', displayPid: 'Gelsomino', alias: 'gelsomino', maxLightMmol: 0, minLightMmol: 0, maxLightLux: 0, minLightLux: 0, maxTemp: 0, minTemp: 0, maxEnvHumid: 0, minEnvHumid: 0, maxSoilMoist: 0, minSoilMoist: 0, maxSoilEC: 0, minSoilEC: 0, imageUrl: 'gelsomono_mamertino.png', accuracy: 7.9),
       Plant(pid: 'Margherita', displayPid: 'Margherita', alias: 'margherita', maxLightMmol: 0, minLightMmol: 0, maxLightLux: 0, minLightLux: 0, maxTemp: 0, minTemp: 0, maxEnvHumid: 0, minEnvHumid: 0, maxSoilMoist: 0, minSoilMoist: 0, maxSoilEC: 0, minSoilEC: 0, imageUrl: 'margherita-grande-come-curare-come-si-coltiva.png', accuracy: 9.2)

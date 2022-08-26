@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_prova/api/snackbar_messages/custom_snackbar_message.dart';
+import 'package:flutter_application_prova/api/snackbar_messages/error_codes.dart';
+import 'package:flutter_application_prova/models/database/database_helper.dart';
 import 'package:flutter_application_prova/models/plant/plant.dart';
 import 'package:flutter_application_prova/widgets/app_bar/app_bar.dart';
 
@@ -134,7 +137,7 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                           children: [
                             Container(
                               child: Image(
-                                image: AssetImage("assets/images/scan/gelsomono_mamertino.png"),
+                                image: AssetImage("assets/images/scan/${widget.plant.imageUrl}"), //TODO: Image.network(widget.plant.imageUrl);
                                 height: 436, width: 220,
                               ),
                             ),
@@ -191,7 +194,14 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
   }
   
   //TODO: in questa procedura dovrò salvare questa pianta in locale o su un database e passare alla lista delle piante nello screen "MyPlants".
-  void _addToMyPlants() {
+  void _addToMyPlants() async {
     print('Addded ${widget.plant.pid} to MyPlants');
+
+    await DatabaseHelper.instance.add(widget.plant);
+
+    //TODO: se l'operazione restituisce true allora eseguire:
+    //TODO: aggiungerlo al database e/o alla lista
+    //TODO: SnackBarMessageWidget.snackBarMessage(context: context, title: 'Success', msg: 'Plant added to MyPlants', errorCode: ErrorCodes.success);
+    //TODO: Il title e msg dello SnackBar devono essere tradotti
   }
 }
