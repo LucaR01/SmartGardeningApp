@@ -1,6 +1,8 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_prova/models/database/database_helper.dart';
 import 'package:flutter_application_prova/models/plant/plant.dart';
 import 'package:flutter_application_prova/screens/pages.dart';
 import 'package:flutter_application_prova/utils/utils.dart';
@@ -24,12 +26,17 @@ final GlobalKey _listKey = GlobalKey();
   }
 
   //TODO: rinominare in getPlantsFromDB() or getPlantsFromDatabase()
-  void _getPlants() {
-    //TODO: chiamare getPlants()
-    List<Plant> _plants = [
-      Plant(pid: 'Gelsomino', displayPid: 'Gelsomino', alias: 'gelsomino', maxLightMmol: 0, minLightMmol: 0, maxLightLux: 0, minLightLux: 0, maxTemp: 0, minTemp: 0, maxEnvHumid: 0, minEnvHumid: 0, maxSoilMoist: 0, minSoilMoist: 0, maxSoilEC: 0, minSoilEC: 0, imageUrl: 'gelsomono_mamertino.png', accuracy: 7.9),
-      Plant(pid: 'Margherita', displayPid: 'Margherita', alias: 'margherita', maxLightMmol: 0, minLightMmol: 0, maxLightLux: 0, minLightLux: 0, maxTemp: 0, minTemp: 0, maxEnvHumid: 0, minEnvHumid: 0, maxSoilMoist: 0, minSoilMoist: 0, maxSoilEC: 0, minSoilEC: 0, imageUrl: 'margherita-grande-come-curare-come-si-coltiva.png', accuracy: 9.2)
-    ];
+  //TODO: add async to function
+  void _getPlants() async {
+    /*List<Plant> _plants = [
+      Plant(id: 0, pid: 'Gelsomino', displayPid: 'Gelsomino', alias: 'gelsomino', maxLightMmol: 0, minLightMmol: 0, maxLightLux: 0, minLightLux: 0, maxTemp: 0, minTemp: 0, maxEnvHumid: 0, minEnvHumid: 0, maxSoilMoist: 0, minSoilMoist: 0, maxSoilEC: 0, minSoilEC: 0, imageUrl: 'gelsomono_mamertino.png', accuracy: 7.9),
+      Plant(id: 1, pid: 'Margherita', displayPid: 'Margherita', alias: 'margherita', maxLightMmol: 0, minLightMmol: 0, maxLightLux: 0, minLightLux: 0, maxTemp: 0, minTemp: 0, maxEnvHumid: 0, minEnvHumid: 0, maxSoilMoist: 0, minSoilMoist: 0, maxSoilEC: 0, minSoilEC: 0, imageUrl: 'margherita-grande-come-curare-come-si-coltiva.png', accuracy: 9.2)
+    ];*/
+
+    List<Plant> _plants = await DatabaseHelper.instance.getPlants(); //TODO: uncomment rinominare in _plants 
+    print('_plants dal database: ${_plants.toString()}');
+    print('_plants2[0]: ${_plants[0].toString()}');
+    inspect(_plants); //TODO: remove
 
     _plants.forEach((Plant plant) {
       _plantsList.add(_buildPlant(plant));
@@ -39,6 +46,7 @@ final GlobalKey _listKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      shrinkWrap: true, //TODO: remove
       key: _listKey,
       itemCount: _plantsList.length,
       itemBuilder: (context, index) {
@@ -46,6 +54,13 @@ final GlobalKey _listKey = GlobalKey();
       }
 
     );
+  }
+
+  //TODO: remove
+  void getPlants2() async {
+    List<Plant> _plants2 = await DatabaseHelper.instance.getPlants(); //TODO: uncomment rinominare in _plants 
+    print('_plants2 dal database');
+    inspect(_plants2); //TODO: remove
   }
 
   //TODO: potrei fare una card per pianta piuttosto.
@@ -68,9 +83,13 @@ final GlobalKey _listKey = GlobalKey();
       ),
       leading: ClipRect(
         //TODO: borderRadius:
-        child: Image.asset(
+        /*child: Image.asset(
           'assets/images/scan/${plant.imageUrl}',
           height: 50.0, //TODO: 60.0
+        ),*/
+        child: Image.network(
+          plant.imageUrl,
+          height: 50.0,
         ),
       ),
       trailing: Icon(Icons.favorite), //TODO: FavoriteWidget()

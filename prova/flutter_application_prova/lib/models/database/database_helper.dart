@@ -18,6 +18,14 @@ class DatabaseHelper {
   Future<Database> _initDatabase() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, 'plants.db');
+	
+	/*if (documentsDirectory.existsSync()) { //TODO:
+      documentsDirectory.deleteSync(recursive: true);
+    }*/
+
+    print('path: ${path}'); //TODO: remove
+    print('documentsDirectory.path: ${documentsDirectory.path}'); //TODO: remove
+
     return await openDatabase(
       path,
       version: 1,
@@ -25,10 +33,11 @@ class DatabaseHelper {
     );
   }
 
-  Future _onCreate(Database db, int version) async {
+  Future _onCreate(Database db, int version) async { //TODO: volendo aggiungere il NOT NULL
     await db.execute('''
       CREATE TABLE plants(
-        pid TEXT PRIMARY KEY,
+        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+        pid TEXT NOT NULL,
         displayPid TEXT NOT NULL,
         alias TEXT NOT NULL,
         maxLightMmol INTEGER,
@@ -37,22 +46,23 @@ class DatabaseHelper {
         minLightLux INTEGER,
         maxTemp INTEGER,
         minTemp INTEGER,
-        maxEnVHumid INTEGER,
+        maxEnvHumid INTEGER,
         minEnvHumid INTEGER,
         maxSoilMoist INTEGER,
         minSoilMoist INTEGER,
         maxSoilEC INTEGER,
         minSoilEC INTEGER,
         imageUrl TEXT,
-        accuracy DOUBLE,
+        accuracy DOUBLE
       )
     ''');
   }
 
   Future<List<Plant>> getPlants() async {
     Database db = await instance.database;
-    var plants = await db.query('plants', orderBy: 'pid'); //TODO: order by ... data aggiunta
+    var plants = await db.query('plants', orderBy: 'pid'); //TODO: order by ... data pianta aggiunta al myPlants o quando è stata scannerizzata.; pid
     List<Plant> plantsList = plants.isNotEmpty ? plants.map((p) => Plant.fromMap(p)).toList() : []; //TODO: oppure : List.toEmpty() 
+    print('plantsList: ${plantsList.toString()}'); //TODO: remove
     return plantsList;
   }
 
@@ -61,17 +71,17 @@ class DatabaseHelper {
     return await db.insert('plants', plant.toMap());
   }
 
-  Future<int> remove(String pid) async {
+  Future<int> remove(int id) async {
     Database db = await instance.database;
-    return await db.delete('plants', where: 'pid = ?', whereArgs: [pid]); //TODO: al posto di mettere 'plants' mettere DatabaseHelper.databaseName
+    return await db.delete('plants', where: 'id = ?', whereArgs: [id]); //TODO: al posto di mettere 'plants' mettere DatabaseHelper.databaseName; pid = ?
   }
 
   Future<int> update(Plant plant) async {
     Database db = await instance.database;
-    return await db.update('plants', plant.toMap(), where: 'pid = ?', whereArgs: [plant.pid]);
+    return await db.update('plants', plant.toMap(), where: 'id = ?', whereArgs: [plant.id]); //TODO: pid = ?
   }
 
-  Future<void> close() async {
+  Future close() async {
     Database db = await instance.database;
     db.close();
   }

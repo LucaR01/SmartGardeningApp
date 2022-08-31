@@ -8,16 +8,20 @@ import 'package:flutter_application_prova/api/plant_api/plant_api.dart';
 import 'package:flutter_application_prova/api/snackbar_messages/custom_snackbar_message.dart';
 import 'package:flutter_application_prova/api/snackbar_messages/error_codes.dart';
 import 'package:flutter_application_prova/models/plant/plant.dart';
+import 'package:flutter_application_prova/screens/pages.dart';
 import 'package:flutter_application_prova/utils/utils.dart';
 import 'package:flutter_application_prova/widgets/FAB/FABWidget.dart';
 import 'package:flutter_application_prova/widgets/app_bar/app_bar.dart';
 import 'package:flutter_application_prova/widgets/bottom_navigation_bar/custom_bottom_navigation_bar.dart';
+import 'package:flutter_application_prova/widgets/loading/loading.dart';
 import 'package:image_picker/image_picker.dart';
 //import 'package:path_provider/path_provider.dart';
 
 import 'package:tflite/tflite.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'dart:developer';
 
 //TODO: scan_screens/scan_screen/
 //TODO: scan_screens/scan_result_screen/
@@ -38,7 +42,7 @@ class _ScanPageState extends State<ScanPage> {
   List _outputs = [];
   bool _loading = false;
 
-  late Plant _scannedPlant;
+  late Plant scannedPlant;
 
   String _scannedPlantName = "";
   double _confidence = 0.0;
@@ -53,7 +57,7 @@ class _ScanPageState extends State<ScanPage> {
       });
     });*/
     print("initState()"); //TODO: remove
-    //_loadModel();
+    _loadModel();
     //PlantAPI.getData(); //TODO: remove
     //PlantAPI.getData(plantPID: 'jasminum floridum', accuracy: 8.2); //TODO: remove
   }
@@ -85,6 +89,7 @@ class _ScanPageState extends State<ScanPage> {
 
     print('output: ${output}');
 
+    //TODO: remove setState?
     setState(() {
       _loading = false;
 
@@ -115,10 +120,6 @@ class _ScanPageState extends State<ScanPage> {
 
       //TODO: rename in accuracy
       //_confidence = (output != null ? (output[0]["confidence"]*100.0).toString().substring(0, 2) + "%" : "") as double; //TODO: fixare
-      String accuracy = output != null ? (output[0]["confidence"]*100.0).toString().substring(0, 2) + "%" : "";
-
-      //print("confidence/accuracy: ${_confidence}");
-      print("accuracy: ${accuracy}");
 
       //TODO: scannedPlant = Plant();
 
@@ -128,9 +129,22 @@ class _ScanPageState extends State<ScanPage> {
     print(output);
     print(_outputs);
 
-    //TODO: aggiornare i valori, recuperarli dall'API e se non riesce mostrare tipo un errore.
+    print('output[0]["label"].toString().substring(2): ${output![0]["label"].toString().substring(2)}');
+    print('output[0]["confidence"]: ${output[0]["confidence"]}');
+
+    String accuracy = output != null ? (output[0]["confidence"]*100.0).toString().substring(0, 2) + "%" : "";
+    print("accuracy in %: ${accuracy}");
+
+    //TODO: controllare se serve il .substring(2)
+    scannedPlant = (await PlantAPI.getData(plantPID: output[0]["label"].toString().substring(2), accuracy: output[0]["confidence"]))!;
+
+    inspect(scannedPlant); //TODO: remove
+
+    //TODO: Il title e msg dello SnackBar devono essere tradotti
+    scannedPlant == null ? SnackBarMessageWidget.snackBarMessage(context: context, title: 'Error', msg: 'Unable to retrieve plant\'s data', errorCode: ErrorCodes.error) : Utils.navigateToPage(context: context, page: Pages.scanResult, plant: scannedPlant);
+
     //TODO: la pianta scannerizzata va aggiunta alla lista di piante scannerizzate o attraverso un database o attraverso shared preferences.
-    _scannedPlant = Plant(accuracy: output![0]["confidence"], alias: '', displayPid: '', imageUrl: '', maxEnvHumid: 0, maxLightLux: 0, maxLightMmol: 0, maxSoilEC: 0, maxSoilMoist: 0, maxTemp: 0, minEnvHumid: 0, minLightLux: 0, minLightMmol: 0, minSoilEC: 0, minSoilMoist: 0, minTemp: 0, pid: '' ); 
+    //_scannedPlant = Plant(accuracy: output![0]["confidence"], alias: '', displayPid: '', imageUrl: '', maxEnvHumid: 0, maxLightLux: 0, maxLightMmol: 0, maxSoilEC: 0, maxSoilMoist: 0, maxTemp: 0, minEnvHumid: 0, minLightLux: 0, minLightMmol: 0, minSoilEC: 0, minSoilMoist: 0, minTemp: 0, pid: '' ); 
     
   }
 
@@ -181,6 +195,8 @@ class _ScanPageState extends State<ScanPage> {
                 ),
               ),
               const SizedBox(height: 20),
+              ElevatedButton(onPressed: () { pickImage(ImageSource.gallery); }, child: Text('hello'),), //TODO: remove però funziona, invece il buildButton non più
+              ElevatedButton(onPressed: () async { Plant p = (await PlantAPI.getData(plantPID: 'jasminum floridum', accuracy: 92.3))!; Utils.navigateToPage(context: context, page: Pages.scanResult, plant: p); }, child: Text('hello2'),), //TODO: remove
               Utils.buildButton(label: AppLocalizations.of(context).pick_image_from_gallery, icon: Icons.image, onPressed: () => pickImage(ImageSource.gallery)),
               const SizedBox(height: 10),
               Utils.buildButton(label: AppLocalizations.of(context).pick_image_from_camera, icon: Icons.camera_alt_outlined, onPressed: () => pickImage(ImageSource.camera)), 

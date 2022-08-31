@@ -5,6 +5,8 @@ import 'package:flutter_application_prova/models/database/database_helper.dart';
 import 'package:flutter_application_prova/models/plant/plant.dart';
 import 'package:flutter_application_prova/widgets/app_bar/app_bar.dart';
 
+//TODO: modificare i Text()
+
 class ScanResultScreen extends StatefulWidget {
   const ScanResultScreen({Key? key, required this.plant}) : super(key: key);
 
@@ -38,11 +40,11 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "<Nome Pianta> ${widget.plant.pid}", //TODO: 
+                        "<Nome Pianta> ${widget.plant.displayPid}", //TODO: 
                         style:TextStyle(fontSize: 28),
                       ),
                       Text(
-                          "<tipo pianta>",
+                          "<tipo pianta> ${widget.plant.displayPid}",
                         style: TextStyle(fontSize: 18, color: Colors.grey.shade700),
                       ),
                     ],
@@ -64,7 +66,7 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text("Tipo Pianta", style: TextStyle(fontSize: 18, color: Colors.grey.shade600),),
-                                      Text("<tipo_pianta>", style: TextStyle(fontSize: 24)),
+                                      Text("<tipo_pianta> ${widget.plant.maxLightMmol}", style: TextStyle(fontSize: 24)),
                                     ],
                                   ),
                                 ),
@@ -74,7 +76,7 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text("Genere", style: TextStyle(fontSize: 16, color: Colors.grey.shade700),),
-                                      Text("<Genere>", style: TextStyle(fontSize: 24)),
+                                      Text("<Genere> ${widget.plant.maxLightLux}", style: TextStyle(fontSize: 24)),
                                     ],
                                   ),
                                 ),
@@ -84,7 +86,7 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text("Tipo Pianta", style: TextStyle(fontSize: 16, color: Colors.grey.shade700),),
-                                      Text("<tipo pianta>", style: TextStyle(fontSize: 24)),
+                                      Text("<tipo pianta> ${widget.plant.minEnvHumid}", style: TextStyle(fontSize: 24)),
                                     ],
                                   ),
                                 ),
@@ -94,7 +96,7 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text("Famiglia", style: TextStyle(fontSize: 16, color: Colors.grey.shade700)),
-                                      Text("<famiglia della pianta>", style: TextStyle(fontSize: 24),),
+                                      Text("<famiglia della pianta> ${widget.plant.maxTemp}", style: TextStyle(fontSize: 24),),
                                     ],
                                   ),
                                 ),
@@ -104,7 +106,7 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text("Classe", style: TextStyle(fontSize: 16, color: Colors.grey.shade700)),
-                                      Text("<classe della pianta>", style: TextStyle(fontSize: 24),),
+                                      Text("<classe della pianta> ${widget.plant.minSoilMoist}", style: TextStyle(fontSize: 24),),
                                     ],
                                   ),
                                 ),
@@ -114,7 +116,7 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text("Tempo di Fioritura", style: TextStyle(fontSize: 16, color: Colors.grey.shade700)),
-                                      Text("<Tempo di Fioritura>", style: TextStyle(fontSize: 24),),
+                                      Text("<Tempo di Fioritura> ${widget.plant.minSoilEC}", style: TextStyle(fontSize: 24),),
                                     ],
                                   ),
                                 ),
@@ -136,9 +138,14 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                         child: Stack(
                           children: [
                             Container(
-                              child: Image(
-                                image: AssetImage("assets/images/scan/${widget.plant.imageUrl}"), //TODO: Image.network(widget.plant.imageUrl);
+                              /*child: Image( //TODO: remove
+                                image: Image.network(widget.plant.imageUrl), //TODO: Image.network(widget.plant.imageUrl); AssetImage("assets/images/scan/${widget.plant.imageUrl}")
                                 height: 436, width: 220,
+                              ),*/
+                              child: Image.network(
+                                widget.plant.imageUrl, 
+                                height: 436, 
+                                width: 220
                               ),
                             ),
                           ],
@@ -193,15 +200,13 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
     );
   }
   
-  //TODO: in questa procedura dovrò salvare questa pianta in locale o su un database e passare alla lista delle piante nello screen "MyPlants".
   void _addToMyPlants() async {
-    print('Addded ${widget.plant.pid} to MyPlants');
+    final int operationStatusCode = await DatabaseHelper.instance.add(widget.plant);
+    print('operationStatusCode: ${operationStatusCode}');
 
-    await DatabaseHelper.instance.add(widget.plant);
-
-    //TODO: se l'operazione restituisce true allora eseguire:
-    //TODO: aggiungerlo al database e/o alla lista
-    //TODO: SnackBarMessageWidget.snackBarMessage(context: context, title: 'Success', msg: 'Plant added to MyPlants', errorCode: ErrorCodes.success);
-    //TODO: Il title e msg dello SnackBar devono essere tradotti
+    //TODO: Tradurre title e msg
+    //TODO: al posto di operationStatusCode == 0, meglio operationStatusCode == SUCCESS o OK o OKAY
+    //TODO: in realtà qui 0 è ERRORE
+    operationStatusCode != 0 ? SnackBarMessageWidget.snackBarMessage(context: context, title: 'Success', msg: 'Plant added to MyPlants', errorCode: ErrorCodes.success) : SnackBarMessageWidget.snackBarMessage(context: context, title: 'Error', msg: 'Plant not added', errorCode: ErrorCodes.error);
   }
 }
