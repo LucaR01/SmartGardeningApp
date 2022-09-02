@@ -2,11 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_prova/models/plant/plant_disease.dart';
+import 'package:flutter_application_prova/screens/pages.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:flutter_application_prova/models/plant/plant.dart';
 
-import '../screens/home/home_screen.dart';
-import '../screens/pages.dart';
+import 'package:flutter_application_prova/models/plant/plant.dart';
 
 class Utils {
   //TODO: magari cambiare il valore di default dello shouldPop in false al posto di true.
@@ -14,7 +14,8 @@ class Utils {
       {required BuildContext context,
       required Pages page,
       bool shouldPop = false,
-      Plant? plant}) {
+      Plant? plant,
+      PlantDisease? plantDisease}) {
     //TODO: final bool shouldPop;
     //TODO: (...,this.shouldPop)
 
@@ -39,6 +40,9 @@ class Utils {
       case Pages.diagnosis:
         Navigator.of(context).pushNamed('/diagnosis');
         break;
+      case Pages.diagnosisScanResult:
+        Navigator.pushReplacementNamed(context, '/diagnosis/scan/result');
+        break;
       case Pages.settings:
         Navigator.of(context).pushNamed('/settings');
         break;
@@ -53,7 +57,7 @@ class Utils {
         break;
       case Pages.scanResult:
         Navigator.of(context)
-            .pushReplacementNamed('/scan_result', arguments: plant);
+            .pushReplacementNamed('/scan/result', arguments: plant);
         break;
       case Pages.sensors:
         Navigator.of(context).pushReplacementNamed('/sensors');
@@ -90,6 +94,7 @@ class Utils {
     return null;
   }
 
+  //TODO: remove?
   static Widget buildButton({
     required String label,
     required IconData icon,

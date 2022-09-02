@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_prova/api/snackbar_messages/custom_snackbar_message.dart';
 import 'package:flutter_application_prova/models/plant/plant.dart';
-import 'package:flutter_application_prova/screens/error_screen/error_screen.dart';
+import 'package:flutter_application_prova/models/plant/plant_disease.dart';
+import 'package:flutter_application_prova/screens/diagnosis/diagnosis_screen.dart';
+import 'package:flutter_application_prova/screens/diagnosis_scan_result/diagnosis_scan_result_screen.dart';
+import 'package:flutter_application_prova/screens/home/home_screen.dart';
 import 'package:flutter_application_prova/screens/my_plants/my_plants_screen.dart';
 import 'package:flutter_application_prova/screens/plant_details/plant_details.dart';
+import 'package:flutter_application_prova/screens/scan/scan_screen.dart';
 import 'package:flutter_application_prova/screens/scan_result_screen/scan_result_screen.dart';
 import 'package:flutter_application_prova/screens/sensors/sensors_screen.dart';
 import 'package:flutter_application_prova/screens/settings/settings_screen.dart';
+import 'package:flutter_application_prova/screens/splash/splash_screen.dart';
 import 'package:flutter_application_prova/screens/tasks/tasks_screen.dart';
-
-import '../screens/diagnosis/diagnosis_screen.dart';
-import '../screens/home/home_screen.dart';
-import '../screens/scan/scan_screen.dart';
-import '../screens/splash/splash_screen.dart';
 
 //TODO: o chiamarli tutti screen o chiamarli tutti pages!
 
@@ -39,11 +40,18 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => TasksScreen());
       case '/diagnosis':
         return MaterialPageRoute(builder: (_) => DiagnosisScreen());
+      case '/diagnosis/scan/result':
+        if(args is PlantDisease) {
+          return MaterialPageRoute(
+            builder: (_) => DiagnosisScanResultScreen(plantDisease: args)
+          );
+        }
+        return _errorRoute();
       case '/settings':
         return MaterialPageRoute(builder: (_) => SettingsScreen());
       case '/scan':
         return MaterialPageRoute(builder: (_) => ScanPage());
-      case '/scan_result':
+      case '/scan/result':
         if(args is Plant) {
           return MaterialPageRoute(
             builder: (_) => ScanResultScreen(plant: args) //TODO: ScanResultPage

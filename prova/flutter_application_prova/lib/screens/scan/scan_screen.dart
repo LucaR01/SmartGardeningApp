@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_application_prova/api/plant_api/plant_api.dart';
+import 'package:flutter_application_prova/api/sensor_api/sensor_api.dart';
 import 'package:flutter_application_prova/api/snackbar_messages/custom_snackbar_message.dart';
 import 'package:flutter_application_prova/api/snackbar_messages/error_codes.dart';
 import 'package:flutter_application_prova/models/plant/plant.dart';
@@ -13,7 +14,6 @@ import 'package:flutter_application_prova/utils/utils.dart';
 import 'package:flutter_application_prova/widgets/FAB/FABWidget.dart';
 import 'package:flutter_application_prova/widgets/app_bar/app_bar.dart';
 import 'package:flutter_application_prova/widgets/bottom_navigation_bar/custom_bottom_navigation_bar.dart';
-import 'package:flutter_application_prova/widgets/loading/loading.dart';
 import 'package:image_picker/image_picker.dart';
 //import 'package:path_provider/path_provider.dart';
 
@@ -40,11 +40,9 @@ class _ScanPageState extends State<ScanPage> {
   File? image;
 
   List _outputs = [];
-  bool _loading = false;
 
   late Plant scannedPlant;
 
-  String _scannedPlantName = "";
   double _confidence = 0.0;
 
   //TODO: uncomment
@@ -57,9 +55,10 @@ class _ScanPageState extends State<ScanPage> {
       });
     });*/
     print("initState()"); //TODO: remove
-    _loadModel();
+    _loadModel(); //TODO: uncomment
     //PlantAPI.getData(); //TODO: remove
     //PlantAPI.getData(plantPID: 'jasminum floridum', accuracy: 8.2); //TODO: remove
+    //SensorAPI.getData(); //TODO: remove
   }
 
   @override
@@ -88,44 +87,6 @@ class _ScanPageState extends State<ScanPage> {
     );
 
     print('output: ${output}');
-
-    //TODO: remove setState?
-    setState(() {
-      _loading = false;
-
-      _scannedPlantName = output![0]["label"];
-
-      print('output: ${output}');
-
-      print('_scannedPlantName: ${_scannedPlantName}');
-
-      _outputs = output;
-
-      print(_outputs);
-      print(output);
-
-      //_outputs.add(output);
-
-      print("output: ${output}"); //TODO: remove
-
-      String str = output[0]["label"];
-
-      print("str: ${str}"); //TODO: remove
-
-      String _name = str.substring(2); //TODO: put in class
-
-      _scannedPlantName = _name;
-
-      print("name: ${_name}"); //TODO: remove
-
-      //TODO: rename in accuracy
-      //_confidence = (output != null ? (output[0]["confidence"]*100.0).toString().substring(0, 2) + "%" : "") as double; //TODO: fixare
-
-      //TODO: scannedPlant = Plant();
-
-    });
-
-    print(_scannedPlantName);
     print(output);
     print(_outputs);
 
@@ -195,13 +156,12 @@ class _ScanPageState extends State<ScanPage> {
                 ),
               ),
               const SizedBox(height: 20),
-              ElevatedButton(onPressed: () { pickImage(ImageSource.gallery); }, child: Text('hello'),), //TODO: remove però funziona, invece il buildButton non più
               ElevatedButton(onPressed: () async { Plant p = (await PlantAPI.getData(plantPID: 'jasminum floridum', accuracy: 92.3))!; Utils.navigateToPage(context: context, page: Pages.scanResult, plant: p); }, child: Text('hello2'),), //TODO: remove
-              Utils.buildButton(label: AppLocalizations.of(context).pick_image_from_gallery, icon: Icons.image, onPressed: () => pickImage(ImageSource.gallery)),
+              _buildButton(label: AppLocalizations.of(context).pick_image_from_gallery, icon: Icons.image, onPressed: () => pickImage(ImageSource.gallery)),
               const SizedBox(height: 10),
-              Utils.buildButton(label: AppLocalizations.of(context).pick_image_from_camera, icon: Icons.camera_alt_outlined, onPressed: () => pickImage(ImageSource.camera)), 
+              _buildButton(label: AppLocalizations.of(context).pick_image_from_camera, icon: Icons.camera_alt_outlined, onPressed: () => pickImage(ImageSource.camera)), 
               Text( //TODO: remove
-                _scannedPlantName,
+                '',
                 style: TextStyle(
                   fontSize: 18,
                 ),
@@ -210,6 +170,29 @@ class _ScanPageState extends State<ScanPage> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildButton({
+    required String label,
+    required IconData icon,
+    required VoidCallback? onPressed,
+    ButtonStyle? style, //TODO: questo non lo sto usando!
+  }) {
+    return ElevatedButton.icon(
+    onPressed: () => onPressed,
+    label: Text(
+      label,
+      style: const TextStyle(
+        color: Colors.white, //TODO: use color constants
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    style: ElevatedButton.styleFrom(
+      primary: Colors.green[600], //[900] TODO: use color constants and themeColor
+      onPrimary: Colors.white, //TODO: use color constants and themeColor
+    ),
+    icon: Icon(icon),
     );
   }
 }

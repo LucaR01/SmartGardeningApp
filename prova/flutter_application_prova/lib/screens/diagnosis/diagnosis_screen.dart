@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_prova/models/plant/plant_disease.dart';
+import 'package:flutter_application_prova/screens/pages.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_application_prova/models/plant/plant.dart';
@@ -29,6 +31,20 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
   List _outputs = [];
   bool _loading = false;
 
+  late PlantDisease plantDisease;
+
+  @override
+  void initState() {
+    super.initState();
+    /*_loadModel().then((value) { //TODO: uncomment or remove
+      setState(() {
+        _loading = false;
+      });
+    });*/
+    print("initState()"); //TODO: remove
+    _loadModel(); 
+  }
+
   Future pickImage(ImageSource source) async {
     try {
       final image = await ImagePicker()
@@ -52,8 +68,8 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
 
   _loadModel() async { //TODO: uncomment
     await Tflite.loadModel(
-      model: 'assets/plants/model_unquant.tflite', //TODO: 
-      labels: 'assets/plants/labels.txt', //TODO: 
+      model: 'assets/plants/model_unquant.tflite', //TODO: cambiare modello
+      labels: 'assets/plants/labels.txt', //TODO: cambiare labels modello
     );
   }
 
@@ -67,6 +83,8 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
       threshold: 0.2,
       asynch: true
     );
+    
+    //TODO: remove setState?
     setState(() {
 
       print("output: ${output}"); //TODO: remove
@@ -87,6 +105,9 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
       //TODO: scannedPlant = Plant();
 
     });
+
+    plantDisease = PlantDisease(name: output![0]["label"].toString().substring(2), description: '', solutions: '', diseaseAccuracy: output[0]["confidence"], img: ''); //TODO:
+    Utils.navigateToPage(context: context, page: Pages.diagnosisScanResult, plantDisease: plantDisease);
   }
 
   @override
@@ -108,20 +129,43 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                 //width: 256, //TODO: remove?
               ),
               Text(
-                'Posizionare la pianta al centro del riquadro.', //TODO: remove text $text
+                'Posizionare la pianta al centro del riquadro.', //TODO: remove text $text //TODO: usare Localizations
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 24,
                 ),
               ),
               const SizedBox(height: 20),
-              Utils.buildButton(label: AppLocalizations.of(context).pick_image_from_gallery, icon: Icons.image, onPressed: () => pickImage(ImageSource.gallery)),
+              _buildButton(label: AppLocalizations.of(context).pick_image_from_gallery, icon: Icons.image, onPressed: () => pickImage(ImageSource.gallery)),
               const SizedBox(height: 10),
-              Utils.buildButton(label: AppLocalizations.of(context).pick_image_from_camera, icon: Icons.camera_alt_outlined, onPressed: () => pickImage(ImageSource.camera)),
+              _buildButton(label: AppLocalizations.of(context).pick_image_from_camera, icon: Icons.camera_alt_outlined, onPressed: () => pickImage(ImageSource.camera)),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildButton({
+    required String label,
+    required IconData icon,
+    required VoidCallback? onPressed,
+    ButtonStyle? style, //TODO: questo non lo sto usando!
+  }) {
+    return ElevatedButton.icon(
+    onPressed: () => onPressed,
+    label: Text(
+      label,
+      style: const TextStyle(
+        color: Colors.white, //TODO: use color constants
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    style: ElevatedButton.styleFrom(
+      primary: Colors.green[600], //[900] TODO: use color constants and themeColor
+      onPrimary: Colors.white, //TODO: use color constants and themeColor
+    ),
+    icon: Icon(icon),
     );
   }
 }
