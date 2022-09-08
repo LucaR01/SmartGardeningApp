@@ -31,7 +31,7 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
   List _outputs = [];
   bool _loading = false;
 
-  late PlantDisease plantDisease;
+  PlantDisease? plantDisease; //TODO: prima era late PlantDisease plantDisease;
 
   @override
   void initState() {
@@ -68,8 +68,8 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
 
   _loadModel() async { //TODO: uncomment
     await Tflite.loadModel(
-      model: 'assets/plants/model_unquant.tflite', //TODO: cambiare modello
-      labels: 'assets/plants/labels.txt', //TODO: cambiare labels modello
+      model: 'assets/plants_diseases/model_unquant.tflite', 
+      labels: 'assets/plants_diseases/labels.txt', 
     );
   }
 
@@ -106,8 +106,8 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
 
     });
 
-    plantDisease = PlantDisease(name: output![0]["label"].toString().substring(2), description: '', solutions: '', diseaseAccuracy: output[0]["confidence"], img: ''); //TODO:
-    Utils.navigateToPage(context: context, page: Pages.diagnosisScanResult, plantDisease: plantDisease);
+    plantDisease = PlantDisease(name: output![0]["label"].toString().substring(2), diseaseConfidence: output[0]["confidence"]); //TODO: remove img parameter
+    //Utils.navigateToPage(context: context, page: Pages.diagnosisScanResult, plantDisease: plantDisease); //TODO: remove
   }
 
   @override
@@ -123,22 +123,22 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
         child: Center(
           child: Column(
             children: [
-              const Image(
-                image: AssetImage(
-                    "assets/images/camera-focus-frame-objective-photo.png"),
-                //width: 256, //TODO: remove?
-              ),
+              image != null ? Image.file(image!) : const Image(image: AssetImage("assets/images/camera-focus-frame-objective-photo.png")),
+              Text(plantDisease == null ? '' : 'Disease: ${plantDisease!.name}'), //TODO: plantDisease.name.isEmpty ? //TODO: usare localization
+              Text(plantDisease == null ? '' : 'Confidence: ${(plantDisease!.diseaseConfidence * 100.0).toString()}%'), //TODO: plantDisease.diseaseAccuracy.isNaN //TODO: usare localization
               Text(
-                'Posizionare la pianta al centro del riquadro.', //TODO: remove text $text //TODO: usare Localizations
+                plantDisease == null ? 'Posizionare la pianta al centro del riquadro.' : '', //TODO: remove text $text //TODO: usare Localizations
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 24,
                 ),
               ),
+              ElevatedButton(child: Text("Prova"), onPressed: () => { plantDisease = PlantDisease(name: 'Common Corn Rust', diseaseConfidence: 98.7) }), //TODO: remove just for testing
               const SizedBox(height: 20),
-              _buildButton(label: AppLocalizations.of(context).pick_image_from_gallery, icon: Icons.image, onPressed: () => pickImage(ImageSource.gallery)),
+              //_buildButton(label: AppLocalizations.of(context).pick_image_from_gallery, icon: Icons.image, onPressed: () => pickImage(ImageSource.gallery) ), //TODO: fix
+              ElevatedButton.icon(onPressed: () => pickImage(ImageSource.gallery), icon: const Icon(Icons.image), label: Text('Gallery')), //TODO: 
               const SizedBox(height: 10),
-              _buildButton(label: AppLocalizations.of(context).pick_image_from_camera, icon: Icons.camera_alt_outlined, onPressed: () => pickImage(ImageSource.camera)),
+              //_buildButton(label: AppLocalizations.of(context).pick_image_from_camera, icon: Icons.camera_alt_outlined, onPressed: () => pickImage(ImageSource.camera)), //TODO: fix
             ],
           ),
         ),
@@ -146,7 +146,7 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
     );
   }
 
-  Widget _buildButton({
+  ElevatedButton _buildButton({
     required String label,
     required IconData icon,
     required VoidCallback? onPressed,
