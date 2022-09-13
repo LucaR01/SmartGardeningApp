@@ -9,14 +9,13 @@ class AirCareSensor {
   final int noise;
   final int pressure;
   final double absolutePressure;
-  //final int healthIdx; //TODO: remove
-  final HealthIndex healthIdx;
+  final HealthIndex healthIndex;
   final double minTemp;
   final double maxTemp;
   final String dateMaxTemp;
   final String dateMinTemp;
 
   AirCareSensor({required this.timeUtc, required this.temperature, required this.co2, required this.humidity, required this.noise, 
-  required this.pressure, required this.absolutePressure, required this.healthIdx, required this.minTemp, required this.maxTemp, 
+  required this.pressure, required this.absolutePressure, required this.healthIndex, required this.minTemp, required this.maxTemp, 
   required this.dateMaxTemp, required this.dateMinTemp});
 }
