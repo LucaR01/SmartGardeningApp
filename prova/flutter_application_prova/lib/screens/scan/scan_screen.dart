@@ -4,10 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
+import 'package:flutter_application_prova/api/notifications/notifications_api.dart';
 import 'package:flutter_application_prova/api/plant_api/plant_api.dart';
 import 'package:flutter_application_prova/api/sensor_api/sensor_api.dart';
 import 'package:flutter_application_prova/api/snackbar_messages/custom_snackbar_message.dart';
 import 'package:flutter_application_prova/api/snackbar_messages/error_codes.dart';
+import 'package:flutter_application_prova/models/aircare_sensor/aircare_sensor.dart';
 import 'package:flutter_application_prova/models/plant/plant.dart';
 import 'package:flutter_application_prova/screens/pages.dart';
 import 'package:flutter_application_prova/utils/utils.dart';
@@ -41,7 +43,7 @@ class _ScanPageState extends State<ScanPage> {
 
   List _outputs = [];
 
-  late Plant scannedPlant;
+  Plant? scannedPlant;
 
   double _confidence = 0.0;
 
@@ -56,9 +58,6 @@ class _ScanPageState extends State<ScanPage> {
     });*/
     print("initState()"); //TODO: remove
     _loadModel(); //TODO: uncomment
-    //PlantAPI.getData(); //TODO: remove
-    //PlantAPI.getData(plantPID: 'jasminum floridum', accuracy: 8.2); //TODO: remove
-    //SensorAPI.getData(); //TODO: remove
   }
 
   @override
@@ -98,6 +97,8 @@ class _ScanPageState extends State<ScanPage> {
 
     //TODO: controllare se serve il .substring(2)
     scannedPlant = (await PlantAPI.getData(plantPID: output[0]["label"].toString().substring(2), accuracy: output[0]["confidence"]))!;
+    
+    scannedPlant == null ? {} : scannedPlant!.imageUrl = image.path;
 
     inspect(scannedPlant); //TODO: remove
 
@@ -158,14 +159,16 @@ class _ScanPageState extends State<ScanPage> {
               const SizedBox(height: 20),
               ElevatedButton(onPressed: () async { Plant p = (await PlantAPI.getData(plantPID: 'jasminum floridum', accuracy: 92.3))!; Utils.navigateToPage(context: context, page: Pages.scanResult, plant: p); }, child: Text('hello2'),), //TODO: remove
               _buildButton(label: AppLocalizations.of(context).pick_image_from_gallery, icon: Icons.image, onPressed: () => pickImage(ImageSource.gallery)),
+              ElevatedButton(onPressed: () => pickImage(ImageSource.gallery), child: Text('Gallery')),
               const SizedBox(height: 10),
               _buildButton(label: AppLocalizations.of(context).pick_image_from_camera, icon: Icons.camera_alt_outlined, onPressed: () => pickImage(ImageSource.camera)), 
-              Text( //TODO: remove
+              ElevatedButton(onPressed: () { NotificationsAPI.showNotification(title: 'Notifica', body: 'Prova notifica', payload: 'prova.abs'); }, child: Text('Notifiche')), //TODO: remove, just for testing
+              /*Text( //TODO: remove
                 '',
                 style: TextStyle(
                   fontSize: 18,
                 ),
-              ),
+              ),*/
             ],
           ),
         ),

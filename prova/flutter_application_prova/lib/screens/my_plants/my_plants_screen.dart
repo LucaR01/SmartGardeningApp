@@ -1,14 +1,17 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_prova/models/database/database_helper.dart';
 import 'package:flutter_application_prova/models/plant/plant.dart';
+import 'package:flutter_application_prova/screens/loading/loading.dart';
 import 'package:flutter_application_prova/screens/pages.dart';
 import 'package:flutter_application_prova/utils/utils.dart';
 import 'package:flutter_application_prova/widgets/FAB/FABWidget.dart';
 import 'package:flutter_application_prova/widgets/app_bar/app_bar.dart';
 import 'package:flutter_application_prova/widgets/bottom_navigation_bar/custom_bottom_navigation_bar.dart';
 import 'package:flutter_application_prova/widgets/plants_list/plants_list.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class MyPlantsScreen extends StatefulWidget {
   const MyPlantsScreen({Key? key}) : super(key: key);
@@ -60,7 +63,7 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
                 future: DatabaseHelper.instance.getPlants(),
                 builder: (BuildContext context, AsyncSnapshot<List<Plant>> snapshot) {
                   if(!snapshot.hasData) {
-                    return Center(child: Text('Loading...'));
+                    return SpinKitCircle(color: Colors.green[900], size: 90.0); //Center(child: Text('Loading...')); //TODO: SpinKitCircle() LoadingScreen();
                   }
                   return snapshot.data!.isEmpty ? 
                   Center(child: Text('No plants in List.'))
@@ -90,8 +93,8 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
                               'assets/images/scan/${plant.imageUrl}',
                               height: 50.0, //TODO: 60.0
                             ),*/
-                            child: Image.network(
-                              plant.imageUrl,
+                            child: Image.file(
+                              File(plant.imageUrl),
                               height: 50.0,
                             ),
                           ),
@@ -118,11 +121,20 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
   }
 
   void deleteAllPlantsFromDB() async {
-    int listSize = (await DatabaseHelper.instance.getPlants()).length;
+    /*int listSize = (await DatabaseHelper.instance.getPlants()).length;
     print('listSize: ${listSize}');
 
     for(int i = 0; i <= listSize; i++) {
       await DatabaseHelper.instance.remove(i);
-    }
+    }*/
+
+    List<Plant> plantsList = (await DatabaseHelper.instance.getPlants());
+    plantsList.forEach((p) async { await DatabaseHelper.instance.remove(p.id != null ? p.id! : 0); });
+
+    //await DatabaseHelper.instance.remove(8); //TODO: remove
+
+    /*for(var p in plantsList) { //TODO: remove
+      await DatabaseHelper.instance.remove(p.id!);
+    }*/
   }
 }

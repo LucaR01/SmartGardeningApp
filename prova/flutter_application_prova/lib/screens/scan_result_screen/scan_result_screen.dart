@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_prova/api/snackbar_messages/custom_snackbar_message.dart';
 import 'package:flutter_application_prova/api/snackbar_messages/error_codes.dart';
@@ -139,11 +141,11 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                           children: [
                             Container(
                               /*child: Image( //TODO: remove
-                                image: Image.network(widget.plant.imageUrl), //TODO: Image.network(widget.plant.imageUrl); AssetImage("assets/images/scan/${widget.plant.imageUrl}")
+                                image: AssetImage(widget.plant.imageUrl), //TODO: Image.network(widget.plant.imageUrl); AssetImage("assets/images/scan/${widget.plant.imageUrl}")
                                 height: 436, width: 220,
                               ),*/
-                              child: Image.network(
-                                widget.plant.imageUrl, 
+                              child: Image.file(
+                                File(widget.plant.imageUrl), 
                                 height: 436, 
                                 width: 220
                               ),

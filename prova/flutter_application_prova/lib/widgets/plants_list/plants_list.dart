@@ -87,8 +87,8 @@ final GlobalKey _listKey = GlobalKey();
           'assets/images/scan/${plant.imageUrl}',
           height: 50.0, //TODO: 60.0
         ),*/
-        child: Image.network(
-          plant.imageUrl,
+        child: Image.file(
+          File(plant.imageUrl),
           height: 50.0,
         ),
       ),

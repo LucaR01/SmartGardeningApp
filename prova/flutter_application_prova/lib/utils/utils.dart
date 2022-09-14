@@ -60,7 +60,7 @@ class Utils {
             .pushReplacementNamed('/scan/result', arguments: plant);
         break;
       case Pages.sensors:
-        Navigator.of(context).pushReplacementNamed('/sensors');
+        Navigator.of(context).pushNamed('/sensors');
         break;
       default:
         //TODO: forse non serve il default.

@@ -19,7 +19,7 @@ class Plant {
   final int minSoilMoist;
   final int maxSoilEC;
   final int minSoilEC;
-  final String imageUrl; //TODO: String? o File o File?
+  String imageUrl; //TODO: rename in imagePath
   final double accuracy;
 
   Plant({this.id, required this.pid, required this.displayPid, required this.alias, 

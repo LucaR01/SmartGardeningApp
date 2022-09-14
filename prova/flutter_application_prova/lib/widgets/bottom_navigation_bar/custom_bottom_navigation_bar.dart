@@ -28,7 +28,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             Utils.navigateToPage(context: context, page: Pages.myPlants);
             break;
           case 1:
-            Utils.navigateToPage(context: context, page: Pages.tasks);
+            Utils.navigateToPage(context: context, page: Pages.sensors);
             break;
           case 2:
             Utils.navigateToPage(context: context, page: Pages.diagnosis);
@@ -39,28 +39,28 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         }
       },
       type: BottomNavigationBarType.fixed, //TODO: remove?
-      backgroundColor: Colors.green, //TODO: usare le color constants.
-      selectedItemColor: Colors.white, //TODO: usare le color constants.
-      unselectedItemColor: Colors.white70, //TODO: usare le color constants.
+      backgroundColor: Colors.green, //TODO: usare le theme color
+      selectedItemColor: Colors.white, //TODO: usare le theme color
+      unselectedItemColor: Colors.white70, //TODO: usare le theme color
       iconSize: 30, //TODO: update
       //selectedFontSize: 22, //TODO: remove
       //unselectedFontSize: 18, //TODO: remove
       //showUnselectedLabels: false, //TODO: remove
 
-      items: [
-        const BottomNavigationBarItem( //TODO: usare una funzione chiamata buildBottomNavigationBarItem() ?
+      items: const [
+        BottomNavigationBarItem( //TODO: usare una funzione chiamata buildBottomNavigationBarItem() ?
           icon: Icon(FontAwesomeIcons.seedling),
           label: 'My Plants',
         ),
-        const BottomNavigationBarItem(
-          icon: Icon(Icons.task),
-          label: 'Tasks',
+        BottomNavigationBarItem(
+          icon: Icon(Icons.sensors),
+          label: 'Sensors', //TODO: usare Localizations
         ),
-        const BottomNavigationBarItem(
+        BottomNavigationBarItem(
           icon: Icon(FontAwesomeIcons.stethoscope),
           label: 'Diagnosis',
         ),
-        const BottomNavigationBarItem(
+        BottomNavigationBarItem(
           icon: Icon(Icons.settings),
           label: 'Settings',
         ),
@@ -68,6 +68,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
     );
   }
 
+  //TODO: remove?
   BottomNavigationBarItem _buildBottomNavigationBarItem({required Icon icon, required String label}) {
     return BottomNavigationBarItem(
       icon: icon,

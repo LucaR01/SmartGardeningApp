@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_application_prova/models/plant/plant.dart';
 import 'package:flutter_application_prova/widgets/app_bar/app_bar.dart';
+
+//TODO: mettere questo folder dentro al folder my_plants?
 
 class PlantDetails extends StatelessWidget {
   const PlantDetails({Key? key, required this.plant}) : super(key: key);
@@ -26,8 +30,8 @@ class PlantDetails extends StatelessWidget {
                   fit: BoxFit.cover,
                   alignment: Alignment.topCenter,
                 ),*/
-                child: Image.network(
-                  plant.imageUrl,
+                child: Image.file(
+                  File(plant.imageUrl),
                   height: 360,
                   fit: BoxFit.cover,
                   alignment: Alignment.topCenter,
@@ -100,7 +104,7 @@ class PlantDetails extends StatelessWidget {
                       ),
                       SizedBox(height: 30),
                       Text(
-                        'Altre informazioni', //TODO: use strings constants
+                        plant.id != null ? plant.id.toString() : '', //'Altre informazioni', //TODO: use strings constants
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 16,

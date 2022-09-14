@@ -23,6 +23,7 @@ class NavigationDrawerWidget extends StatelessWidget {
             buildHeader(), //TODO: image: img,
 
             //TODO: volendo aggiungere container con column
+            //TODO: Localizations
             const SizedBox(height: 48),
             buildMenuItem(
               text: 'Home',
@@ -37,9 +38,9 @@ class NavigationDrawerWidget extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             buildMenuItem(
-              text: 'Tasks',
-              icon: Icons.task,
-              onClicked: () => Utils.navigateToPage(context: context, page: Pages.tasks, shouldPop: true),
+              text: 'Sensors',
+              icon: Icons.sensors,
+              onClicked: () => Utils.navigateToPage(context: context, page: Pages.sensors, shouldPop: true),
             ),
             const SizedBox(height: 16),
             buildMenuItem(
@@ -64,6 +65,10 @@ class NavigationDrawerWidget extends StatelessWidget {
               icon: Icons.notifications,
               //onClicked: () => Utils.navigateToPage(context: context, page: Pages.home, shouldPop: true), //TODO: uncomment
             ),
+
+            const SizedBox(height: 24),
+            const Divider(color: Colors.white70), //TODO: get color from constants
+            const SizedBox(height: 24),
 
             const SizedBox(height: 16),
             buildMenuItem(text: 'Privacy Policy', icon: Icons.privacy_tip
