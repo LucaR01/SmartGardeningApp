@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_prova/screens/pages.dart';
+import 'package:flutter_application_prova/utils/utils.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../screens/pages.dart';
-import '../../utils/utils.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 //TODO: rename in CustomBottomNavigationBarWidget?
 //TODO: update in StatelessWidget?
@@ -47,22 +48,22 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       //unselectedFontSize: 18, //TODO: remove
       //showUnselectedLabels: false, //TODO: remove
 
-      items: const [
+      items: [
         BottomNavigationBarItem( //TODO: usare una funzione chiamata buildBottomNavigationBarItem() ?
-          icon: Icon(FontAwesomeIcons.seedling),
-          label: 'My Plants',
+          icon: const Icon(FontAwesomeIcons.seedling),
+          label: AppLocalizations.of(context).my_plants,
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.sensors),
-          label: 'Sensors', //TODO: usare Localizations
+          icon: const Icon(Icons.sensors),
+          label: AppLocalizations.of(context).my_sensor,
         ),
         BottomNavigationBarItem(
-          icon: Icon(FontAwesomeIcons.stethoscope),
-          label: 'Diagnosis',
+          icon: const Icon(FontAwesomeIcons.stethoscope),
+          label: AppLocalizations.of(context).diagnosis,
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          label: 'Settings',
+          icon: const Icon(Icons.settings),
+          label: AppLocalizations.of(context).settings,
         ),
       ],
     );

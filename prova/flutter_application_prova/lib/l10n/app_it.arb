@@ -9,5 +9,22 @@
     "italian": "Italiano",
     "close": "Chiudi",
     "pick_image_from_gallery": "Scegli immagine dalla Galleria",
-    "pick_image_from_camera": "Scatta una foto"
+    "pick_image_from_camera": "Scatta una foto",
+    "home": "home",
+    "my_plants": "Le mie piante",
+    "my_sensor": "Il mio sensore",
+    "diagnosis": "Diagnosi",
+    "privacy_policy": "Informativa sulla Privacy",
+    "disease": "Malattia",
+    "confidence": "Accuratezza",
+    "position_in_the_center": "Posizionare al centro del riquadro",
+    "device_id": "id del dispositivo",
+    "empty_field": "Campo vuoto!",
+    "insert": "Inserire",
+    "success": "Successo!",
+    "failed": "Non riuscito!",
+    "aircare_sensor": "Misuratore della qualità dell'aria",
+    "data_retrieved": "dati ricevuti",
+    "data_not_retrieved": "dati non ricevuti",
+    "get_device_data": "Ottieni i dati del dispositivo"
 }

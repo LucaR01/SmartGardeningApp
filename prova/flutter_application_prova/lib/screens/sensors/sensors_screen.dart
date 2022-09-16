@@ -8,6 +8,8 @@ import 'package:flutter_application_prova/widgets/FAB/FABWidget.dart';
 import 'package:flutter_application_prova/widgets/app_bar/app_bar.dart';
 import 'package:flutter_application_prova/widgets/bottom_navigation_bar/custom_bottom_navigation_bar.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 //TODO: rename in Sensors?
 //TODO: rename in SensorScreen?
 
@@ -47,7 +49,7 @@ class _SensorPageState extends State<SensorPage> {
               SizedBox(
                 height: 60,
                 child: Text(
-                  'My Sensor', //TODO: use localizations
+                  AppLocalizations.of(context).my_sensor,
                   style: TextStyle(
                     fontSize: 24,
                     color: Colors.green[900],
@@ -63,7 +65,7 @@ class _SensorPageState extends State<SensorPage> {
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     hintText:
-                        'device id', //TODO: applocalizations; Netatmo Home Care | Inserire il device Id o il id del device
+                        AppLocalizations.of(context).device_id,
                     suffixIcon: IconButton(
                       onPressed: () => _textController.clear(), // () {}
                       icon: const Icon(Icons.clear),
@@ -78,11 +80,9 @@ class _SensorPageState extends State<SensorPage> {
 
                   //airCareSensor = await SensorAPI.getAirCareSensorData(deviceId: _textController.text); //TODO: remove
 
-                  //TODO: localizations
-                  _textController.text.isNotEmpty ? airCareSensor = await SensorAPI.getAirCareSensorData(deviceId: _textController.text) : SnackBarMessageWidget.snackBarMessage(context: context, title: 'Empty field', msg: 'It\'s empty! Insert device_id', errorCode: ErrorCodes.error);
+                  _textController.text.isNotEmpty ? airCareSensor = await SensorAPI.getAirCareSensorData(deviceId: _textController.text) : SnackBarMessageWidget.snackBarMessage(context: context, title: AppLocalizations.of(context).empty_field, msg: '${AppLocalizations.of(context).insert} ${AppLocalizations.of(context).device_id}', errorCode: ErrorCodes.error);
 
-                  //TODO: localizations
-                  airCareSensor != null ? SnackBarMessageWidget.snackBarMessage(context: context, title: 'Success', msg: 'AirCareSensor\'s data retrieved', errorCode: ErrorCodes.success) : SnackBarMessageWidget.snackBarMessage(context: context, title: 'Failed', msg: 'AirCareSensor\'s data not retrieved', errorCode: ErrorCodes.error);
+                  airCareSensor != null ? SnackBarMessageWidget.snackBarMessage(context: context, title: AppLocalizations.of(context).success, msg: '${AppLocalizations.of(context).aircare_sensor} ${AppLocalizations.of(context).data_retrieved}', errorCode: ErrorCodes.success) : SnackBarMessageWidget.snackBarMessage(context: context, title: AppLocalizations.of(context).failed, msg: '${AppLocalizations.of(context).aircare_sensor} ${AppLocalizations.of(context).data_not_retrieved}', errorCode: ErrorCodes.error);
 
                   // setState mi serve, anche se vuota, non c'è bisogno del airCareSensor, basta solo setState, così mi aggiorna la build!
                   setState(() {
@@ -90,7 +90,7 @@ class _SensorPageState extends State<SensorPage> {
                     airCareSensor;
                   });
                 },
-                child: Text('Get device\'s data'), //TODO: localizations
+                child: Text(AppLocalizations.of(context).get_device_data),
               ),
               const SizedBox(
                 height: 30.0,

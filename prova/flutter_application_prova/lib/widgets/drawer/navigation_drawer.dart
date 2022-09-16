@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_prova/screens/pages.dart';
+import 'package:flutter_application_prova/utils/utils.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../screens/home/home_screen.dart';
-import '../../screens/pages.dart';
-import '../../utils/utils.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 //TODO: rinominare in CustomNavigationDrawerWidget?
 
@@ -23,28 +23,27 @@ class NavigationDrawerWidget extends StatelessWidget {
             buildHeader(), //TODO: image: img,
 
             //TODO: volendo aggiungere container con column
-            //TODO: Localizations
             const SizedBox(height: 48),
             buildMenuItem(
-              text: 'Home',
+              text: AppLocalizations.of(context).home,
               icon: Icons.home,
               onClicked: () => Utils.navigateToPage(context: context, page: Pages.home, shouldPop: true),
             ),
             const SizedBox(height: 16),
             buildMenuItem(
-              text: 'My Plants',
+              text: AppLocalizations.of(context).my_plants,
               icon: FontAwesomeIcons.seedling, 
               onClicked: () => Utils.navigateToPage(context: context, page: Pages.myPlants, shouldPop: true),
             ),
             const SizedBox(height: 16),
             buildMenuItem(
-              text: 'Sensors',
+              text: AppLocalizations.of(context).my_sensor,
               icon: Icons.sensors,
               onClicked: () => Utils.navigateToPage(context: context, page: Pages.sensors, shouldPop: true),
             ),
             const SizedBox(height: 16),
             buildMenuItem(
-              text: 'Diagnosis',
+              text: AppLocalizations.of(context).diagnosis,
               icon: FontAwesomeIcons.stethoscope, 
               onClicked: () => Utils.navigateToPage(context: context, page: Pages.diagnosis, shouldPop: true), 
             ),
@@ -54,14 +53,14 @@ class NavigationDrawerWidget extends StatelessWidget {
 
             const SizedBox(height: 16),
             buildMenuItem(
-              text: 'Settings',
+              text: AppLocalizations.of(context).settings,
               icon: Icons.settings,
               onClicked: () => Utils.navigateToPage(context: context, page: Pages.settings, shouldPop: true), //TODO: uncomment
             ),
 
             const SizedBox(height: 16),
             buildMenuItem(
-              text: 'Notifications',
+              text: AppLocalizations.of(context).notifications,
               icon: Icons.notifications,
               //onClicked: () => Utils.navigateToPage(context: context, page: Pages.home, shouldPop: true), //TODO: uncomment
             ),
@@ -71,7 +70,7 @@ class NavigationDrawerWidget extends StatelessWidget {
             const SizedBox(height: 24),
 
             const SizedBox(height: 16),
-            buildMenuItem(text: 'Privacy Policy', icon: Icons.privacy_tip
+            buildMenuItem(text: AppLocalizations.of(context).privacy_policy, icon: Icons.privacy_tip
                 //onClicked: () => Utils.navigateToPage(context: context, page: Pages.home, shouldPop: true), //TODO: uncomment
                 ),
           ],

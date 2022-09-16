@@ -52,5 +52,90 @@
     "pick_image_from_camera": "Pick Image from Camera",
     "@pick_image_from_camera": {
       "description": "To pick an image from the camera of the user."
+    },
+
+    "home": "Home",
+    "@home": {
+      "description": "Home's screen."
+    },
+
+    "my_plants": "My Plants",
+    "@my_plants": {
+      "description": "My Plants' screen title."
+    },
+
+    "diagnosis": "Diagnosis",
+    "@diagnosis": {
+      "description": "Diagnosis' screen title."
+    },
+
+    "privacy_policy": "Privacy Policy",
+    "@privacy_policy": {
+      "description": "Privacy Policy's screen."
+    },
+
+    "my_sensor": "My Sensor",
+    "@my_sensor": {
+      "description": "My Sensor's screen title."
+    },
+
+    "device_id": "device_id",
+    "@device_id": {
+      "description": "The sensor's device_id."
+    },
+
+    "empty_field": "Empty Field!",
+    "@empty_field": {
+      "description": "An empty field box error message."
+    },
+
+    "insert": "Insert",
+    "@insert": {
+      "description": "Insert device_id in the text field."
+    },
+
+    "success": "Success!",
+    "@success": {
+      "description": "Success message response."
+    },
+
+    "failed": "Failed!",
+    "@failed": {
+      "description": "Failed message response."
+    },
+
+    "aircare_sensor": "AirCareSensor's",
+    "@aircare_sensor": {
+      "description": "AirCareSensor."
+    },
+
+    "data_retrieved": "data retrieved",
+    "@data_retrieved": {
+      "description": "Data retrieved from the API."
+    },
+
+    "data_not_retrieved": "data not retrieved",
+    "@data_not_retrieved": {
+      "description": "Data not retrieved from the API."
+    },
+
+    "get_device_data": "Get Device's data",
+    "@get_device_data": {
+      "description": "Retrieve the data of the device."
+    },
+
+    "disease": "Disease",
+    "@disease": {
+      "description": "Plant's disease."
+    },
+
+    "confidence": "Confidence",
+    "@confidence": {
+      "description": "Plant recognition accuracy."
+    },
+
+    "position_in_the_center": "Position in the center of the frame",
+    "@position_in_the_center": {
+      "description": "Position the picture in the center of the frame, pane, box."
     }
 }

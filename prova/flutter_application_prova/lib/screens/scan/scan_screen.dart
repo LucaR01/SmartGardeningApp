@@ -149,7 +149,7 @@ class _ScanPageState extends State<ScanPage> {
                     "assets/images/camera-focus-frame-objective-photo.png"),
               ),
               Text(
-                "Posizionare la pianta al centro del riquadro.", //TODO: use localization
+                AppLocalizations.of(context).position_in_the_center,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Theme.of(context).iconTheme.color,

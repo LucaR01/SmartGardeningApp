@@ -106,7 +106,7 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
 
     });
 
-    plantDisease = PlantDisease(name: output![0]["label"].toString().substring(2), diseaseConfidence: output[0]["confidence"]); //TODO: remove img parameter
+    plantDisease = PlantDisease(name: output![0]["label"].toString().substring(2), diseaseConfidence: output[0]["confidence"]);
     //Utils.navigateToPage(context: context, page: Pages.diagnosisScanResult, plantDisease: plantDisease); //TODO: remove
   }
 
@@ -124,10 +124,10 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
           child: Column(
             children: [
               image != null ? Image.file(image!) : const Image(image: AssetImage("assets/images/camera-focus-frame-objective-photo.png")),
-              Text(plantDisease == null ? '' : 'Disease: ${plantDisease!.name}'), //TODO: plantDisease.name.isEmpty ? //TODO: usare localization
-              Text(plantDisease == null ? '' : 'Confidence: ${(plantDisease!.diseaseConfidence * 100.0).toString()}%'), //TODO: plantDisease.diseaseAccuracy.isNaN //TODO: usare localization
+              Text(plantDisease == null ? '' : '${AppLocalizations.of(context).disease}: ${plantDisease!.name}'), //TODO: plantDisease.name.isEmpty ? 
+              Text(plantDisease == null ? '' : '${AppLocalizations.of(context).confidence}: ${(plantDisease!.diseaseConfidence * 100.0).toString()}%'), //TODO: plantDisease.diseaseAccuracy.isNaN 
               Text(
-                plantDisease == null ? 'Posizionare la pianta al centro del riquadro.' : '', //TODO: remove text $text //TODO: usare Localizations
+                plantDisease == null ? AppLocalizations.of(context).position_in_the_center : '', //TODO: remove text $text 
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 24,
@@ -135,7 +135,7 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
               ),
               ElevatedButton(child: Text("Prova"), onPressed: () => { plantDisease = PlantDisease(name: 'Common Corn Rust', diseaseConfidence: 98.7) }), //TODO: remove just for testing
               const SizedBox(height: 20),
-              //_buildButton(label: AppLocalizations.of(context).pick_image_from_gallery, icon: Icons.image, onPressed: () => pickImage(ImageSource.gallery) ), //TODO: fix
+              _buildButton(label: AppLocalizations.of(context).pick_image_from_gallery, icon: Icons.image, onPressed: () => pickImage(ImageSource.gallery) ), //TODO: fix
               ElevatedButton.icon(onPressed: () => pickImage(ImageSource.gallery), icon: const Icon(Icons.image), label: Text('Gallery')), //TODO: 
               const SizedBox(height: 10),
               //_buildButton(label: AppLocalizations.of(context).pick_image_from_camera, icon: Icons.camera_alt_outlined, onPressed: () => pickImage(ImageSource.camera)), //TODO: fix
@@ -146,7 +146,7 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
     );
   }
 
-  ElevatedButton _buildButton({
+  Widget _buildButton({
     required String label,
     required IconData icon,
     required VoidCallback? onPressed,
