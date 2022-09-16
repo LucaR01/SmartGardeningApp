@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_prova/api/sensor_api/sensor_api.dart';
+import 'package:flutter_application_prova/api/snackbar_messages/custom_snackbar_message.dart';
+import 'package:flutter_application_prova/api/snackbar_messages/error_codes.dart';
 import 'package:flutter_application_prova/models/aircare_sensor/aircare_sensor.dart';
 import 'package:flutter_application_prova/models/aircare_sensor/health_index.dart';
 import 'package:flutter_application_prova/widgets/FAB/FABWidget.dart';
@@ -72,13 +74,20 @@ class _SensorPageState extends State<SensorPage> {
               //const SizedBox(height: 10.0,), //TODO:
               ElevatedButton(
                 onPressed: () async {
-                  //TODO: =>
                   print('_textController.text: ${_textController.text}'); //TODO: remove
 
+                  //airCareSensor = await SensorAPI.getAirCareSensorData(deviceId: _textController.text); //TODO: remove
+
+                  //TODO: localizations
+                  _textController.text.isNotEmpty ? airCareSensor = await SensorAPI.getAirCareSensorData(deviceId: _textController.text) : SnackBarMessageWidget.snackBarMessage(context: context, title: 'Empty field', msg: 'It\'s empty! Insert device_id', errorCode: ErrorCodes.error);
+
+                  //TODO: localizations
+                  airCareSensor != null ? SnackBarMessageWidget.snackBarMessage(context: context, title: 'Success', msg: 'AirCareSensor\'s data retrieved', errorCode: ErrorCodes.success) : SnackBarMessageWidget.snackBarMessage(context: context, title: 'Failed', msg: 'AirCareSensor\'s data not retrieved', errorCode: ErrorCodes.error);
+
+                  // setState mi serve, anche se vuota, non c'è bisogno del airCareSensor, basta solo setState, così mi aggiorna la build!
                   setState(() {
-                    //TODO: uncomment
-                    //_textController.text.isNotEmpty ? airCareSensor = (await SensorAPI.getAirCareSensorData(deviceId: _textController.text))! : print('è vuota!'); //TODO: nel : mettere {}
-                    airCareSensor = AirCareSensor(timeUtc: '1555677739', temperature: 21.2, co2: 967, humidity: 37, noise: 41, pressure: 45, absolutePressure: 1022.9, healthIndex: HealthIndex.values[1], minTemp: 21.2, maxTemp: 27.4, dateMaxTemp: '1555662436', dateMinTemp: '1555631374');; //TODO: remove, just for test
+                    //_textController.text.isNotEmpty ? airCareSensor = (await SensorAPI.getAirCareSensorData(deviceId: _textController.text))! : print('è vuota!'); //TODO: remove
+                    airCareSensor;
                   });
                 },
                 child: Text('Get device\'s data'), //TODO: localizations
@@ -88,7 +97,7 @@ class _SensorPageState extends State<SensorPage> {
               ),
               ListTile(
                 title: Text(
-                  airCareSensor != null ? airCareSensor!.timeUtc : '',
+                  airCareSensor != null ? airCareSensor!.timeUtc.toString() : '',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
@@ -197,7 +206,7 @@ class _SensorPageState extends State<SensorPage> {
                   ),
                 ),
               ),
-              /*FutureBuilder<List<>>( //TODO: fix
+              /*FutureBuilder<List<>>( //TODO: remove?
                 future: DatabaseHelper.instance.getPlants(),
                 builder: (BuildContext context, AsyncSnapshot<List<Plant>> snapshot) {
                   if(!snapshot.hasData) {

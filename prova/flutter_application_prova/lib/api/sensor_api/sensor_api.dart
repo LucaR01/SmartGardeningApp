@@ -80,7 +80,7 @@ class SensorAPI {
     return null;
   }
 
-  static Future<AirCareSensor?> getAirCareSensorData({required int deviceId}) async {
+  static Future<AirCareSensor?> getAirCareSensorData({required String deviceId}) async {
 
     AccessTokenResponse? tokenResponse = await _getAccessTokenResponse(); //TODO: recuperarlo dalle SharedPreferences prima di chiamare _getAccessTokenResponse();
     //TODO: AccessTokenResponse tokenResponse = UserPreferences.getNetatmoAPIAccessToken() ?? await _getAccessTokenResponse();
@@ -128,7 +128,10 @@ class SensorAPI {
       Map<String, dynamic> decodedAirCareSensorData = jsonDecode(airCareSensorData);
       print('decodedAirCareSensorData: $decodedAirCareSensorData'); //TODO: remove
 
-      return AirCareSensor(timeUtc: decodedAirCareSensorData['time_utc'], temperature: decodedAirCareSensorData['Temperature'], co2: decodedAirCareSensorData['CO2'], humidity: decodedAirCareSensorData['Humidity'], noise: decodedAirCareSensorData['Noise'], pressure: decodedAirCareSensorData['Pressure'], absolutePressure: decodedAirCareSensorData['AbsolutePressure'], healthIndex: HealthIndex.values[decodedAirCareSensorData['health_idx']], minTemp: decodedAirCareSensorData['min_temp'], maxTemp: decodedAirCareSensorData['max_temp'], dateMaxTemp: decodedAirCareSensorData['date_max_temp'], dateMinTemp: decodedAirCareSensorData['date_min_temp']);
+      var dashBoardData = decodedAirCareSensorData["body"]["devices"][0]["dashboard_data"];
+      print('dashBoardData: ${dashBoardData}'); //TODO: remove
+
+      return AirCareSensor(timeUtc: dashBoardData['time_utc'], temperature: dashBoardData['Temperature'], co2: dashBoardData['CO2'], humidity: dashBoardData['Humidity'], noise: dashBoardData['Noise'], pressure: dashBoardData['Pressure'], absolutePressure: dashBoardData['AbsolutePressure'], healthIndex: HealthIndex.values[dashBoardData['health_idx']], minTemp: dashBoardData['min_temp'], maxTemp: dashBoardData['max_temp'], dateMaxTemp: dashBoardData['date_max_temp'], dateMinTemp: dashBoardData['date_min_temp']);
     }
     else {
       print(response.reasonPhrase);
