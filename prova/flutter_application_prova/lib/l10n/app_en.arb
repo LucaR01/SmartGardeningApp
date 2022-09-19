@@ -64,6 +64,96 @@
       "description": "My Plants' screen title."
     },
 
+    "pid": "Plant ID",
+    "@pid": {
+      "description": "Plant's ID."
+    },
+
+    "display_pid": "Plant Display ID",
+    "@display_pid": {
+      "description": "Plant's Display ID."
+    },
+
+    "alias": "Alias",
+    "@alias": {
+      "description": "Plant's Alias."
+    },
+
+    "mmol": "millimoles (mmol)",
+    "@mmol": {
+      "description": "Millimole unit of measurament."
+    },
+
+    "max_light_mmol": "Max Light Measurament",
+    "@max_light_mmol": {
+      "description": "Plant's Max Light Measurament."
+    },
+
+    "min_light_mmol": "Min Light Measurament",
+    "@min_light_mmol": {
+      "description": "Plant's Min Light Measurament."
+    },
+
+    "lux": "lux",
+    "@lux": {
+      "description": "lux, unit of measurament."
+    },
+
+    "max_light_lux": "Max Light Measurament (lux)",
+    "@max_light_lux": {
+      "description": "Plant's Max Light Measurament in lux."
+    },
+
+    "min_light_lux": "Min Light Measurament (lux)",
+    "@min_light_lux": {
+      "description": "Plant's Min Light Measurament in lux."
+    },
+
+    "plant_max_temp": "Maximum Temperature",
+    "@max_temp": {
+      "description": "Plant's Maximum Temperature."
+    },
+
+    "plant_min_temp": "Minimum Temperature",
+    "@min_temp": {
+      "description": "Plant's Minimum Temperature."
+    },
+
+    "max_env_humid": "Maximum Environment's Humidity",
+    "@max_env_humid": {
+      "description": "Maximum Environment's Humidity."
+    },
+
+    "min_env_humid": "Minimum Environment's Humidity",
+    "@min_env_humid": {
+      "description": "Minimum Environment's Humidity."
+    },
+
+    "max_soil_moist": "Maximum Soil's Moisture",
+    "@max_soil_moist": {
+      "description": "Plant's Maximum Soil Moisture."
+    },
+
+    "min_soil_moist": "Minimum Soil Moisture",
+    "@min_soil_moist": {
+      "description": "Plant's Minimum Soil Moisture."
+    },
+
+    "ec": "Electrical Conductivity (EC)",
+    "@ec": {
+      "description": "EC, unit of measure of the salt in the soil."
+    },
+
+    "max_soil_ec": "Maximum Soil's EC",
+    "@max_soil_ec": {
+      "description": "Plant's Maximum Soil EC."
+    },
+
+    "min_soil_ec": "Minimum Soil's EC",
+    "@min_soil_ec": {
+      "description": "Plant's Minimum Soil EC."
+    },
+
     "diagnosis": "Diagnosis",
     "@diagnosis": {
       "description": "Diagnosis' screen title."
@@ -77,6 +167,61 @@
     "my_sensor": "My Sensor",
     "@my_sensor": {
       "description": "My Sensor's screen title."
+    },
+
+    "time_utc": "Time (UTC)",
+    "@time_utc": {
+      "description": "Sensor's time UTC."
+    },
+
+    "temperature": "Temperature",
+    "@temperature": {
+      "description": "Sensor's temperature."
+    },
+
+    "co2": "CO2",
+    "@co2": {
+      "description": "Sensor's retrieved CO2 level."
+    },
+
+    "humidity": "Humidity",
+    "@humidity": {
+      "description": "Sensor's retrieved humidity level."
+    },
+
+    "min_temp": "Minimum Temperature",
+    "@min_temp": {
+      "description": "Sensor's retrieved minimum temperature level."
+    },
+
+    "max_temp": "Maximum Temperature",
+    "@max_temp": {
+      "description": "Sensor's retrieved maximum temperature level."
+    },
+
+    "health_index": "Health Index",
+    "@health_index": {
+      "description": "Sensor's retrieved health index."
+    },
+
+    "pressure": "Pressure",
+    "@pressure": {
+      "description": "Sensor's retrieved pressure level."
+    },
+
+    "absolute_pressure": "Absolute Pressure",
+    "@absolute_pressure": {
+      "description": "Sensor's retrieved absolute pressure level."
+    },
+
+    "date_max_temp": "Date Max Temperature",
+    "@date_max_temp": {
+      "description": "Sensor's date max temperature level."
+    },
+
+    "date_min_temp": "Date Minimum Temperature",
+    "@date_min_temp": {
+      "description": "Sensor's date min temperature level."
     },
 
     "device_id": "device_id",
