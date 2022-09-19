@@ -44,7 +44,7 @@ class PlantDetails extends StatelessWidget {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
-                    color: Colors.grey[600], //TODO: use color constants
+                    color: Theme.of(context).secondaryHeaderColor, /*TODO: Colors.grey[600],*/ 
                   ),
                 ),
                 subtitle: Text(
@@ -52,7 +52,7 @@ class PlantDetails extends StatelessWidget {
                   style: TextStyle(
                     letterSpacing: 0.9,
                     fontSize: 14,
-                    color: Colors.grey[300], //TODO: use color constants
+                    color: Theme.of(context).primaryColor, /*TODO: Colors.grey[300],*/ 
                   ),
                 ),
                 trailing: Icon(Icons.favorite), //TODO: FavoriteWidget(); update icon to a star
@@ -74,7 +74,7 @@ class PlantDetails extends StatelessWidget {
                       Text( //TODO: implementare qualche sorta di grafica/barra //TODO: magari metterlo affianco al titolo e sottotitolo
                         'Acqua/giorno: ${plant.maxSoilMoist.toString()}, Sole/giorno: ${plant.maxLightLux.toString()}', //TODO: use strings constants
                         style: TextStyle(
-                          color: Colors.grey[200], //TODO: use color constants
+                          color: Theme.of(context).textTheme.bodyText2!.color/*TODO: Colors.grey[200],*/
                         ),
                       ),
                       //Icon(Icons.sunny),
@@ -91,14 +91,14 @@ class PlantDetails extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
                           height: 1.4,
-                          color: Colors.grey[400], //TODO: use color constants
+                          color: Theme.of(context).textTheme.bodyText2!.color/*TODO: Colors.grey[400],*/
                         ),
                       ),
                       Text(
                         plant.minTemp.toString(),
                         style: TextStyle(
                           height: 1.4,
-                          color: Colors.grey[300], //TODO: use color constants
+                          color: Theme.of(context).textTheme.bodyText2!.color, /*TODO: Colors.grey[300],*/
                           fontSize: 14,
                         ),
                       ),
@@ -109,14 +109,14 @@ class PlantDetails extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
                           height: 1.4,
-                          color: Colors.grey[400], //TODO: use color constants
+                          color: Theme.of(context).textTheme.bodyText2!.color, /*TODO: Colors.grey[400],*/ 
                         ),
                       ),
                       Text(
                         plant.accuracy.toString(),
                         style: TextStyle(
                           height: 1.4,
-                          color: Colors.grey[300], //TODO: use color constants
+                          color: Theme.of(context).textTheme.bodyText2!.color, /*TODO: Colors.grey[300],*/
                           fontSize: 14,
                         ),
                       ),

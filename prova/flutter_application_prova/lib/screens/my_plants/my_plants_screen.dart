@@ -48,7 +48,7 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
                   'My Plants',
                   style: TextStyle(
                     fontSize: 24,
-                    color: Colors.green[900],
+                    color: Theme.of(context).primaryColor, /*TODO: Colors.green[900],*/
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -82,7 +82,7 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.green[300], //TODO: use color constants
+                                  color: Theme.of(context).textTheme.bodyText1!.color, /*TODO: Colors.green[300],*/
                                 ),
                               ),
                             ],

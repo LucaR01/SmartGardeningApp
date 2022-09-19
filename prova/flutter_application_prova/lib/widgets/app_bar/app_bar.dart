@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_prova/constants/strings_constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_application_prova/screens/pages.dart';
 import 'package:flutter_application_prova/utils/utils.dart';
 import 'package:flutter_application_prova/widgets/language_picker/language_picker.dart';
-
-import '../../constants/strings_constants.dart';
 
 //TODO: rinominare in CustomAppBarWidget?
 //TODO: far passare il titolo come parametro?
@@ -20,7 +19,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       iconTheme: Theme.of(context).iconTheme, //TODO: remove?
-      backgroundColor: Colors.transparent,
+      backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       elevation: 0.0,
       title: Text(title), //TODO: spostare il titolo
       titleTextStyle: TextStyle(
@@ -33,11 +32,11 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         LanguagePickerWidget(),
         SizedBox(width: 12), //TODO: remove?
-        IconButton(
+        /*IconButton( //TODO: remove?
           icon: const Icon(Icons.search),
           onPressed: () {},
-        ),
-        /*IconButton(
+        ),*/
+        /*IconButton( //TODO: remove?
           icon: const Icon(Icons.notifications),
           onPressed: () {},
         ),*/

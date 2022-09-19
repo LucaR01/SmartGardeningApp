@@ -16,7 +16,7 @@ class NavigationDrawerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Material(
-        color: Colors.green[600], //TODO: usare le costanti dei colori.
+        color: Theme.of(context).navigationBarTheme.backgroundColor, //TODO: green[600]
         child: ListView(
           padding: padding, //TODO: remove?
           children: <Widget>[
@@ -48,7 +48,7 @@ class NavigationDrawerWidget extends StatelessWidget {
               onClicked: () => Utils.navigateToPage(context: context, page: Pages.diagnosis, shouldPop: true), 
             ),
             const SizedBox(height: 24),
-            const Divider(color: Colors.white70), //TODO: get color from constants
+            Divider(color: Theme.of(context).dividerColor), //TODO: white70
             const SizedBox(height: 24),
 
             const SizedBox(height: 16),
@@ -66,7 +66,7 @@ class NavigationDrawerWidget extends StatelessWidget {
             ),
 
             const SizedBox(height: 24),
-            const Divider(color: Colors.white70), //TODO: get color from constants
+            Divider(color: Theme.of(context).dividerColor), //TODO: white70
             const SizedBox(height: 24),
 
             const SizedBox(height: 16),
@@ -99,8 +99,8 @@ class NavigationDrawerWidget extends StatelessWidget {
     required IconData icon,
     VoidCallback? onClicked,
   }) {
-    final color = Colors.white; //TODO: per i colori usare le costanti.
-    final hoverColor = Colors.white70;
+    const color = Colors.white; //TODO: per i colori usare le costanti.
+    const hoverColor = Colors.white70;
 
     return ListTile(
       leading: Icon(icon, color: color),

@@ -40,9 +40,9 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         }
       },
       type: BottomNavigationBarType.fixed, //TODO: remove?
-      backgroundColor: Colors.green, //TODO: usare le theme color
-      selectedItemColor: Colors.white, //TODO: usare le theme color
-      unselectedItemColor: Colors.white70, //TODO: usare le theme color
+      backgroundColor: Theme.of(context).bottomAppBarColor,
+      selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor, //TODO: controllare se il colore va bene
+      unselectedItemColor: Theme.of(context).textSelectionTheme.selectionHandleColor, //TODO: controllare se il colore va bene
       iconSize: 30, //TODO: update
       //selectedFontSize: 22, //TODO: remove
       //unselectedFontSize: 18, //TODO: remove

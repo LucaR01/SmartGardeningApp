@@ -17,20 +17,14 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  static const bool DEFAULT_THEME = false; //TODO: put in constants
+
+  static const bool DEFAULT_THEME_IS_DARK = false; //TODO: put in constants
   static const String DEFAULT_LANGUAGE = 'en'; //TODO: put in constants
 
-  bool isDarkTheme = false; //TODO: recuperare dal ThemeProvider
   bool areNotificationsOn = false;
-  String language = ''; //TODO: recuperare da quale tema è al momento impostato.
 
-  @override
-  void initState() {
-    super.initState();
-
-    isDarkTheme = UserPreferences.getIsDarkTheme() ?? DEFAULT_THEME; // ?? vuol dire che se è null, mette il valore false.
-    language = UserPreferences.getLanguage() ?? DEFAULT_LANGUAGE; //TODO: per la lingua mi serve un Locale, non una stringa, quindi faccio Locale(language);
-  }
+  late bool isDarkTheme;
+  late String language;
 
   //TODO: remove
   onChangeNotifications(bool areNotifications) {
@@ -39,36 +33,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
     });
   }
 
-  bool _getThemeMode() { //TODO: => isDarkTheme
-    return this.isDarkTheme;
-  }
-
-  void _setThemeMode({required bool isDarkMode}) {
-    isDarkTheme = isDarkMode;
-  }
-
-  String _getLang() { //TODO: => language;
-    return language;
-  }
-
-  void _setLang({required String language}) {
-    this.language = language;
-  }
-
   @override
   Widget build(BuildContext context) {
-    /*final provider = Provider.of<LocaleProvider>(context); //TODO: remove
-    final locale = provider.locale;
-    String lang = locale.languageCode;*/
 
-    /*final themeProvider = Provider.of<ThemeProvider>(context);
-    bool isDarkMode = themeProvider.isDarkMode;*/
-
-    _setThemeMode(isDarkMode: Provider.of<ThemeProvider>(context).isDarkMode);
-    _setLang(language: Provider.of<LocaleProvider>(context).locale.languageCode);
+    // Prima cerco di recuperare il valore tra le preferenze dell'utente (quindi ciò che è stato salvato), se non trova niente, usiamo il tema e la lingua di sistema.
+    isDarkTheme = UserPreferences.getIsDarkTheme() ?? Provider.of<ThemeProvider>(context).isDarkMode;
+    language = UserPreferences.getLanguage() ?? Provider.of<LocaleProvider>(context).locale.languageCode;
 
     return Scaffold(
-      appBar: AppBarWidget(),
+      appBar: const AppBarWidget(),
       body: Container(
         padding: EdgeInsets.all(10),
         child: ListView(
@@ -78,12 +51,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
               children: [
                 Icon(
                   Icons.settings, //TODO: update icon
-                  color: Colors.green[500], //TODO: use color constants
+                  color: Theme.of(context).primaryColor, //TODO: green[500]
                 ),
                 SizedBox(width: 10),
                 Text(
                   AppLocalizations.of(context).settings,
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.bodyText1!.color),
                 ),
               ],
             ),
@@ -100,7 +73,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w500, //TODO:
-                    color: Colors.grey[600],
+                    color: Theme.of(context).primaryColor,
                   ),
                 ),
                 const SizedBox(width: 30),
@@ -112,7 +85,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               children: [
                 Icon(
                   Icons.volume_up_outlined,
-                  color: Colors.green[600], //TODO: use color constants
+                  color: Theme.of(context).primaryColor, //TODO: green[600]
                 ),
                 SizedBox(height: 10),
                 Text(
@@ -120,6 +93,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
+                    color: Theme.of(context).textTheme.bodyText1!.color,
                   ),
                 ),
               ],
@@ -139,20 +113,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                   ),
-                  onPressed: () async {
-                    await UserPreferences.setTheme(isDarkTheme);
-                    await UserPreferences.setLanguage(language);
-
-                    print('SALVATAGGIO IMPOSTAZIONI');
-                    print('isDarkTheme: $isDarkTheme');
-                    print('language: $language');
-                  },
+                  onPressed: () => _save(),
                   child: Text(
                     AppLocalizations.of(context).save,
                     style: TextStyle(
                       fontSize: 18,
                       letterSpacing: 2.1,
-                      color: Colors.black, //TODO: use color constants
+                      color: Theme.of(context).textTheme.bodyText1!.color,
                     ),
                   ),
                 ),
@@ -164,26 +131,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                   ),
-                  onPressed: () async {
-                    await UserPreferences.setTheme(DEFAULT_THEME);
-                    await UserPreferences.setLanguage(DEFAULT_LANGUAGE);
-
-                    isDarkTheme = DEFAULT_THEME;
-                    language = DEFAULT_LANGUAGE;
-
-                    _setLanguage(language: DEFAULT_LANGUAGE);
-                    _setTheme(isDarkTheme: DEFAULT_THEME);
-
-                    print('RESET IMPOSTAZIONI');
-                    print('isDarkTheme: $isDarkTheme');
-                    print('language: $language');
-                  },
+                  onPressed: () => _reset(),
                   child: Text(
                     AppLocalizations.of(context).reset,
                     style: TextStyle(
                       fontSize: 18,
                       letterSpacing: 2.1,
-                      color: Colors.black, //TODO: use color constants
+                      color: Theme.of(context).textTheme.bodyText1!.color,
                     ),
                   ),
                 ),
@@ -237,12 +191,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w500, //TODO:
-                color: Colors.grey[600], //TODO: use color constants
+                color: Theme.of(context).primaryColor, //TODO: prima era grey[600]
               ),
             ),
             Icon(
               Icons.arrow_forward_ios,
-              color: Colors.grey, //TODO: use color constants
+              color: Theme.of(context).iconTheme.color, //TOOD: prima era grey
             ),
           ],
         ),
@@ -261,14 +215,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w500, //TODO:
-              color: Colors.grey[600], //TODO: use color constants
+              color: Theme.of(context).primaryColor, //TODO: prima era grey[600]
             ),
           ),
           Transform.scale(
             scale: 0.7,
             child: CupertinoSwitch(
-              activeColor: Colors.green[600], //TODO: use color constants
-              trackColor: Colors.grey, //TODO: use color constants
+              activeColor: Theme.of(context).primaryColor, //TODO: green[600]
+              trackColor: Colors.grey, //TODO:grey
               value: value,
               onChanged: (bool newValue) {
                 onChangeMethod(newValue);
@@ -289,5 +243,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
   void _setTheme({required bool isDarkTheme}) {
     final provider = Provider.of<ThemeProvider>(context, listen: false);
     provider.toggleTheme(isDarkTheme);
+  }
+
+  void _save() async {
+    //TODO: volendo mostrare un messaggio con lo snackbar
+    await UserPreferences.setTheme(isDarkTheme);
+    await UserPreferences.setLanguage(language);
+
+    print('SALVATAGGIO IMPOSTAZIONI');
+    print('isDarkTheme: $isDarkTheme');
+    print('language: $language');
+  }
+
+  void _reset() async {
+    await UserPreferences.setTheme(DEFAULT_THEME_IS_DARK);
+    await UserPreferences.setLanguage(DEFAULT_LANGUAGE);
+
+    isDarkTheme = DEFAULT_THEME_IS_DARK;
+    language = DEFAULT_LANGUAGE;
+
+    _setLanguage(language: DEFAULT_LANGUAGE);
+    _setTheme(isDarkTheme: DEFAULT_THEME_IS_DARK);
+
+    print('RESET IMPOSTAZIONI');
+    print('isDarkTheme: $isDarkTheme');
+    print('language: $language');
   }
 }

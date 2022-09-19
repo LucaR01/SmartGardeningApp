@@ -76,7 +76,7 @@ final GlobalKey _listKey = GlobalKey();
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,
-              color: Colors.green[300], //TODO: use color constants
+              color: Theme.of(context).secondaryHeaderColor, //TODO: green[300]
             ),
           ),
         ],

@@ -7,7 +7,10 @@ import 'package:flutter_application_prova/models/database/database_helper.dart';
 import 'package:flutter_application_prova/models/plant/plant.dart';
 import 'package:flutter_application_prova/widgets/app_bar/app_bar.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 //TODO: modificare i Text()
+//TODO: Localizations
 
 class ScanResultScreen extends StatefulWidget {
   const ScanResultScreen({Key? key, required this.plant}) : super(key: key);
@@ -42,12 +45,12 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "<Nome Pianta> ${widget.plant.displayPid}", //TODO: 
-                        style:TextStyle(fontSize: 28),
+                        "${AppLocalizations.of(context).pid} ${widget.plant.displayPid}", //TODO: 
+                        style:TextStyle(fontSize: 28, color: Theme.of(context).textTheme.bodyText1!.color),
                       ),
                       Text(
-                          "<tipo pianta> ${widget.plant.displayPid}",
-                        style: TextStyle(fontSize: 18, color: Colors.grey.shade700),
+                          "${AppLocalizations.of(context).display_pid} ${widget.plant.displayPid}",
+                        style: TextStyle(fontSize: 18, color: Theme.of(context).textTheme.bodyText1!.color /*TODO: prima era Colors.grey.shade700*/ ),
                       ),
                     ],
                   ),
@@ -67,8 +70,8 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text("Tipo Pianta", style: TextStyle(fontSize: 18, color: Colors.grey.shade600),),
-                                      Text("<tipo_pianta> ${widget.plant.maxLightMmol}", style: TextStyle(fontSize: 24)),
+                                      Text("Tipo Pianta", style: TextStyle(fontSize: 18, color: Theme.of(context).textTheme.bodyText1!.color/*TODO: Colors.grey.shade600*/),),
+                                      Text("${AppLocalizations.of(context).max_light_mmol} ${widget.plant.maxLightMmol} ${AppLocalizations.of(context).mmol}", style: TextStyle(fontSize: 24, color: Theme.of(context).textTheme.bodyText1!.color)),
                                     ],
                                   ),
                                 ),
@@ -77,8 +80,8 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text("Genere", style: TextStyle(fontSize: 16, color: Colors.grey.shade700),),
-                                      Text("<Genere> ${widget.plant.maxLightLux}", style: TextStyle(fontSize: 24)),
+                                      Text("Genere", style: TextStyle(fontSize: 16, color: Theme.of(context).textTheme.bodyText1!.color/*TODO: Colors.grey.shade700*/),),
+                                      Text("${AppLocalizations.of(context).max_light_lux} ${widget.plant.maxLightLux}", style: TextStyle(fontSize: 24, color: Theme.of(context).textTheme.bodyText1!.color)),
                                     ],
                                   ),
                                 ),
@@ -87,8 +90,8 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text("Tipo Pianta", style: TextStyle(fontSize: 16, color: Colors.grey.shade700),),
-                                      Text("<tipo pianta> ${widget.plant.minEnvHumid}", style: TextStyle(fontSize: 24)),
+                                      Text("Tipo Pianta", style: TextStyle(fontSize: 16, color: Theme.of(context).textTheme.bodyText1!.color/*TODO: Colors.grey.shade700*/),),
+                                      Text("${AppLocalizations.of(context).min_env_humid} ${widget.plant.minEnvHumid}", style: TextStyle(fontSize: 24, color: Theme.of(context).textTheme.bodyText1!.color)),
                                     ],
                                   ),
                                 ),
@@ -97,8 +100,8 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text("Famiglia", style: TextStyle(fontSize: 16, color: Colors.grey.shade700)),
-                                      Text("<famiglia della pianta> ${widget.plant.maxTemp}", style: TextStyle(fontSize: 24),),
+                                      Text("Famiglia", style: TextStyle(fontSize: 16, color: Theme.of(context).textTheme.bodyText1!.color/*TODO: Colors.grey.shade700*/)),
+                                      Text("${AppLocalizations.of(context).max_temp} ${widget.plant.maxTemp}", style: TextStyle(fontSize: 24, color: Theme.of(context).textTheme.bodyText1!.color),),
                                     ],
                                   ),
                                 ),
@@ -107,8 +110,8 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text("Classe", style: TextStyle(fontSize: 16, color: Colors.grey.shade700)),
-                                      Text("<classe della pianta> ${widget.plant.minSoilMoist}", style: TextStyle(fontSize: 24),),
+                                      Text("Classe", style: TextStyle(fontSize: 16, color: Theme.of(context).textTheme.bodyText1!.color/*TODO: Colors.grey.shade700*/)),
+                                      Text("${AppLocalizations.of(context).min_soil_moist} ${widget.plant.minSoilMoist}", style: TextStyle(fontSize: 24, color: Theme.of(context).textTheme.bodyText1!.color),),
                                     ],
                                   ),
                                 ),
@@ -117,8 +120,8 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text("Tempo di Fioritura", style: TextStyle(fontSize: 16, color: Colors.grey.shade700)),
-                                      Text("<Tempo di Fioritura> ${widget.plant.minSoilEC}", style: TextStyle(fontSize: 24),),
+                                      Text("Tempo di Fioritura", style: TextStyle(fontSize: 16, color: Theme.of(context).textTheme.bodyText1!.color/*TODO: Colors.grey.shade700*/)),
+                                      Text("${AppLocalizations.of(context).min_soil_ec} ${widget.plant.minSoilEC} ${AppLocalizations.of(context).ec}", style: TextStyle(fontSize: 24, color: Theme.of(context).textTheme.bodyText1!.color),),
                                     ],
                                   ),
                                 ),
@@ -127,8 +130,8 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text("Ciclo di vita", style: TextStyle(fontSize: 16, color: Colors.grey.shade700)),
-                                      Text("<Ciclo di vita>", style: TextStyle(fontSize: 24),),
+                                      Text("Ciclo di vita", style: TextStyle(fontSize: 16, color: Theme.of(context).textTheme.bodyText1!.color/*TODO: Colors.grey.shade700*/)),
+                                      Text("<Ciclo di vita>", style: TextStyle(fontSize: 24, color: Theme.of(context).textTheme.bodyText1!.color),),
                                     ],
                                   ),
                                 ),
@@ -164,7 +167,7 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Descrizione", style: TextStyle(fontSize: 24),),
+                          Text("Descrizione", style: TextStyle(fontSize: 24, color: Theme.of(context).textTheme.bodyText1!.color),),
                           Container(
                             width: 125,
                             margin: EdgeInsets.only(bottom: 10),
@@ -181,7 +184,7 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                         text: TextSpan(
                           children: [
                             TextSpan(
-                              style: TextStyle(color: Colors.black54),
+                              style: TextStyle(color: Theme.of(context).textTheme.bodyText1!.color),
                               text: "<Descrizione0> "
                                   "<Descrizione1> "
                                   "<Descrizione2> "

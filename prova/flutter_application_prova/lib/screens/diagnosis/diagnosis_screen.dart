@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_prova/models/plant/plant_disease.dart';
 import 'package:flutter_application_prova/screens/pages.dart';
+import 'package:flutter_application_prova/widgets/bottom_navigation_bar/custom_bottom_navigation_bar.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_application_prova/models/plant/plant.dart';
@@ -118,27 +119,58 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: const FABWidget(),
       appBar: const AppBarWidget(),
-      bottomNavigationBar: const BottomNavigationBarWidget(), //TODO: CustomBottomNavigationBar?
+      bottomNavigationBar: const CustomBottomNavigationBar(), //BottomNavigationBarWidget(), //TODO: CustomBottomNavigationBar?
       body: SingleChildScrollView (
         child: Center(
           child: Column(
             children: [
               image != null ? Image.file(image!) : const Image(image: AssetImage("assets/images/camera-focus-frame-objective-photo.png")),
-              Text(plantDisease == null ? '' : '${AppLocalizations.of(context).disease}: ${plantDisease!.name}'), //TODO: plantDisease.name.isEmpty ? 
-              Text(plantDisease == null ? '' : '${AppLocalizations.of(context).confidence}: ${(plantDisease!.diseaseConfidence * 100.0).toString()}%'), //TODO: plantDisease.diseaseAccuracy.isNaN 
+              Text(plantDisease == null ? '' : '${AppLocalizations.of(context).disease}: ${plantDisease!.name}'), //TODO: plantDisease.name.isEmpty ? //TODO: aggiungere textStyle?
+              Text(plantDisease == null ? '' : '${AppLocalizations.of(context).confidence}: ${(plantDisease!.diseaseConfidence * 100.0).toString()}%'), //TODO: plantDisease.diseaseAccuracy.isNaN //TODO: aggiungere textStyle? 
               Text(
                 plantDisease == null ? AppLocalizations.of(context).position_in_the_center : '', //TODO: remove text $text 
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 24,
+                  color: Theme.of(context).textTheme.bodyText1!.color,
                 ),
               ),
-              ElevatedButton(child: Text("Prova"), onPressed: () => { plantDisease = PlantDisease(name: 'Common Corn Rust', diseaseConfidence: 98.7) }), //TODO: remove just for testing
+              //ElevatedButton(child: Text("Prova"), onPressed: () => { plantDisease = PlantDisease(name: 'Common Corn Rust', diseaseConfidence: 98.7) }), //TODO: remove just for testing
               const SizedBox(height: 20),
-              _buildButton(label: AppLocalizations.of(context).pick_image_from_gallery, icon: Icons.image, onPressed: () => pickImage(ImageSource.gallery) ), //TODO: fix
-              ElevatedButton.icon(onPressed: () => pickImage(ImageSource.gallery), icon: const Icon(Icons.image), label: Text('Gallery')), //TODO: 
+              //_buildButton(label: AppLocalizations.of(context).pick_image_from_gallery, icon: Icons.image, onPressed: () => pickImage(ImageSource.gallery) ), //TODO: fix or remove
+              ElevatedButton.icon(
+                onPressed: () => pickImage(ImageSource.gallery), //TODO: async?
+                label: Text(
+                  AppLocalizations.of(context).pick_image_from_gallery,
+                  style: TextStyle(
+                    color: Theme.of(context).textTheme.bodyText1!.color,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: Theme.of(context).primaryColor, 
+                  onPrimary: Theme.of(context).textTheme.bodyText1!.color, //TODO: 
+                ),
+                icon: const Icon(Icons.image),
+              ),
+              //ElevatedButton.icon(onPressed: () => pickImage(ImageSource.gallery), icon: const Icon(Icons.image), label: Text('Gallery')), //TODO: 
               const SizedBox(height: 10),
-              //_buildButton(label: AppLocalizations.of(context).pick_image_from_camera, icon: Icons.camera_alt_outlined, onPressed: () => pickImage(ImageSource.camera)), //TODO: fix
+              //_buildButton(label: AppLocalizations.of(context).pick_image_from_camera, icon: Icons.camera_alt_outlined, onPressed: () => pickImage(ImageSource.camera)), //TODO: fix or remove
+              ElevatedButton.icon(
+                onPressed: () => pickImage(ImageSource.camera), //TODO: async?
+                label: Text(
+                  AppLocalizations.of(context).pick_image_from_camera,
+                  style: TextStyle(
+                    color: Theme.of(context).textTheme.bodyText1!.color,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: Theme.of(context).primaryColor, 
+                  onPrimary: Theme.of(context).textTheme.bodyText1!.color, //TODO: 
+                ),
+                icon: const Icon(Icons.camera_alt_outlined),
+              ),
             ],
           ),
         ),
@@ -153,17 +185,17 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
     ButtonStyle? style, //TODO: questo non lo sto usando!
   }) {
     return ElevatedButton.icon(
-    onPressed: () => onPressed,
+    onPressed: () async { onPressed; },
     label: Text(
       label,
-      style: const TextStyle(
-        color: Colors.white, //TODO: use color constants
+      style: TextStyle(
+        color: Theme.of(context).textTheme.bodyText1!.color, 
         fontWeight: FontWeight.bold,
       ),
     ),
     style: ElevatedButton.styleFrom(
-      primary: Colors.green[600], //[900] TODO: use color constants and themeColor
-      onPrimary: Colors.white, //TODO: use color constants and themeColor
+      primary: Theme.of(context).primaryColor, 
+      onPrimary: Theme.of(context).textTheme.bodyText1!.color, //TODO: controllare il colore
     ),
     icon: Icon(icon),
     );

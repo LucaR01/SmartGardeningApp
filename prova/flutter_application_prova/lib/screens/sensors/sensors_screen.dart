@@ -52,7 +52,7 @@ class _SensorPageState extends State<SensorPage> {
                   AppLocalizations.of(context).my_sensor,
                   style: TextStyle(
                     fontSize: 24,
-                    color: Colors.green[900],
+                    color: Theme.of(context).primaryColorDark, //TODO: green[900]
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -101,15 +101,15 @@ class _SensorPageState extends State<SensorPage> {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
-                    color: Colors.grey[600], //TODO: use color constants
+                    color: Theme.of(context).secondaryHeaderColor, /*TODO: Colors.grey[600]*/ 
                   ),
                 ),
                 subtitle: Text(
-                  'Temperatura: ${airCareSensor?.temperature}', //TODO: use strings constants
+                  '${AppLocalizations.of(context).temperature}: ${airCareSensor?.temperature}', 
                   style: TextStyle(
                     letterSpacing: 0.9,
                     fontSize: 14,
-                    color: Colors.grey[300], //TODO: use color constants
+                    color: Theme.of(context).textTheme.bodyText2!.color, /*TODO: Colors.grey[300],*/
                   ),
                 ),
               ),
@@ -129,9 +129,9 @@ class _SensorPageState extends State<SensorPage> {
                       //Icon(Icons.water),
                       Text(
                         //TODO: implementare qualche sorta di grafica/barra //TODO: magari metterlo affianco al titolo e sottotitolo
-                        'CO2: ${airCareSensor?.co2 ?? ''}, Humidity: ${airCareSensor?.humidity}', //TODO: use strings constants
+                        '${AppLocalizations.of(context).co2}: ${airCareSensor?.co2 ?? ''}, ${AppLocalizations.of(context).humidity}: ${airCareSensor?.humidity}', 
                         style: TextStyle(
-                          color: Colors.grey[200], //TODO: use color constants
+                          color: Theme.of(context).textTheme.bodyText2!.color, //TODO: grey[200]
                         ),
                       ),
                       //Icon(Icons.sunny),
@@ -143,62 +143,62 @@ class _SensorPageState extends State<SensorPage> {
                       ),*/
                       //SizedBox(height: 30),
                       Text(
-                        'min temp: ${airCareSensor?.minTemp} max temp: ${airCareSensor?.maxTemp}',
+                        '${AppLocalizations.of(context).min_temp}: ${airCareSensor?.minTemp} ${AppLocalizations.of(context).max_temp}: ${airCareSensor?.maxTemp}', 
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
                           height: 1.4,
-                          color: Colors.grey[400], //TODO: use color constants
+                          color: Theme.of(context).textTheme.bodyText2!.color, /*TODO: Colors.grey[400]*/
                         ),
                       ),
                       Text(
                         airCareSensor?.noise.toString() ?? '',
                         style: TextStyle(
                           height: 1.4,
-                          color: Colors.grey[300], //TODO: use color constants
+                          color: Theme.of(context).textTheme.bodyText2!.color, //TODO: grey[300]
                           fontSize: 14,
                         ),
                       ),
                       //SizedBox(height: 30),
                       Text(
-                        'Health Index: ${airCareSensor?.healthIndex.name.toString()}', //TODO: use strings constants
+                        '${AppLocalizations.of(context).health_index}: ${airCareSensor?.healthIndex.name.toString()}',
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
                           height: 1.4,
-                          color: Colors.grey[400], //TODO: use color constants
+                          color: Theme.of(context).textTheme.bodyText2!.color, //TODO: grey[400]
                         ),
                       ),
                       Text(
-                        'pressure: ${airCareSensor?.pressure.toString()}',
+                        '${AppLocalizations.of(context).pressure}: ${airCareSensor?.pressure.toString()}',
                         style: TextStyle(
                           height: 1.4,
-                          color: Colors.grey[300], //TODO: use color constants
+                          color: Theme.of(context).textTheme.bodyText2!.color, //TODO: grey[300]
                           fontSize: 14,
                         ),
                       ),
                       Text(
-                        'Absolute pressure: ${airCareSensor?.absolutePressure}',
+                        '${AppLocalizations.of(context).absolute_pressure}: ${airCareSensor?.absolutePressure}',
                         style: TextStyle(
                           height: 1.4,
-                          color: Colors.grey[300], //TODO: use color constants
+                          color: Theme.of(context).textTheme.bodyText2!.color, //TODO: grey[300]
                           fontSize: 14,
                         ),
                       ),
                       SizedBox(height: 30.0,),
                       Text(
-                        'date Max Temp: ${airCareSensor?.dateMaxTemp}',
+                        '${AppLocalizations.of(context).date_max_temp}: ${airCareSensor?.dateMaxTemp}',
                         style: TextStyle(
                           height: 1.4,
-                          color: Colors.grey[300], //TODO: use color constants
+                          color: Theme.of(context).textTheme.bodyText2!.color, //TODO: grey[300]
                           fontSize: 14,
                         ),
                       ),
                       Text(
-                        'date Min Temp: ${airCareSensor?.dateMinTemp}',
+                        '${AppLocalizations.of(context).date_min_temp}: ${airCareSensor?.dateMinTemp}',
                         style: TextStyle(
                           height: 1.4,
-                          color: Colors.grey[300], //TODO: use color constants
+                          color: Theme.of(context).textTheme.bodyText2!.color, //TODO: grey[300]
                           fontSize: 14,
                         ),
                       ),

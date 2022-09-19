@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_prova/constants/strings_constants.dart';
 import 'package:flutter_application_prova/screens/pages.dart';
 import 'package:flutter_application_prova/utils/utils.dart';
-
-import '../../constants/strings_constants.dart';
-import '../home/home_screen.dart';
 
 //TODO: rename class in SplashScreen?
 
@@ -44,6 +42,7 @@ class _SplashState extends State<Splash> {
             style: TextStyle(
               fontSize: 36,
               //fontFamily: 'RailWay'
+              color: Theme.of(context).textTheme.bodyText1!.color,
               )
             )
         ),

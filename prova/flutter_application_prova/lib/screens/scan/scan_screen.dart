@@ -16,6 +16,7 @@ import 'package:flutter_application_prova/utils/utils.dart';
 import 'package:flutter_application_prova/widgets/FAB/FABWidget.dart';
 import 'package:flutter_application_prova/widgets/app_bar/app_bar.dart';
 import 'package:flutter_application_prova/widgets/bottom_navigation_bar/custom_bottom_navigation_bar.dart';
+import 'package:flutter_application_prova/widgets/widgets_builder/widgets_builder.dart';
 import 'package:image_picker/image_picker.dart';
 //import 'package:path_provider/path_provider.dart';
 
@@ -152,23 +153,48 @@ class _ScanPageState extends State<ScanPage> {
                 AppLocalizations.of(context).position_in_the_center,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Theme.of(context).iconTheme.color,
+                  color: Theme.of(context).textTheme.bodyText1!.color, //TODO: Theme.of(context).iconTheme.color, ?
                   fontSize: 24,
                 ),
               ),
               const SizedBox(height: 20),
-              ElevatedButton(onPressed: () async { Plant p = (await PlantAPI.getData(plantPID: 'jasminum floridum', accuracy: 92.3))!; Utils.navigateToPage(context: context, page: Pages.scanResult, plant: p); }, child: Text('hello2'),), //TODO: remove
-              _buildButton(label: AppLocalizations.of(context).pick_image_from_gallery, icon: Icons.image, onPressed: () => pickImage(ImageSource.gallery)),
-              ElevatedButton(onPressed: () => pickImage(ImageSource.gallery), child: Text('Gallery')),
-              const SizedBox(height: 10),
-              _buildButton(label: AppLocalizations.of(context).pick_image_from_camera, icon: Icons.camera_alt_outlined, onPressed: () => pickImage(ImageSource.camera)), 
-              ElevatedButton(onPressed: () { NotificationsAPI.showNotification(title: 'Notifica', body: 'Prova notifica', payload: 'prova.abs'); }, child: Text('Notifiche')), //TODO: remove, just for testing
-              /*Text( //TODO: remove
-                '',
-                style: TextStyle(
-                  fontSize: 18,
+              //ElevatedButton(onPressed: () async { Plant p = (await PlantAPI.getData(plantPID: 'jasminum floridum', accuracy: 92.3))!; Utils.navigateToPage(context: context, page: Pages.scanResult, plant: p); }, child: Text('hello2'),), //TODO: remove
+              //_buildButton(label: AppLocalizations.of(context).pick_image_from_gallery, icon: Icons.image, onPressed: () => pickImage(ImageSource.gallery)), //TODO: fix or remove
+              ElevatedButton.icon(
+                onPressed: () => pickImage(ImageSource.gallery),
+                label: Text(
+                  AppLocalizations.of(context).pick_image_from_gallery,
+                  style: TextStyle(
+                    color: Theme.of(context).textTheme.bodyText1!.color,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),*/
+                style: ElevatedButton.styleFrom(
+                  primary: Theme.of(context).primaryColor, 
+                  onPrimary: Theme.of(context).textTheme.bodyText1!.color, //TODO: 
+                ),
+                icon: const Icon(Icons.image),
+              ),
+              //ElevatedButton(onPressed: () => pickImage(ImageSource.gallery), child: Text('Gallery')),
+              const SizedBox(height: 10),
+              //_buildButton(label: AppLocalizations.of(context).pick_image_from_camera, icon: Icons.camera_alt_outlined, onPressed: () => pickImage(ImageSource.camera)), //TODO: fix or remove
+              ElevatedButton.icon(
+                onPressed: () => pickImage(ImageSource.camera), //TODO: async
+                label: Text(
+                  AppLocalizations.of(context).pick_image_from_camera,
+                  style: TextStyle(
+                    color: Theme.of(context).textTheme.bodyText1!.color,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: Theme.of(context).primaryColor, 
+                  onPrimary: Theme.of(context).textTheme.bodyText1!.color, //TODO: 
+                ),
+                icon: const Icon(Icons.camera_alt_outlined),
+              ),
+              //ElevatedButton(onPressed: () { NotificationsAPI.showNotification(title: 'Notifica', body: 'Prova notifica', payload: 'prova.abs'); }, child: Text('Notifiche')), //TODO: remove, just for testing
+              //WidgetsBuilder.buildButton(context: context, label: 'Stampa', icon: Icons.tab, onPressed: () { print('Prova!'); } ), //TODO: remove?
             ],
           ),
         ),
@@ -183,17 +209,17 @@ class _ScanPageState extends State<ScanPage> {
     ButtonStyle? style, //TODO: questo non lo sto usando!
   }) {
     return ElevatedButton.icon(
-    onPressed: () => onPressed,
+    onPressed: () async { onPressed; },
     label: Text(
       label,
-      style: const TextStyle(
-        color: Colors.white, //TODO: use color constants
+      style: TextStyle(
+        color: Theme.of(context).textTheme.bodyText1!.color,
         fontWeight: FontWeight.bold,
       ),
     ),
     style: ElevatedButton.styleFrom(
-      primary: Colors.green[600], //[900] TODO: use color constants and themeColor
-      onPrimary: Colors.white, //TODO: use color constants and themeColor
+      primary: Theme.of(context).primaryColor, 
+      onPrimary: Theme.of(context).textTheme.bodyText1!.color, //TODO: 
     ),
     icon: Icon(icon),
     );
