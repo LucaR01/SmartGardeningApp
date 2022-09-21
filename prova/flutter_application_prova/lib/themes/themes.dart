@@ -22,9 +22,16 @@ class Themes {
       ),
     ),
     primaryIconTheme: IconThemeData(color: Colors.white),
-    iconTheme: IconThemeData(color: Colors.green[600], opacity: 0.8),
+    iconTheme: IconThemeData(color: Colors.black/*TODO: Colors.green[600]*/, opacity: 0.8),
+    accentIconTheme: IconThemeData(color: Colors.green, opacity: 0.8), //TODO: fix, usare qualcos'altro.
     buttonTheme: ButtonThemeData(
       buttonColor: Colors.green, //TODO: verificare se va bene
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        primary: Colors.green[500],
+        onPrimary: Colors.green[700],
+      ),
     ),
 
     textSelectionTheme: const TextSelectionThemeData( //TODO: vedere se i colori vanno bene
@@ -65,9 +72,16 @@ class Themes {
       ),
     ),
     primaryIconTheme: IconThemeData(color: Colors.white70),
-    iconTheme: IconThemeData(color: Colors.green[900], opacity: 0.8),
+    iconTheme: IconThemeData(color: Colors.white/*TODO: Colors.green[900]*/, opacity: 0.8),
+    accentIconTheme: IconThemeData(color: Colors.green[900], opacity: 0.8),
     buttonTheme: ButtonThemeData(
       buttonColor: Colors.green[900], //TODO: verificare se va bene
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        primary: Colors.green[900],
+        onPrimary: Colors.green[500],
+      ),
     ),
 
     textSelectionTheme: TextSelectionThemeData( //TODO: vedere se i colori vanno bene

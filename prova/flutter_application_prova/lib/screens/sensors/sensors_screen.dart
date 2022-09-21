@@ -9,6 +9,7 @@ import 'package:flutter_application_prova/widgets/app_bar/app_bar.dart';
 import 'package:flutter_application_prova/widgets/bottom_navigation_bar/custom_bottom_navigation_bar.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 //TODO: rename in Sensors?
 //TODO: rename in SensorScreen?
@@ -74,7 +75,8 @@ class _SensorPageState extends State<SensorPage> {
                 ),
               ),
               //const SizedBox(height: 10.0,), //TODO:
-              ElevatedButton(
+              //TODO: prima era ElevatedButton
+              ElevatedButton.icon( 
                 onPressed: () async {
                   print('_textController.text: ${_textController.text}'); //TODO: remove
 
@@ -90,12 +92,15 @@ class _SensorPageState extends State<SensorPage> {
                     airCareSensor;
                   });
                 },
-                child: Text(AppLocalizations.of(context).get_device_data),
+                //child: Text(AppLocalizations.of(context).get_device_data, style: TextStyle(color: Theme.of(context).textTheme.bodyText1!.color)),
+                style: Theme.of(context).elevatedButtonTheme.style, 
+                icon: Icon(Icons.data_exploration_outlined, color: Theme.of(context).iconTheme.color), 
+                label: Text(AppLocalizations.of(context).get_device_data, style: TextStyle(color: Theme.of(context).textTheme.bodyText1!.color)),
               ),
               const SizedBox(
                 height: 30.0,
               ),
-              ListTile(
+              ListTile( /*TODO: non va bene airCareSensor == null ? SpinKitCircle( color: Colors.green[900], size: 90.0)*/
                 title: Text(
                   airCareSensor != null ? airCareSensor!.timeUtc.toString() : '',
                   style: TextStyle(
@@ -143,7 +148,7 @@ class _SensorPageState extends State<SensorPage> {
                       ),*/
                       //SizedBox(height: 30),
                       Text(
-                        '${AppLocalizations.of(context).min_temp}: ${airCareSensor?.minTemp} ${AppLocalizations.of(context).max_temp}: ${airCareSensor?.maxTemp}', 
+                        '${AppLocalizations.of(context).min_temp}: ${airCareSensor?.minTemp} | ${AppLocalizations.of(context).max_temp}: ${airCareSensor?.maxTemp}', 
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 16,

@@ -147,11 +147,8 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                style: ElevatedButton.styleFrom(
-                  primary: Theme.of(context).primaryColor, 
-                  onPrimary: Theme.of(context).textTheme.bodyText1!.color, //TODO: 
-                ),
-                icon: const Icon(Icons.image),
+                style: Theme.of(context).elevatedButtonTheme.style,
+                icon: Icon(Icons.image, color: Theme.of(context).iconTheme.color),
               ),
               //ElevatedButton.icon(onPressed: () => pickImage(ImageSource.gallery), icon: const Icon(Icons.image), label: Text('Gallery')), //TODO: 
               const SizedBox(height: 10),
@@ -165,11 +162,8 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                style: ElevatedButton.styleFrom(
-                  primary: Theme.of(context).primaryColor, 
-                  onPrimary: Theme.of(context).textTheme.bodyText1!.color, //TODO: 
-                ),
-                icon: const Icon(Icons.camera_alt_outlined),
+                style: Theme.of(context).elevatedButtonTheme.style,
+                icon: Icon(Icons.camera_alt_outlined, color: Theme.of(context).iconTheme.color),
               ),
             ],
           ),

@@ -162,11 +162,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   children: [
                     TextButton(
                       onPressed: () => _setLanguage(language: 'it'),
-                      child: Text(AppLocalizations.of(context).italian),
+                      child: Text(AppLocalizations.of(context).italian, style: TextStyle(color: Theme.of(context).textTheme.bodyText1!.color)),
                     ),
                     TextButton(
                       onPressed: () => _setLanguage(language: 'en'),
-                      child: Text(AppLocalizations.of(context).english),
+                      child: Text(AppLocalizations.of(context).english, style: TextStyle(color: Theme.of(context).textTheme.bodyText1!.color)),
                     ),
                   ],
                 ),
@@ -175,7 +175,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     onPressed: () {
                       Navigator.of(context).pop(); //TODO: update
                     },
-                    child: Text(AppLocalizations.of(context).close),
+                    child: Text(AppLocalizations.of(context).close, style: TextStyle(color: Theme.of(context).textTheme.bodyText1!.color)),
                   ),
                 ],
               );

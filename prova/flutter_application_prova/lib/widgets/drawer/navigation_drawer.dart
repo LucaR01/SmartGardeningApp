@@ -49,7 +49,7 @@ class NavigationDrawerWidget extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             Divider(color: Theme.of(context).dividerColor), //TODO: white70
-            const SizedBox(height: 24),
+            //const SizedBox(height: 24),
 
             const SizedBox(height: 16),
             buildMenuItem(
@@ -58,16 +58,16 @@ class NavigationDrawerWidget extends StatelessWidget {
               onClicked: () => Utils.navigateToPage(context: context, page: Pages.settings, shouldPop: true), //TODO: uncomment
             ),
 
-            const SizedBox(height: 16),
+            /*const SizedBox(height: 16), //TODO: remove?
             buildMenuItem(
               text: AppLocalizations.of(context).notifications,
               icon: Icons.notifications,
               //onClicked: () => Utils.navigateToPage(context: context, page: Pages.home, shouldPop: true), //TODO: uncomment
-            ),
+            ),*/
 
-            const SizedBox(height: 24),
+            /*const SizedBox(height: 24), //TODO: remove?
             Divider(color: Theme.of(context).dividerColor), //TODO: white70
-            const SizedBox(height: 24),
+            const SizedBox(height: 24),*/
 
             const SizedBox(height: 16),
             buildMenuItem(text: AppLocalizations.of(context).privacy_policy, icon: Icons.privacy_tip
