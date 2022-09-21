@@ -59,6 +59,15 @@ dependencies:
 
   flutter_spinkit: ^5.1.0
 
+  flutter_launcher_icons: ^0.9.2
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/app_icon/plant-icon.png"
+  #adaptive_icon_background: "#ffffff"
+  #adaptive_icon_foreground: "assets/app_icon_foreground.png"
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -90,6 +99,7 @@ flutter:
   assets:
     - assets/
     - assets/plants/
+    - assets/app_icon/
     - assets/images/
     - assets/images/scan/
     - assets/plants/plant_model.tflite
