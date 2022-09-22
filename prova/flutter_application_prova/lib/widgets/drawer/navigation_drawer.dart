@@ -70,9 +70,14 @@ class NavigationDrawerWidget extends StatelessWidget {
             const SizedBox(height: 24),*/
 
             const SizedBox(height: 16),
-            buildMenuItem(text: AppLocalizations.of(context).privacy_policy, icon: Icons.privacy_tip
-                //onClicked: () => Utils.navigateToPage(context: context, page: Pages.home, shouldPop: true), //TODO: uncomment
-                ),
+            buildMenuItem(text: AppLocalizations.of(context).privacy_policy, icon: Icons.privacy_tip,
+                onClicked: () => Utils.navigateToPage(context: context, page: Pages.privacyPolicy, shouldPop: true),
+            ),
+
+            const SizedBox(height: 16),
+            buildMenuItem(text: 'Terms & Conditions', icon: Icons.private_connectivity, //TODO: aggiornare icona
+                onClicked: () => Utils.navigateToPage(context: context, page: Pages.termsAndConditions, shouldPop: true), 
+            ),
           ],
         ),
       ),

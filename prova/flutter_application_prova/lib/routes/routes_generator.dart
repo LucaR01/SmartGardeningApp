@@ -7,14 +7,17 @@ import 'package:flutter_application_prova/screens/diagnosis_scan_result/diagnosi
 import 'package:flutter_application_prova/screens/home/home_screen.dart';
 import 'package:flutter_application_prova/screens/my_plants/my_plants_screen.dart';
 import 'package:flutter_application_prova/screens/plant_details/plant_details.dart';
+import 'package:flutter_application_prova/screens/privacy_policy/privacy_policy_screen.dart';
 import 'package:flutter_application_prova/screens/scan/scan_screen.dart';
 import 'package:flutter_application_prova/screens/scan_result_screen/scan_result_screen.dart';
 import 'package:flutter_application_prova/screens/sensors/sensors_screen.dart';
 import 'package:flutter_application_prova/screens/settings/settings_screen.dart';
 import 'package:flutter_application_prova/screens/splash/splash_screen.dart';
 import 'package:flutter_application_prova/screens/tasks/tasks_screen.dart';
+import 'package:flutter_application_prova/screens/terms_and_conditions/terms_and_conditions.dart';
 
 //TODO: o chiamarli tutti screen o chiamarli tutti pages!
+//TODO: Add onboarding screen
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -25,7 +28,7 @@ class RouteGenerator {
       case '/home': //TODO: remove
         return MaterialPageRoute(builder: (_) => HomePage());
       case '/splash': //TODO: settare lo splash screen come '/'?
-        return MaterialPageRoute(builder: (_) => Splash());
+        return MaterialPageRoute(builder: (_) => SplashScreen()); //TODO: prima era Splash
       case '/myplants':
         return MaterialPageRoute(builder: (_) => MyPlantsScreen());
       case '/myplants/details':
@@ -59,7 +62,7 @@ class RouteGenerator {
         }
         return _errorRoute();
 
-      case '/diagnosis/scan/result':
+      case '/diagnosis/scan/result': //TODO: remove
         if(args is Plant) {
           //TODO: uncomment
           /*return MaterialPageRoute(
@@ -68,7 +71,11 @@ class RouteGenerator {
         }
         return _errorRoute();
       case '/sensors':
-        return MaterialPageRoute(builder: (_) => SensorPage());
+        return MaterialPageRoute(builder: (_) => const SensorPage());
+      case '/privacy/policy':
+        return MaterialPageRoute(builder: (_) => const PrivacyPolicyPage());
+      case '/terms/conditions':
+        return MaterialPageRoute(builder: (_) => const TermsAndConditionsPage());
       default:
         return _errorRoute();
     }

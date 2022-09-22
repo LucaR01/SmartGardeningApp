@@ -50,7 +50,10 @@ class Utils {
         //Navigator.of(context).pushNamed('/'); //TODO: uncomment
         break;
       case Pages.privacyPolicy:
-        //Navigator.of(context).pushNamed('/'); //TODO: uncomment
+        Navigator.of(context).pushNamed('/privacy/policy');
+        break;
+      case Pages.termsAndConditions:
+        Navigator.of(context).pushNamed('/terms/conditions');
         break;
       case Pages.scan:
         Navigator.of(context).pushNamed('/scan');
@@ -96,23 +99,24 @@ class Utils {
 
   //TODO: remove?
   static Widget buildButton({
+    required BuildContext context,
     required String label,
     required IconData icon,
     required VoidCallback? onPressed,
     ButtonStyle? style, //TODO: questo non lo sto usando!
   }) {
     return ElevatedButton.icon(
-    onPressed: () => onPressed,
+    onPressed: () async => onPressed,
     label: Text(
       label,
-      style: const TextStyle(
-        color: Colors.white, //TODO: use color constants
+      style: TextStyle(
+        color: Theme.of(context).textTheme.bodyText1!.color, 
         fontWeight: FontWeight.bold,
       ),
     ),
     style: ElevatedButton.styleFrom(
-      primary: Colors.green[600], //[900] TODO: use color constants and themeColor
-      onPrimary: Colors.white, //TODO: use color constants and themeColor
+      primary: Theme.of(context).primaryColor, 
+      onPrimary: Theme.of(context).textTheme.bodyText1!.color, 
     ),
     icon: Icon(icon),
     );
