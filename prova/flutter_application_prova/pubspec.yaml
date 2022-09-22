@@ -58,6 +58,9 @@ dependencies:
   sqflite: ^2.0.2
 
   flutter_spinkit: ^5.1.0
+  animated_splash_screen: ^1.1.0
+  introduction_screen: ^2.0.0
+  flutter_markdown: ^0.6.9
 
   flutter_launcher_icons: ^0.9.2
 
@@ -98,6 +101,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
+    - assets/privacy_policy/
+    - assets/terms_and_conditions/
     - assets/plants/
     - assets/app_icon/
     - assets/images/
