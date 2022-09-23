@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_prova/models/plant/plant.dart';
 import 'package:flutter_application_prova/widgets/app_bar/app_bar.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 //TODO: mettere questo folder dentro al folder my_plants?
 
 class PlantDetails extends StatelessWidget {
@@ -16,7 +18,7 @@ class PlantDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.green[600],
-      appBar: AppBarWidget(),
+      appBar: const AppBarWidget(),
       extendBodyBehindAppBar: true,
       body: Container(
         child: SingleChildScrollView(
@@ -37,7 +39,7 @@ class PlantDetails extends StatelessWidget {
                   alignment: Alignment.topCenter,
                 ),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               ListTile(
                 title: Text(
                   plant.displayPid,
@@ -48,63 +50,56 @@ class PlantDetails extends StatelessWidget {
                   ),
                 ),
                 subtitle: Text(
-                  'Famiglia: ${plant.alias}', //TODO: use strings constants
+                  '${AppLocalizations.of(context).confidence}: ${(plant.accuracy * 100.0).toString()}%',
                   style: TextStyle(
                     letterSpacing: 0.9,
                     fontSize: 14,
                     color: Theme.of(context).primaryColor, /*TODO: Colors.grey[300],*/ 
                   ),
                 ),
-                trailing: Icon(Icons.favorite), //TODO: FavoriteWidget(); update icon to a star
+                trailing: const Icon(Icons.favorite), //TODO: FavoriteWidget(); update icon to a star
               ),
               Padding(
-                padding: EdgeInsets.all(18), //TODO: symmetric
-                /*child: Text(
-                  'Descrizione \n ${plant.description}',
-                  style: TextStyle(
-                    height: 1.4,
-                    color: Colors.grey[200], //TODO: use color constants
-                  ),
-                ),*/
+                padding: const EdgeInsets.all(18), //TODO: symmetric
                 child: Container(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget> [
                       //Icon(Icons.water),
                       Text( //TODO: implementare qualche sorta di grafica/barra //TODO: magari metterlo affianco al titolo e sottotitolo
-                        'Acqua/giorno: ${plant.maxSoilMoist.toString()}, Sole/giorno: ${plant.maxLightLux.toString()}', //TODO: use strings constants
+                        '${AppLocalizations.of(context).max_light_mmol}: ${plant.maxLightMmol.toString()}, ${AppLocalizations.of(context).max_light_lux}: ${plant.maxLightLux.toString()}', //TODO: use strings constants
                         style: TextStyle(
-                          color: Theme.of(context).textTheme.bodyText2!.color/*TODO: Colors.grey[200],*/
+                          color: Theme.of(context).textTheme.bodyText2!.color, /*TODO: Colors.grey[200],*/
                         ),
                       ),
                       //Icon(Icons.sunny),
-                      /*Text(
-                        'Sole/giorno: ${plant.sunAmount}', //TODO: use strings constants
-                        style: TextStyle(
-                          color: Colors.grey[200], //TODO: use color constants
-                        ),
-                      ),*/
-                      SizedBox(height: 30),
                       Text(
-                        'Descrizione', //TODO: use strings constants
+                        '${AppLocalizations.of(context).min_light_mmol}: ${plant.minLightMmol.toString()}, ${AppLocalizations.of(context).min_light_lux}: ${plant.minLightLux.toString()}',
+                        style: TextStyle(
+                          color: Theme.of(context).textTheme.bodyText2!.color,
+                        ),
+                      ),
+                      const SizedBox(height: 30),
+                      Text(
+                        '${AppLocalizations.of(context).max_temp}: ${plant.maxTemp.toString()}, ${AppLocalizations.of(context).min_temp}: ${plant.minTemp.toString()}', //TODO: use strings constants
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
                           height: 1.4,
-                          color: Theme.of(context).textTheme.bodyText2!.color/*TODO: Colors.grey[400],*/
+                          color: Theme.of(context).textTheme.bodyText2!.color, /*TODO: Colors.grey[400],*/
                         ),
                       ),
                       Text(
-                        plant.minTemp.toString(),
+                        '${AppLocalizations.of(context).min_env_humid}: ${plant.minEnvHumid.toString()}, ${AppLocalizations.of(context).max_env_humid}: ${plant.maxEnvHumid.toString()}',
                         style: TextStyle(
                           height: 1.4,
                           color: Theme.of(context).textTheme.bodyText2!.color, /*TODO: Colors.grey[300],*/
                           fontSize: 14,
                         ),
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       Text(
-                        plant.id != null ? plant.id.toString() : '', //'Altre informazioni', //TODO: use strings constants
+                        '${AppLocalizations.of(context).min_soil_moist}: ${plant.minSoilMoist}, ${AppLocalizations.of(context).max_soil_moist}: ${plant.maxSoilMoist}', //'Altre informazioni',
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
@@ -113,7 +108,7 @@ class PlantDetails extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        plant.accuracy.toString(),
+                        '${AppLocalizations.of(context).min_soil_ec}: ${plant.minSoilEC.toString()}, ${AppLocalizations.of(context).max_soil_ec}: ${plant.maxSoilEC.toString()} ${AppLocalizations.of(context).ec}',
                         style: TextStyle(
                           height: 1.4,
                           color: Theme.of(context).textTheme.bodyText2!.color, /*TODO: Colors.grey[300],*/

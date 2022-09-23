@@ -60,5 +60,14 @@
     "aircare_sensor": "Misuratore della qualità dell'aria",
     "data_retrieved": "dati ricevuti",
     "data_not_retrieved": "dati non ricevuti",
-    "get_device_data": "Ottieni i dati del dispositivo"
+    "get_device_data": "Ottieni i dati del dispositivo",
+    "scan": "Scansiona",
+    "scan_body": "Scansiona le tue piante e scopri le loro caratteristiche",
+    "diagnosis_body": "Controlla lo stato di salute delle tue piante",
+    "cure": "Cura",
+    "cure_body": "Scopri di cosa hanno bisogno e di come prendersene cura",
+    "greener_is_more_beautiful": "Più verde è più bello",
+    "start_your_journey": "Inizia il tuo viaggio",
+    "get_started": "Inizia",
+    "skip": "Salta"
 }

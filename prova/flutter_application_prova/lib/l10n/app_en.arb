@@ -282,5 +282,50 @@
     "position_in_the_center": "Position in the center of the frame",
     "@position_in_the_center": {
       "description": "Position the picture in the center of the frame, pane, box."
+    },
+
+    "scan": "Scan",
+    "@scan": {
+      "description": "Scan your plants."
+    },
+
+    "scan_body": "Scan your plants and discover their characteristics",
+    "@scan_body": {
+      "description": "Onboarding's screen scan body."
+    },
+
+    "diagnosis_body": "Check your plants' health condition",
+    "@diagnosis_body": {
+      "description": "Onboarding's screen diagnosis body."
+    },
+
+    "cure": "Cure",
+    "@cure": {
+      "description": "Cure your plants."
+    },
+
+    "cure_body": "Discover their needs and how to take care of them",
+    "@cure_body": {
+      "description": "Onboarding's screen cure body."
+    },
+
+    "greener_is_more_beautiful": "Discover their needs and how to take care of them",
+    "@greener_is_more_beautiful": {
+      "description": "Onboarding's screen final PageViewModel."
+    },
+
+    "start_your_journey": "Start your journey",
+    "@start_your_journey": {
+      "description": "Onboarding's screen final PageViewModel's body."
+    },
+
+    "get_started": "Get Started",
+    "@get_started": {
+      "description": "Onboarding's screen final PageViewModel's button."
+    },
+
+    "skip": "Skip",
+    "@skip": {
+      "description": "Onboarding's screen Skip button."
     }
 }
