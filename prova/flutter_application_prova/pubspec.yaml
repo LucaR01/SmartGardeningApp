@@ -68,8 +68,8 @@ flutter_icons:
   android: true
   ios: true
   image_path: "assets/app_icon/plant-icon.png"
-  #adaptive_icon_background: "#ffffff"
-  #adaptive_icon_foreground: "assets/app_icon_foreground.png"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/app_icon/adaptive_android_foreground_app_logo.png"
 
 dev_dependencies:
   flutter_test:
@@ -104,6 +104,7 @@ flutter:
     - assets/privacy_policy/
     - assets/terms_and_conditions/
     - assets/plants/
+    - assets/onboarding/
     - assets/app_icon/
     - assets/images/
     - assets/images/scan/
