@@ -27,19 +27,19 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             PageViewModel(
               title: AppLocalizations.of(context).scan, //TODO: update text; //TODO: use localizations
               body: '${AppLocalizations.of(context).scan_body}.',
-              image: buildImage('assets/app_icon/Icon-48.png'), //TODO: update images
+              image: buildImage('assets/onboarding/plant_magnifier.png', Theme.of(context).accentIconTheme.color),
               decoration: getPageDecoration(context),
             ),
             PageViewModel(
-              title: AppLocalizations.of(context).diagnosis, //TODO: Diagnosi oppure cura
+              title: AppLocalizations.of(context).diagnosis, 
               body: '${AppLocalizations.of(context).diagnosis_body}.',
-              image: buildImage('assets/app_icon/Icon-48.png'),
+              image: buildImage('assets/onboarding/dying_plant.png', Theme.of(context).accentIconTheme.color),
               decoration: getPageDecoration(context),
             ),
             PageViewModel(
               title: AppLocalizations.of(context).cure,
               body: '${AppLocalizations.of(context).cure_body}.',
-              image: buildImage('assets/app_icon/Icon-48.png'),
+              image: buildImage('assets/onboarding/sick-leave.png', Theme.of(context).accentIconTheme.color), 
               decoration: getPageDecoration(context),
             ),
             PageViewModel(
@@ -49,7 +49,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                 child: Text(AppLocalizations.of(context).get_started, style: TextStyle(color: Theme.of(context).textTheme.bodyText1!.color)),
                 onPressed: () => goToHome(context),
               ),
-              image: buildImage('assets/app_icon/Icon-48.png'),
+              image: buildImage('assets/onboarding/Ecology-01-01-1024.png'), //TODO: generic plant image
               decoration: getPageDecoration(context),
             ),
           ],
@@ -83,7 +83,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     Utils.navigateToPage(context: context, page: Pages.home ); 
   }
 
-  Widget buildImage(String path) => Center(child: Image.asset(path, width: 350));
+  Widget buildImage(String path, [Color? color]) => Center(child: Image.asset(path, width: 350, color: color,));
 
   DotsDecorator getDotDecoration() => DotsDecorator(
         color: Colors.green,//Color(0xFFBDBDBD),
