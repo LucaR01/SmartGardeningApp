@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_prova/constants/strings_constants.dart';
+import 'package:flutter_application_prova/constants/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_application_prova/screens/pages.dart';
 import 'package:flutter_application_prova/utils/utils.dart';
@@ -10,7 +10,7 @@ import 'package:flutter_application_prova/widgets/language_picker/language_picke
 //TODO: passare come parametro un boolean per le icone
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
-  const AppBarWidget({Key? key, this.title = kAppName, this.hasIcons = true}) : super(key: key);
+  const AppBarWidget({Key? key, this.title = Constants.appName, this.hasIcons = true}) : super(key: key);
 
   final String title;
   final bool hasIcons; //TODO: remove
@@ -18,12 +18,12 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      iconTheme: Theme.of(context).iconTheme, //TODO: remove?
+      iconTheme: Theme.of(context).accentIconTheme, //TODO: remove?
       backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       elevation: 0.0,
       title: Text(title), //TODO: spostare il titolo
       titleTextStyle: TextStyle(
-        color: Colors.grey[800], //TODO: black?
+        color: Theme.of(context).textTheme.bodyText1!.color, //TODO: Colors.grey[800], //TODO: black?
         fontSize: 36, //TODO: più piccolo?
       ),
       /*iconTheme: const IconThemeData( //TODO: remove?

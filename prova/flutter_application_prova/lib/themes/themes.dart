@@ -52,6 +52,8 @@ class Themes {
     navigationBarTheme: NavigationBarThemeData(
       backgroundColor: Colors.green[600],
     ),
+
+    backgroundColor: Colors.grey.shade300, //TODO: questo sembra non funzionare correttamente
   );
 
   static final ThemeData darkTheme = ThemeData(
@@ -102,5 +104,7 @@ class Themes {
     navigationBarTheme: NavigationBarThemeData(
       backgroundColor: Colors.green[900],
     ),
+
+    backgroundColor: Colors.grey.shade900,
   );
 }

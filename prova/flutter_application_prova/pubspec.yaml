@@ -106,6 +106,8 @@ flutter:
     - assets/plants/
     - assets/onboarding/
     - assets/app_icon/
+    - assets/icons/
+    - assets/icons/home/
     - assets/images/
     - assets/images/scan/
     - assets/plants/plant_model.tflite

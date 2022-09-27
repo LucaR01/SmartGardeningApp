@@ -7,8 +7,6 @@ import 'package:flutter_application_prova/utils/utils.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-//TODO: salvare nelle shared preferences la prima volta che vedi l'onboarding screen con un bool e poi non mostrarlo più
-
 class OnBoardingPage extends StatefulWidget {
   const OnBoardingPage({Key? key}) : super(key: key);
 
@@ -43,8 +41,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               decoration: getPageDecoration(context),
             ),
             PageViewModel(
-              title: AppLocalizations.of(context).greener_is_more_beautiful,
-              body: AppLocalizations.of(context).start_your_journey,
+              title: AppLocalizations.of(context).greener_is_more_beautiful, //TODO: piuttosto potrei mettere qualcosa riguardo il sensore! 
+              body: AppLocalizations.of(context).start_your_journey, //TODO: Collect your's sensors data
               footer: ElevatedButton(
                 child: Text(AppLocalizations.of(context).get_started, style: TextStyle(color: Theme.of(context).textTheme.bodyText1!.color)),
                 onPressed: () => goToHome(context),
@@ -56,7 +54,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           done: Text(AppLocalizations.of(context).home, style: TextStyle(fontWeight: FontWeight.w600, color: Colors.green[900])), //TODO: Theme.of(context).textTheme.bodyText1!.color)),
           onDone: () => goToHome(context),
           showSkipButton: true,
-          skip: Text(AppLocalizations.of(context).skip, style: TextStyle(color: Theme.of(context).accentIconTheme.color)), //TODO: use localizations
+          skip: Text(AppLocalizations.of(context).skip, style: TextStyle(color: Theme.of(context).accentIconTheme.color)), 
           onSkip: () { 
             goToHome(context);  
           },

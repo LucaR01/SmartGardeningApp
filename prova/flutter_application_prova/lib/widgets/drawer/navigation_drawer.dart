@@ -75,9 +75,19 @@ class NavigationDrawerWidget extends StatelessWidget {
             ),
 
             const SizedBox(height: 16),
-            buildMenuItem(text: 'Terms & Conditions', icon: Icons.private_connectivity, //TODO: aggiornare icona
+            buildMenuItem(text: 'Terms & Conditions', icon: Icons.private_connectivity, //TODO: aggiornare icona, tipo dei documenti
                 onClicked: () => Utils.navigateToPage(context: context, page: Pages.termsAndConditions, shouldPop: true), 
             ),
+
+            const SizedBox(height: 60.0),
+            Center(
+              child: Column(
+                children: [
+                  Text('Smart Gardening', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18.0)), //TODO: use themes, use constants
+                  Text('v1.0.0', style: TextStyle(color: Colors.grey[300], fontSize: 15.0)), //TODO: use themes, use constants
+                ],
+              ),
+            )
           ],
         ),
       ),
