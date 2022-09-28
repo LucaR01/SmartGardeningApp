@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_prova/api/snackbar_messages/error_codes.dart';
+import 'package:flutter_application_prova/constants/colors_constants.dart';
 
 class SnackBarMessageWidget {
   static snackBarMessage({
@@ -9,7 +10,7 @@ class SnackBarMessageWidget {
     required ErrorCodes errorCode,
     }) {
     IconData icon = errorCode == ErrorCodes.success ? Icons.check_circle : Icons.error_outline;
-    Color? backgroundColor = errorCode == ErrorCodes.success ? Colors.green[700] : Colors.red[700];
+    Color? backgroundColor = errorCode == ErrorCodes.success ? ColorConstants.snackBarSuccessMessage : ColorConstants.snackBarErrorMessage;
 
     return ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(

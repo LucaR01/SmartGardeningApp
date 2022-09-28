@@ -1,17 +1,18 @@
-import 'dart:developer';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_prova/models/database/database_helper.dart';
 import 'package:flutter_application_prova/models/plant/plant.dart';
-import 'package:flutter_application_prova/screens/loading/loading.dart';
 import 'package:flutter_application_prova/screens/pages.dart';
 import 'package:flutter_application_prova/utils/utils.dart';
 import 'package:flutter_application_prova/widgets/FAB/FABWidget.dart';
 import 'package:flutter_application_prova/widgets/app_bar/app_bar.dart';
-import 'package:flutter_application_prova/widgets/bottom_navigation_bar/custom_bottom_navigation_bar.dart';
-import 'package:flutter_application_prova/widgets/plants_list/plants_list.dart';
+import 'package:flutter_application_prova/widgets/bottom_navigation_bar/bottom_navigation_bar.dart';
+import 'package:flutter_application_prova/widgets/trash_bin_widget/trash_bin_widget.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+
+import 'dart:developer';
+import 'dart:io';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MyPlantsScreen extends StatefulWidget {
   const MyPlantsScreen({Key? key}) : super(key: key);
@@ -28,80 +29,66 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: const FABWidget(),
       bottomNavigationBar: const CustomBottomNavigationBar(),
-      /*body: Container(
-        padding: EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(""),
-          ),
-        ),
-      ),*/
       body: Container( //TODO: dovrà diventare una SingleChildScrollView per quando aumenteranno. (la SingleChildScrollView dava errore)
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               SizedBox(
                 height: 60,
                 child: Text(
-                  'My Plants',
+                  AppLocalizations.of(context).my_plants,
                   style: TextStyle(
                     fontSize: 24,
-                    color: Theme.of(context).primaryColor, /*TODO: Colors.green[900],*/
+                    color: Theme.of(context).primaryColorDark,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              /*Flexible( //TODO: ListView?, SingleChildScrollView?
+              /*Flexible(
                 child: PlantsList(),
               ),*/
-              ElevatedButton(onPressed: () => getPlants2(), child: const Text('getPlantsInDB')), //TODO: remove
-              ElevatedButton(onPressed: () => deleteAllPlantsFromDB(), child: const Text('delete plants')), //TODO: remove
-              //TODO: 
+              //ElevatedButton(onPressed: () => getPlants2(), child: const Text('getPlantsInDB')), //TODO: remove
+              //ElevatedButton(onPressed: () => deleteAllPlantsFromDB(), child: const Text('delete plants')), //TODO: remove
               FutureBuilder<List<Plant>>(
                 future: DatabaseHelper.instance.getPlants(),
                 builder: (BuildContext context, AsyncSnapshot<List<Plant>> snapshot) {
                   if(!snapshot.hasData) {
-                    return SpinKitCircle(color: Colors.green[900], size: 90.0); //Center(child: Text('Loading...')); //TODO: SpinKitCircle() LoadingScreen();
+                    return SpinKitCircle(color: Colors.green[900], size: 90.0); //TODO: SpinKitCircle() LoadingScreen();
                   }
                   return snapshot.data!.isEmpty ? 
-                  Center(child: Text('No plants in List.'))
+                  Center(child: Text('No plants in List.')) //TODO: Localizations
                   : ListView(
                     shrinkWrap: true,
                     children: snapshot.data!.map((plant) {
                       return Center(
                         child: ListTile(
                           onTap: () => Utils.navigateToPage(context: context, page: Pages.myPlantsDetails, plant: plant),
-                          contentPadding: EdgeInsets.all(24),
+                          contentPadding: const EdgeInsets.all(24),
                           title: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget> [
                               Text(
-                                'Nome: ${plant.pid}', //TODO: use string constants
+                                'Nome: ${plant.pid}', //TODO: localizations
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).textTheme.bodyText1!.color, /*TODO: Colors.green[300],*/
+                                  color: Theme.of(context).textTheme.bodyText1!.color,
                                 ),
                               ),
                             ],
                           ),
                           leading: ClipRect(
-                            //TODO: borderRadius:
-                            /*child: Image.asset(
-                              'assets/images/scan/${plant.imageUrl}',
-                              height: 50.0, //TODO: 60.0
-                            ),*/
                             child: Image.file(
                               File(plant.imageUrl),
                               height: 50.0,
                             ),
                           ),
-                          trailing: Icon(Icons.favorite), //TODO: FavoriteWidget()
+                          trailing: TrashBinWidget(plant: plant),
                         ),
                       );
-                    }).toList(), //TODO: 
+                    }).toList(),
                   );
                 }
               ),
@@ -112,29 +99,17 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
     );
   }
 
-  //TODO: remove, qui non c'entra niente
+  //TODO: comment or remove
   void getPlants2() async {
-    List<Plant> _plants2 = await DatabaseHelper.instance.getPlants(); //TODO: uncomment rinominare in _plants 
-    print('_plants2 dal database: ${_plants2.toString()}');
-    print('_plants2[0]: ${_plants2[0].toString()}');
-    inspect(_plants2); //TODO: remove
+    List<Plant> _plants = await DatabaseHelper.instance.getPlants();
+    print('_plants2 dal database: ${_plants.toString()}');
+    print('_plants2[0]: ${_plants[0].toString()}');
+    inspect(_plants); //TODO: remove
   }
 
+  //TODO: comment or remove
   void deleteAllPlantsFromDB() async {
-    /*int listSize = (await DatabaseHelper.instance.getPlants()).length;
-    print('listSize: ${listSize}');
-
-    for(int i = 0; i <= listSize; i++) {
-      await DatabaseHelper.instance.remove(i);
-    }*/
-
     List<Plant> plantsList = (await DatabaseHelper.instance.getPlants());
     plantsList.forEach((p) async { await DatabaseHelper.instance.remove(p.id != null ? p.id! : 0); });
-
-    //await DatabaseHelper.instance.remove(8); //TODO: remove
-
-    /*for(var p in plantsList) { //TODO: remove
-      await DatabaseHelper.instance.remove(p.id!);
-    }*/
   }
 }

@@ -1,6 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+
+import 'dart:io';
 
 class Plant {
   final int? id; //TODO: potrei forse rimuoverlo?
@@ -19,7 +19,7 @@ class Plant {
   final int minSoilMoist;
   final int maxSoilEC;
   final int minSoilEC;
-  String imageUrl; //TODO: rename in imagePath
+  String imageUrl;
   final double accuracy;
 
   Plant({this.id, required this.pid, required this.displayPid, required this.alias, 
@@ -28,7 +28,7 @@ class Plant {
   required this.maxSoilMoist, required this.minSoilMoist, 
   required this.maxSoilEC, required this.minSoilEC, required this.imageUrl, required this.accuracy});
 
-  factory Plant.fromMap(Map<String, dynamic> json) => new Plant(
+  factory Plant.fromMap(Map<String, dynamic> json) => Plant( 
     //id: json['id'], //TODO: remove?
     pid: json['pid'],
     displayPid: json['displayPid'],
@@ -74,25 +74,5 @@ class Plant {
     map.removeWhere((key, value) => value == null);
 
     return map;
-
-    /*return {
-      'pid': pid,
-      'displayPid': displayPid,
-      'alias': alias,
-      'maxLightMmol': maxLightMmol,
-      'minLightMmol': minLightMmol,
-      'maxLightLux': maxLightLux,
-      'minLightLux': minLightLux,
-      'maxTemp': maxTemp,
-      'minTemp': minTemp,
-      'maxEnvHumid': maxEnvHumid,
-      'minEnvHumid': minEnvHumid,
-      'maxSoilMoist': maxSoilMoist,
-      'minSoilMoist': minSoilMoist,
-      'maxSoilEC': maxSoilEC,
-      'minSoilEC': minSoilEC,
-      'imageUrl': imageUrl,
-      'accuracy': accuracy
-    };*/
   }
 }

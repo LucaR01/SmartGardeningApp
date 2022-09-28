@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_prova/constants/constants.dart';
 import 'package:flutter_application_prova/models/plant/plant.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -13,22 +14,17 @@ class DatabaseHelper {
   static Database? _database;
   Future<Database> get database async => _database ??= await _initDatabase();
 
-  static const String databaseName = 'plants';
-
   Future<Database> _initDatabase() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, 'plants.db');
-	
-	/*if (documentsDirectory.existsSync()) { //TODO:
-      documentsDirectory.deleteSync(recursive: true);
-    }*/
 
     print('path: ${path}'); //TODO: remove
     print('documentsDirectory.path: ${documentsDirectory.path}'); //TODO: remove
 
-    return await openDatabase(
+    return await openDatabase( //TODO: Error: Attempt to write a readonly database
       path,
       version: 1,
+      readOnly: false,
       onCreate: _onCreate,
     );
   }
@@ -60,25 +56,25 @@ class DatabaseHelper {
 
   Future<List<Plant>> getPlants() async {
     Database db = await instance.database;
-    var plants = await db.query('plants', orderBy: 'pid'); //TODO: order by ... data pianta aggiunta al myPlants o quando è stata scannerizzata.; pid
-    List<Plant> plantsList = plants.isNotEmpty ? plants.map((p) => Plant.fromMap(p)).toList() : []; //TODO: oppure : List.toEmpty() 
+    var plants = await db.query(Constants.databaseName, orderBy: 'id');
+    List<Plant> plantsList = plants.isNotEmpty ? plants.map((p) => Plant.fromMap(p)).toList() : []; //oppure : List.toEmpty() 
     print('plantsList: ${plantsList.toString()}'); //TODO: remove
     return plantsList;
   }
 
   Future<int> add(Plant plant) async {
     Database db = await instance.database;
-    return await db.insert('plants', plant.toMap());
+    return await db.insert(Constants.databaseName, plant.toMap());
   }
 
   Future<int> remove(int id) async {
     Database db = await instance.database;
-    return await db.delete('plants', where: 'id = ?', whereArgs: [id]); //TODO: al posto di mettere 'plants' mettere DatabaseHelper.databaseName; pid = ?
+    return await db.delete(Constants.databaseName, where: 'id = ?', whereArgs: [id]); //TODO: al posto di mettere 'plants' mettere DatabaseHelper.databaseName; pid = ?
   }
 
   Future<int> update(Plant plant) async {
     Database db = await instance.database;
-    return await db.update('plants', plant.toMap(), where: 'id = ?', whereArgs: [plant.id]); //TODO: pid = ?
+    return await db.update(Constants.databaseName, plant.toMap(), where: 'id = ?', whereArgs: [plant.id]);
   }
 
   Future close() async {

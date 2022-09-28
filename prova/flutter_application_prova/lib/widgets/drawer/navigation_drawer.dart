@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_prova/constants/constants.dart';
 import 'package:flutter_application_prova/screens/pages.dart';
 import 'package:flutter_application_prova/utils/utils.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-//TODO: rinominare in CustomNavigationDrawerWidget?
 
 class NavigationDrawerWidget extends StatelessWidget {
   const NavigationDrawerWidget({Key? key}) : super(key: key);
@@ -16,14 +15,12 @@ class NavigationDrawerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Material(
-        color: Theme.of(context).navigationBarTheme.backgroundColor, //TODO: green[600]
+        color: Theme.of(context).navigationBarTheme.backgroundColor, 
         child: ListView(
-          padding: padding, //TODO: remove?
+          padding: padding, 
           children: <Widget>[
-            buildHeader(), //TODO: image: img,
 
-            //TODO: volendo aggiungere container con column
-            const SizedBox(height: 48),
+            const SizedBox(height: 24),
             buildMenuItem(
               text: AppLocalizations.of(context).home,
               icon: Icons.home,
@@ -43,30 +40,36 @@ class NavigationDrawerWidget extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             buildMenuItem(
+              text: AppLocalizations.of(context).scan,
+              icon: Icons.camera, 
+              onClicked: () => Utils.navigateToPage(context: context, page: Pages.scan, shouldPop: true), 
+            ),
+            const SizedBox(height: 16),
+            buildMenuItem(
               text: AppLocalizations.of(context).diagnosis,
               icon: FontAwesomeIcons.stethoscope, 
               onClicked: () => Utils.navigateToPage(context: context, page: Pages.diagnosis, shouldPop: true), 
             ),
             const SizedBox(height: 24),
-            Divider(color: Theme.of(context).dividerColor), //TODO: white70
+            Divider(color: Theme.of(context).dividerColor), 
             //const SizedBox(height: 24),
 
             const SizedBox(height: 16),
             buildMenuItem(
               text: AppLocalizations.of(context).settings,
               icon: Icons.settings,
-              onClicked: () => Utils.navigateToPage(context: context, page: Pages.settings, shouldPop: true), //TODO: uncomment
+              onClicked: () => Utils.navigateToPage(context: context, page: Pages.settings, shouldPop: true), 
             ),
 
-            /*const SizedBox(height: 16), //TODO: remove?
+            /*const SizedBox(height: 16),
             buildMenuItem(
               text: AppLocalizations.of(context).notifications,
               icon: Icons.notifications,
-              //onClicked: () => Utils.navigateToPage(context: context, page: Pages.home, shouldPop: true), //TODO: uncomment
+              //onClicked: () => Utils.navigateToPage(context: context, page: Pages.home, shouldPop: true), 
             ),*/
 
-            /*const SizedBox(height: 24), //TODO: remove?
-            Divider(color: Theme.of(context).dividerColor), //TODO: white70
+            /*const SizedBox(height: 24), 
+            Divider(color: Theme.of(context).dividerColor), 
             const SizedBox(height: 24),*/
 
             const SizedBox(height: 16),
@@ -83,8 +86,8 @@ class NavigationDrawerWidget extends StatelessWidget {
             Center(
               child: Column(
                 children: [
-                  Text('Smart Gardening', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18.0)), //TODO: use themes, use constants
-                  Text('v1.0.0', style: TextStyle(color: Colors.grey[300], fontSize: 15.0)), //TODO: use themes, use constants
+                  Text(Constants.appName, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18.0)), //TODO: use themes
+                  Text(Constants.appVersion, style: TextStyle(color: Colors.grey[300], fontSize: 15.0)), //TODO: use themes
                 ],
               ),
             )
@@ -94,33 +97,19 @@ class NavigationDrawerWidget extends StatelessWidget {
     );
   }
 
-  //TODO: required Image image?
-  //TODO: remove?
-  Widget buildHeader({VoidCallback? onClicked}) => InkWell(
-        onTap: onClicked,
-        child: Container(
-          child: Row(
-            children: [
-              //CircleAvatar(radius: 30, backgroundImage: Image()), //TODO: add plant image.
-            ],
-          ),
-        ),
-      );
-
-  //TODO: ne posso fare una che prende anche colore e un hover color
-  //TODO: rinominare text in menuName e icon in menuIcon?
   Widget buildMenuItem({
     required String text,
     required IconData icon,
     VoidCallback? onClicked,
   }) {
-    const color = Colors.white; //TODO: per i colori usare le costanti.
-    const hoverColor = Colors.white70;
+    const color = Colors.white; //TODO: themes
+    const hoverColor = Colors.white70; //TODO: themes
 
     return ListTile(
       leading: Icon(icon, color: color),
       title: Text(text, style: TextStyle(color: color)),
       onTap: onClicked,
+      hoverColor: hoverColor, //TODO: controllare se va bene
     );
   }
 }

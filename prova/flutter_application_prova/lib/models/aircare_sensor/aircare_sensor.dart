@@ -26,7 +26,7 @@ class AirCareSensor {
     humidity: json["Humidity"],
     noise: json["Noise"],
     pressure: json["Pressure"],
-    absolutePressure: json["AbsolutePressure"], //TODO: questo potrebbe non andare perché è un int e non un enum.
+    absolutePressure: json["AbsolutePressure"], // questo potrebbe non andare perché è un int e non un enum.
     healthIndex: json["health_idx"],
     minTemp: json["min_temp"],
     maxTemp: json["max_temp"],

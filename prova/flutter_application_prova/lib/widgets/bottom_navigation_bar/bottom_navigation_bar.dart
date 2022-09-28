@@ -1,54 +1,86 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_prova/screens/pages.dart';
+import 'package:flutter_application_prova/utils/utils.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../screens/pages.dart';
-import '../../utils/utils.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-//TODO: rinominare in CustomBottomNavigationBarWidget?
-//TODO: usare bottomNavBar item
+class CustomBottomNavigationBar extends StatefulWidget {
+  const CustomBottomNavigationBar({Key? key}) : super(key: key);
 
-class BottomNavigationBarWidget extends StatelessWidget {
-  const BottomNavigationBarWidget({Key? key}) : super(key: key);
+  @override
+  State<CustomBottomNavigationBar> createState() => _CustomBottomNavigationBarState();
+}
+
+class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
+  int currentIndex = 0;
+  /*final screens = [ 
+    HomePage(),
+    MyPlantsScreen(),
+    SensorPage(),
+    DiagnosisScreen(),
+    SettingsScreen(),
+  ];*/
 
   @override
   Widget build(BuildContext context) {
-    return BottomAppBar(
-      shape: const CircularNotchedRectangle(),
-      color: Theme.of(context).iconTheme.color, //TODO: usare color constants.
-      child: IconTheme(
-        data: IconThemeData(
-            color: Theme.of(context).backgroundColor), //TODO: usare color constants colorScheme.onPrimary
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              IconButton(
-                //TODO: metterlo in una funzione
-                icon: const Icon(FontAwesomeIcons.seedling),
-                onPressed: () => Utils.navigateToPage(context: context, page: Pages.myPlants),
-              ),
-              IconButton(
-                //TODO: metterlo in una funzione
-                icon: const Icon(Icons.task),
-                onPressed: () => Utils.navigateToPage(context: context, page: Pages.tasks),
-              ),
-              const SizedBox(width: 24),
-              IconButton(
-                //TODO: metterlo in una funzione
-                icon: const Icon(FontAwesomeIcons.stethoscope),
-                onPressed: () => Utils.navigateToPage(context: context, page: Pages.diagnosis),
-              ),
-              IconButton(
-                //TODO: metterlo in una funzione
-                icon: const Icon(Icons.settings),
-                onPressed: () => Utils.navigateToPage(context: context, page: Pages.settings),
-              ),
-            ],
-          ),
+    /*body: IndexedStack( 
+      index: currentIndex, 
+      children: screens,
+    ),*/
+    return BottomNavigationBar(
+      currentIndex: currentIndex,
+      onTap: (index) {
+        (index) => setState(() => currentIndex = index);
+        switch(index) {
+          case 0:
+            Utils.navigateToPage(context: context, page: Pages.myPlants);
+            break;
+          case 1:
+            Utils.navigateToPage(context: context, page: Pages.sensors);
+            break;
+          case 2:
+            Utils.navigateToPage(context: context, page: Pages.diagnosis);
+            break;
+          case 3:
+            Utils.navigateToPage(context: context, page: Pages.settings);
+            break;
+        }
+      },
+      type: BottomNavigationBarType.fixed, 
+      backgroundColor: Theme.of(context).bottomAppBarColor,
+      selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor, 
+      unselectedItemColor: Theme.of(context).textSelectionTheme.selectionHandleColor, 
+      iconSize: 30, 
+      //selectedFontSize: 22, 
+      //unselectedFontSize: 18, 
+      //showUnselectedLabels: false, 
+
+      items: [
+        _buildBottomNavigationBarItem( 
+          icon: const Icon(FontAwesomeIcons.seedling),
+          label: AppLocalizations.of(context).my_plants,
         ),
-      ),
+        _buildBottomNavigationBarItem(
+          icon: const Icon(Icons.sensors),
+          label: AppLocalizations.of(context).my_sensor,
+        ),
+        _buildBottomNavigationBarItem(
+          icon: const Icon(FontAwesomeIcons.stethoscope),
+          label: AppLocalizations.of(context).diagnosis,
+        ),
+        _buildBottomNavigationBarItem(
+          icon: const Icon(Icons.settings),
+          label: AppLocalizations.of(context).settings,
+        ),
+      ],
     );
   }
-  //TODO: fare una funzione per ognuno dei pulsanti.
+
+  BottomNavigationBarItem _buildBottomNavigationBarItem({required Icon icon, required String label}) {
+    return BottomNavigationBarItem(
+      icon: icon,
+      label: label,
+    );
+  }
 }

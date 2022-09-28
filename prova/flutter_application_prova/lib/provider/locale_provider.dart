@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_prova/constants/constants.dart';
 import 'package:flutter_application_prova/l10n/languages.dart';
 import 'package:flutter_application_prova/models/shared_preferences/user_preferences.dart';
 
 class LocaleProvider extends ChangeNotifier {
-  Locale _locale = Locale(UserPreferences.getLanguage() ?? 'en'); //TODO: prima const Locale('en'); usare consts
+  Locale _locale = Locale(UserPreferences.getLanguage() ?? Constants.englishLangCode);
 
   Locale get locale => _locale;
   
@@ -15,7 +16,7 @@ class LocaleProvider extends ChangeNotifier {
   }
 
   void clearLocale() {
-    _locale = const Locale('en');
+    _locale = const Locale(Constants.defaultLanguage);
     notifyListeners();
   }
 }

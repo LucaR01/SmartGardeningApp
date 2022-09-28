@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-//TODO: rinominare in ColorsUtils?
 //TODO: da usare direttamente nel file themes.dart
 
 class ColorConstants {
@@ -15,4 +14,7 @@ class ColorConstants {
   static Color? darkBackground = Colors.grey[850]; //TODO: grey.shade900
   static const Color darkText = Colors.black;
   static Color? darkIconTheme = Colors.green[900];
+
+  static Color? snackBarSuccessMessage = Colors.green[700];
+  static Color? snackBarErrorMessage = Colors.red[700];
 }

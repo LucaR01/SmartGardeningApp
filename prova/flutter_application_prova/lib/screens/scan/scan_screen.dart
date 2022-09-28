@@ -4,19 +4,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
-import 'package:flutter_application_prova/api/notifications/notifications_api.dart';
 import 'package:flutter_application_prova/api/plant_api/plant_api.dart';
-import 'package:flutter_application_prova/api/sensor_api/sensor_api.dart';
 import 'package:flutter_application_prova/api/snackbar_messages/custom_snackbar_message.dart';
 import 'package:flutter_application_prova/api/snackbar_messages/error_codes.dart';
-import 'package:flutter_application_prova/models/aircare_sensor/aircare_sensor.dart';
 import 'package:flutter_application_prova/models/plant/plant.dart';
 import 'package:flutter_application_prova/screens/pages.dart';
 import 'package:flutter_application_prova/utils/utils.dart';
 import 'package:flutter_application_prova/widgets/FAB/FABWidget.dart';
 import 'package:flutter_application_prova/widgets/app_bar/app_bar.dart';
-import 'package:flutter_application_prova/widgets/bottom_navigation_bar/custom_bottom_navigation_bar.dart';
-import 'package:flutter_application_prova/widgets/widgets_builder/widgets_builder.dart';
+import 'package:flutter_application_prova/widgets/bottom_navigation_bar/bottom_navigation_bar.dart';
 import 'package:image_picker/image_picker.dart';
 //import 'package:path_provider/path_provider.dart';
 
@@ -25,9 +21,6 @@ import 'package:tflite/tflite.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'dart:developer';
-
-//TODO: scan_screens/scan_screen/
-//TODO: scan_screens/scan_result_screen/
 
 //TODO: aggiungere animazione per il caricamento del risultato.
 
@@ -42,13 +35,12 @@ class _ScanPageState extends State<ScanPage> {
 
   File? image;
 
-  List _outputs = [];
+  final List _outputs = [];
 
   Plant? scannedPlant;
 
   double _confidence = 0.0;
 
-  //TODO: uncomment
   @override
   void initState() {
     super.initState();
@@ -58,25 +50,24 @@ class _ScanPageState extends State<ScanPage> {
       });
     });*/
     print("initState()"); //TODO: remove
-    _loadModel(); //TODO: uncomment
+    _loadModel(); 
   }
 
   @override
   void dispose() {
-    Tflite.close(); //TODO: remove?
+    Tflite.close();
     super.dispose();
   }
 
-  _loadModel() async { //TODO: uncomment
+  _loadModel() async { 
     await Tflite.loadModel(
-      model: "assets/plants/model_unquant.tflite", //TODO: assets/plants/model_unquant.tflite ; D:\\Documenti\\Flutter\\SmartGardeningApp\\smart_gardening_app\\assets\\plants\\model_unquant.tflite
-      labels: "assets/plants/labels.txt", //TODO: assets/plants/labels.txt ;
+      model: "assets/plants/model_unquant.tflite", 
+      labels: "assets/plants/labels.txt", 
     );
     print('loading model...');
   }
 
-  //TODO: rename in detectPlant?
-  _detectImage(File image) async { //TODO: uncomment
+  _detectImage(File image) async {
     var output = await Tflite.runModelOnImage(
       path: image.path,
       imageMean: 0.0,
@@ -96,37 +87,31 @@ class _ScanPageState extends State<ScanPage> {
     String accuracy = output != null ? (output[0]["confidence"]*100.0).toString().substring(0, 2) + "%" : "";
     print("accuracy in %: ${accuracy}");
 
-    //TODO: controllare se serve il .substring(2)
-    scannedPlant = (await PlantAPI.getData(plantPID: output[0]["label"].toString().substring(2), accuracy: output[0]["confidence"]))!;
+    scannedPlant = await PlantAPI.getData(plantPID: output[0]["label"].toString().substring(2), accuracy: output[0]["confidence"]);
     
-    scannedPlant == null ? {} : scannedPlant!.imageUrl = image.path;
+    scannedPlant != null ? scannedPlant!.imageUrl = image.path : {};
 
     inspect(scannedPlant); //TODO: remove
 
-    //TODO: Il title e msg dello SnackBar devono essere tradotti
+    //TODO: localizations
     scannedPlant == null ? SnackBarMessageWidget.snackBarMessage(context: context, title: 'Error', msg: 'Unable to retrieve plant\'s data', errorCode: ErrorCodes.error) : Utils.navigateToPage(context: context, page: Pages.scanResult, plant: scannedPlant);
-
-    //TODO: la pianta scannerizzata va aggiunta alla lista di piante scannerizzate o attraverso un database o attraverso shared preferences.
-    //_scannedPlant = Plant(accuracy: output![0]["confidence"], alias: '', displayPid: '', imageUrl: '', maxEnvHumid: 0, maxLightLux: 0, maxLightMmol: 0, maxSoilEC: 0, maxSoilMoist: 0, maxTemp: 0, minEnvHumid: 0, minLightLux: 0, minLightMmol: 0, minSoilEC: 0, minSoilMoist: 0, minTemp: 0, pid: '' ); 
     
   }
 
   Future pickImage(ImageSource source) async {
     try {
-      final image = await ImagePicker().pickImage(source: source); //TODO: Questo da eccezione!
+      final image = await ImagePicker().pickImage(source: source);
       if(image == null) return;
 
       final tempImage = File(image.path);
 
       print('tempImage: ${tempImage}');
 
-      //_detectImage(tempImage); //TODO: remove
-
       setState(() {
         this.image = tempImage;
       }); // () => this.image = tempImage 
 
-      _detectImage(tempImage); //TODO: uncomment
+      _detectImage(tempImage); 
 
     } on PlatformException catch(e){
       print('Failed to pick image: $e');
@@ -153,13 +138,12 @@ class _ScanPageState extends State<ScanPage> {
                 AppLocalizations.of(context).position_in_the_center,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Theme.of(context).textTheme.bodyText1!.color, //TODO: Theme.of(context).iconTheme.color, ?
+                  color: Theme.of(context).textTheme.bodyText1!.color, 
                   fontSize: 24,
                 ),
               ),
               const SizedBox(height: 20),
-              //ElevatedButton(onPressed: () async { Plant p = (await PlantAPI.getData(plantPID: 'jasminum floridum', accuracy: 92.3))!; Utils.navigateToPage(context: context, page: Pages.scanResult, plant: p); }, child: Text('hello2'),), //TODO: remove
-              //_buildButton(label: AppLocalizations.of(context).pick_image_from_gallery, icon: Icons.image, onPressed: () => pickImage(ImageSource.gallery)), //TODO: fix or remove
+              //ElevatedButton(onPressed: () async { Plant p = (await PlantAPI.getData(plantPID: 'jasminum floridum', accuracy: 92.3))!; Utils.navigateToPage(context: context, page: Pages.scanResult, plant: p); }, child: Text('Test Pianta'),), //TODO: remove
               ElevatedButton.icon(
                 onPressed: () => pickImage(ImageSource.gallery),
                 label: Text(
@@ -169,17 +153,12 @@ class _ScanPageState extends State<ScanPage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                style: ElevatedButton.styleFrom(
-                  primary: Theme.of(context).primaryColor, 
-                  onPrimary: Theme.of(context).textTheme.bodyText1!.color, //TODO: 
-                ),
-                icon: const Icon(Icons.image),
+                style: Theme.of(context).elevatedButtonTheme.style,
+                icon: Icon(Icons.image, color: Theme.of(context).iconTheme.color),
               ),
-              //ElevatedButton(onPressed: () => pickImage(ImageSource.gallery), child: Text('Gallery')),
               const SizedBox(height: 10),
-              //_buildButton(label: AppLocalizations.of(context).pick_image_from_camera, icon: Icons.camera_alt_outlined, onPressed: () => pickImage(ImageSource.camera)), //TODO: fix or remove
               ElevatedButton.icon(
-                onPressed: () => pickImage(ImageSource.camera), //TODO: async
+                onPressed: () => pickImage(ImageSource.camera),
                 label: Text(
                   AppLocalizations.of(context).pick_image_from_camera,
                   style: TextStyle(
@@ -187,14 +166,9 @@ class _ScanPageState extends State<ScanPage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                style: ElevatedButton.styleFrom(
-                  primary: Theme.of(context).primaryColor, 
-                  onPrimary: Theme.of(context).textTheme.bodyText1!.color, //TODO: 
-                ),
-                icon: const Icon(Icons.camera_alt_outlined),
+                style: Theme.of(context).elevatedButtonTheme.style,
+                icon: Icon(Icons.camera_alt_outlined, color: Theme.of(context).iconTheme.color),
               ),
-              //ElevatedButton(onPressed: () { NotificationsAPI.showNotification(title: 'Notifica', body: 'Prova notifica', payload: 'prova.abs'); }, child: Text('Notifiche')), //TODO: remove, just for testing
-              //WidgetsBuilder.buildButton(context: context, label: 'Stampa', icon: Icons.tab, onPressed: () { print('Prova!'); } ), //TODO: remove?
             ],
           ),
         ),
@@ -202,6 +176,7 @@ class _ScanPageState extends State<ScanPage> {
     );
   }
 
+  //TODO: remove
   Widget _buildButton({
     required String label,
     required IconData icon,
@@ -219,7 +194,7 @@ class _ScanPageState extends State<ScanPage> {
     ),
     style: ElevatedButton.styleFrom(
       primary: Theme.of(context).primaryColor, 
-      onPrimary: Theme.of(context).textTheme.bodyText1!.color, //TODO: 
+      onPrimary: Theme.of(context).textTheme.bodyText1!.color,
     ),
     icon: Icon(icon),
     );

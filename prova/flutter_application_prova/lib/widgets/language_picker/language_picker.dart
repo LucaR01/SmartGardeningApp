@@ -23,7 +23,7 @@ class LanguagePickerWidget extends StatelessWidget {
               child: Center(
                 child: Text(
                   flag,
-                  style: TextStyle(fontSize: 32),
+                  style: const TextStyle(fontSize: 32),
                 ),
               ),
               value: locale,
