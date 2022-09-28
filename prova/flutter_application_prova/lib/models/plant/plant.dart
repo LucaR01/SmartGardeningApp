@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
 
-import 'dart:io';
-
+/// It represents a plant from the data retrieved from the open.plantbook.io API.
 class Plant {
   final int? id; //TODO: potrei forse rimuoverlo?
   final String pid;
@@ -28,6 +26,7 @@ class Plant {
   required this.maxSoilMoist, required this.minSoilMoist, 
   required this.maxSoilEC, required this.minSoilEC, required this.imageUrl, required this.accuracy});
 
+  /// It creates a [Plant] from the json retrieved from the API. 
   factory Plant.fromMap(Map<String, dynamic> json) => Plant( 
     //id: json['id'], //TODO: remove?
     pid: json['pid'],
@@ -49,6 +48,8 @@ class Plant {
     accuracy: json['accuracy']
   );
 
+  /// It returns a map of all items of the [Plant].
+  /// It doesn't return elements that are null.
   Map<String, dynamic> toMap() {
     final map = {
       'id': id,

@@ -28,7 +28,7 @@ class _MyHomePageState extends State<HomePage> {
           bottomLeft: Radius.circular(5),
           bottomRight: Radius.circular(5)),
       boxShadow: [
-        BoxShadow( //TODO: comment?
+        BoxShadow(
           color: Colors.grey.withOpacity(0.5),
           spreadRadius: 1,
           blurRadius: 2,
@@ -38,6 +38,7 @@ class _MyHomePageState extends State<HomePage> {
     );
   }
 
+  /// It shows a [TextButton] with the [imageName], [title], [subtitle], [page] passed as arguments.
   Expanded getExpanded({required String imageName, required String title, required String subtitle, required Pages page}) {
     return Expanded(
       child: TextButton(
@@ -98,8 +99,8 @@ class _MyHomePageState extends State<HomePage> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  getExpanded(imageName:'1034358_eco_friendly_ecology_nature_plant_icon.png', title: AppLocalizations.of(context).my_plants, subtitle: 'Collect plants', page: Pages.myPlants), //TODO: localizations
-                  getExpanded(imageName: 'icons8-potted-plant-100.png', title: AppLocalizations.of(context).scan, subtitle: 'Scan your plants', page: Pages.scan), //TODO: localizations
+                  getExpanded(imageName:'1034358_eco_friendly_ecology_nature_plant_icon.png', title: AppLocalizations.of(context).my_plants, subtitle: AppLocalizations.of(context).collect_plants, page: Pages.myPlants),
+                  getExpanded(imageName: 'icons8-potted-plant-100.png', title: AppLocalizations.of(context).scan, subtitle: AppLocalizations.of(context).scan_plants, page: Pages.scan),
                 ],
               ),
             ),
@@ -107,8 +108,8 @@ class _MyHomePageState extends State<HomePage> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  getExpanded(imageName: Provider.of<ThemeProvider>(context, listen: false).isDarkMode ? 'phases-of-plant-withering-blossom-and-wilt-flowers-in-the-pots-vector-dark.png' : 'phases-of-plant-withering-blossom-and-wilt-flowers-in-the-pots-vector.jpg', title: AppLocalizations.of(context).diagnosis, subtitle: 'Diagnose your plants\' health', page: Pages.diagnosis), //TODO: localizations
-                  getExpanded(imageName:'planet-earth-9324.png', title: AppLocalizations.of(context).my_sensor, subtitle: 'Collect data from your sensors', page: Pages.sensors), //TODO: localizations
+                  getExpanded(imageName: Provider.of<ThemeProvider>(context, listen: false).isDarkMode ? 'phases-of-plant-withering-blossom-and-wilt-flowers-in-the-pots-vector-dark.png' : 'phases-of-plant-withering-blossom-and-wilt-flowers-in-the-pots-vector.jpg', title: AppLocalizations.of(context).diagnosis, subtitle: AppLocalizations.of(context).diagnose_plants, page: Pages.diagnosis), 
+                  getExpanded(imageName:'planet-earth-9324.png', title: AppLocalizations.of(context).my_sensor, subtitle: AppLocalizations.of(context).collect_sensors, page: Pages.sensors),
                 ],
               ),
             ),
@@ -116,15 +117,14 @@ class _MyHomePageState extends State<HomePage> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  //getExpanded(imageName:'1034358_eco_friendly_ecology_nature_plant_icon.png', title: '', subtitle: '29 Place'), //TODO: volendo il privacy policy, ma non ha molto senso
-                  getExpanded(imageName: Provider.of<ThemeProvider>(context, listen: false).isDarkMode ? 'plant_settings_icon_dark.png' : 'plant_settings_icon.png', title: AppLocalizations.of(context).settings, subtitle: 'Modify the app\'s settings', page: Pages.settings), //TODO: localizations
+                  getExpanded(imageName: Provider.of<ThemeProvider>(context, listen: false).isDarkMode ? 'plant_settings_icon_dark.png' : 'plant_settings_icon.png', title: AppLocalizations.of(context).settings, subtitle: AppLocalizations.of(context).update_settings, page: Pages.settings),
                 ],
               ),
             ),
           ],
         ),
       ),
-      bottomNavigationBar: const CustomBottomNavigationBar(),
+      bottomNavigationBar: const BottomNavigationBarWidget(),
     );
   }
 }

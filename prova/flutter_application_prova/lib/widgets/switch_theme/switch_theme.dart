@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_prova/constants/colors_constants.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_application_prova/provider/theme_provider.dart';
 
@@ -11,7 +12,7 @@ class SwitchThemeWidget extends StatelessWidget {
 
     return Switch.adaptive(
       value: themeProvider.isDarkMode,
-      activeColor: Colors.green[600], //TODO: use themes
+      activeColor: ColorConstants.switchThemeActiveColor,
       onChanged: (value) {
         final provider = Provider.of<ThemeProvider>(context, listen: false);
         provider.toggleTheme(value);

@@ -7,11 +7,15 @@ class ThemeProvider extends ChangeNotifier {
 
   bool get isDarkMode => themeMode == ThemeMode.dark;
 
+  /// Set a new [theme] and update the listeners with [notifyListeners], which
+  /// updates the UI, like the SwitchThemeWidget and the settings in the SettingsScreen.
   void setThemeMode(ThemeMode theme) {
     themeMode = theme;
     notifyListeners();
   }
 
+  /// It swaps the current [themeMode] and update the listeners with [notifyListeners], which
+  /// updates the UI, like the SwitchThemeWidget and the settings in the SettingsScreen.
   void toggleTheme(bool isOn) {
     themeMode = isOn ? ThemeMode.dark : ThemeMode.light;
     notifyListeners(); 

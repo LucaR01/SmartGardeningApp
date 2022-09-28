@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_prova/constants/colors_constants.dart';
 import 'package:flutter_application_prova/constants/constants.dart';
 import 'package:flutter_application_prova/screens/pages.dart';
 import 'package:flutter_application_prova/utils/utils.dart';
@@ -86,8 +87,8 @@ class NavigationDrawerWidget extends StatelessWidget {
             Center(
               child: Column(
                 children: [
-                  Text(Constants.appName, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18.0)), //TODO: use themes
-                  Text(Constants.appVersion, style: TextStyle(color: Colors.grey[300], fontSize: 15.0)), //TODO: use themes
+                  const Text(Constants.appName, style: TextStyle(color: ColorConstants.navigationDrawerAppNameTextColor, fontWeight: FontWeight.bold, fontSize: 18.0)),
+                  Text(Constants.appVersion, style: TextStyle(color: ColorConstants.navigationDrawerAppVersionTextColor, fontSize: 15.0)),
                 ],
               ),
             )
@@ -97,19 +98,20 @@ class NavigationDrawerWidget extends StatelessWidget {
     );
   }
 
+  /// It returns a [Widget] based on the [text], [icon] and [onClicked] function passed as arguments.
   Widget buildMenuItem({
     required String text,
     required IconData icon,
     VoidCallback? onClicked,
   }) {
-    const color = Colors.white; //TODO: themes
-    const hoverColor = Colors.white70; //TODO: themes
+    Color? color = ColorConstants.navigationDrawerMenuItemTextColor; 
+    Color? hoverColor = ColorConstants.navigationDrawerMenuItemHoverColor; 
 
     return ListTile(
       leading: Icon(icon, color: color),
       title: Text(text, style: TextStyle(color: color)),
       onTap: onClicked,
-      hoverColor: hoverColor, //TODO: controllare se va bene
+      hoverColor: hoverColor,
     );
   }
 }

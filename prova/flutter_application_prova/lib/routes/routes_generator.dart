@@ -4,7 +4,7 @@ import 'package:flutter_application_prova/screens/diagnosis/diagnosis_screen.dar
 import 'package:flutter_application_prova/screens/home/home_screen.dart';
 import 'package:flutter_application_prova/screens/my_plants/my_plants_screen.dart';
 import 'package:flutter_application_prova/screens/onboarding_screen/onboarding_screen.dart';
-import 'package:flutter_application_prova/screens/plant_details/plant_details.dart';
+import 'package:flutter_application_prova/screens/my_plants/plant_details.dart';
 import 'package:flutter_application_prova/screens/privacy_policy/privacy_policy_screen.dart';
 import 'package:flutter_application_prova/screens/scan/scan_screen.dart';
 import 'package:flutter_application_prova/screens/scan_result_screen/scan_result_screen.dart';
@@ -12,6 +12,8 @@ import 'package:flutter_application_prova/screens/sensors/sensors_screen.dart';
 import 'package:flutter_application_prova/screens/settings/settings_screen.dart';
 import 'package:flutter_application_prova/screens/splash/splash_screen.dart';
 import 'package:flutter_application_prova/screens/terms_and_conditions/terms_and_conditions.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 //TODO: o chiamarli tutti screen o chiamarli tutti pages!
 
@@ -60,14 +62,15 @@ class RouteGenerator {
     }
   }
 
+  /// It shows an error page if the route is wrong.
   static Route<dynamic> _errorRoute() {
     return MaterialPageRoute(builder: (_) {
       return Scaffold(
         appBar: AppBar(
-          title: Text('Error'), //TODO: localizations
+          title: Text(AppLocalizations.of(_).error),
         ),
         body: Center(
-          child: Text('ERROR'), //TODO: localizations .toUpper()
+          child: Text(AppLocalizations.of(_).error.toUpperCase()), 
         ),
       );
     });

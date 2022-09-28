@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_prova/constants/colors_constants.dart';
 import 'package:flutter_application_prova/models/shared_preferences/user_preferences.dart';
 import 'package:flutter_application_prova/screens/pages.dart';
 import 'package:flutter_application_prova/utils/utils.dart';
@@ -50,7 +51,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               decoration: getPageDecoration(context),
             ),
           ],
-          done: Text(AppLocalizations.of(context).home, style: TextStyle(fontWeight: FontWeight.w600, color: Colors.green[900])), //TODO: themes
+          done: Text(AppLocalizations.of(context).home, style: TextStyle(fontWeight: FontWeight.w600, color: ColorConstants.onBoardingDoneTextColor)),
           onDone: () => goToHome(context),
           showSkipButton: true,
           skip: Text(AppLocalizations.of(context).skip, style: TextStyle(color: Theme.of(context).accentIconTheme.color)), 
@@ -60,7 +61,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           next: Icon(Icons.arrow_forward, color: Theme.of(context).accentIconTheme.color),
           dotsDecorator: getDotDecoration(),
           onChange: (index) => print('Page $index selected'),
-          globalBackgroundColor: Colors.orange[500], //TODO: themes
+          globalBackgroundColor: ColorConstants.onBoardingGlobalBackgroundColor,
           skipFlex: 0,
           nextFlex: 0,
           //isProgressTap: false, // per non cliccare sui pulsantini
@@ -71,6 +72,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         ),
       );
 
+  /// If the [showOnBoarding] is not null and it is true then it updates the value of [showOnBoarding] to false
+  /// and save it in the [UserPreferences] then it moves to page: [Pages.home].
   void goToHome(context) { 
     if(showOnBoarding != null && showOnBoarding == true) {
       showOnBoarding = false;
@@ -80,8 +83,10 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     Utils.navigateToPage(context: context, page: Pages.home ); 
   }
 
+  /// It builds an image based on the image's [path] and the eventual, optioanl [color] passed as arguments.
   Widget buildImage(String path, [Color? color]) => Center(child: Image.asset(path, width: 350, color: color,));
 
+  /// It returns the dots on the bottom of the screen to swap pages.
   DotsDecorator getDotDecoration() => DotsDecorator(
         color: Colors.green,
         activeColor: Colors.green[900],
@@ -92,6 +97,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         ),
       );
 
+  /// It update the style of the title and body of the page.
   PageDecoration getPageDecoration(BuildContext context) => PageDecoration(
         titleTextStyle: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.bodyText1!.color),
         bodyTextStyle: TextStyle(fontSize: 20, color: Theme.of(context).textTheme.bodyText1!.color),

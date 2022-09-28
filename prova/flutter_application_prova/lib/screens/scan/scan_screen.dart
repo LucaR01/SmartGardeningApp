@@ -1,25 +1,25 @@
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_application_prova/api/plant_api/plant_api.dart';
 import 'package:flutter_application_prova/api/snackbar_messages/custom_snackbar_message.dart';
 import 'package:flutter_application_prova/api/snackbar_messages/error_codes.dart';
+import 'package:flutter_application_prova/constants/constants.dart';
 import 'package:flutter_application_prova/models/plant/plant.dart';
+import 'package:flutter_application_prova/provider/locale_provider.dart';
 import 'package:flutter_application_prova/screens/pages.dart';
 import 'package:flutter_application_prova/utils/utils.dart';
 import 'package:flutter_application_prova/widgets/FAB/FABWidget.dart';
 import 'package:flutter_application_prova/widgets/app_bar/app_bar.dart';
 import 'package:flutter_application_prova/widgets/bottom_navigation_bar/bottom_navigation_bar.dart';
 import 'package:image_picker/image_picker.dart';
-//import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
 
 import 'package:tflite/tflite.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'dart:io';
 import 'dart:developer';
 
 //TODO: aggiungere animazione per il caricamento del risultato.
@@ -59,6 +59,7 @@ class _ScanPageState extends State<ScanPage> {
     super.dispose();
   }
 
+  /// It loads the tflite model of the plants.
   _loadModel() async { 
     await Tflite.loadModel(
       model: "assets/plants/model_unquant.tflite", 
@@ -67,6 +68,11 @@ class _ScanPageState extends State<ScanPage> {
     print('loading model...');
   }
 
+  /// It runs the model on the [image] passed as argument.
+  /// If the API ([PlantAPI.getData]) has found a match of the [plantPID] passed then it saves the data in [scannedPlant].
+  /// [scannedPlant.imageUrl] is updated with the image passed by the user ([image.path]) instead of the one retrieved from the API.
+  /// If [scannedPlant] is null, then it shows a [SnackBarMessageWidget] with an [ErrorCodes.error]
+  /// otherwise it calls [Utils.navigateToPage] to move to page: [Pages.scanResult].
   _detectImage(File image) async {
     var output = await Tflite.runModelOnImage(
       path: image.path,
@@ -91,13 +97,14 @@ class _ScanPageState extends State<ScanPage> {
     
     scannedPlant != null ? scannedPlant!.imageUrl = image.path : {};
 
-    inspect(scannedPlant); //TODO: remove
+    //inspect(scannedPlant); //TODO: remove or keep just for testing
 
-    //TODO: localizations
-    scannedPlant == null ? SnackBarMessageWidget.snackBarMessage(context: context, title: 'Error', msg: 'Unable to retrieve plant\'s data', errorCode: ErrorCodes.error) : Utils.navigateToPage(context: context, page: Pages.scanResult, plant: scannedPlant);
+    scannedPlant == null ? SnackBarMessageWidget.snackBarMessage(context: context, title: AppLocalizations.of(context).error, msg: Provider.of<LocaleProvider>(context, listen: false).locale.languageCode == Constants.englishLangCode ? '${AppLocalizations.of(context).unable_to_retrieve} ${AppLocalizations.of(context).plant_saxon_genitive} ${AppLocalizations.of(context).data}' : '${AppLocalizations.of(context).unable_to_retrieve} ${AppLocalizations.of(context).data} ${AppLocalizations.of(context).plant_saxon_genitive}', errorCode: ErrorCodes.error) : Utils.navigateToPage(context: context, page: Pages.scanResult, plant: scannedPlant);
     
   }
 
+  /// When the user press [ElevatedButton] with the corresponding [ImageSource.camera] or [ImageSource.gallery] this function is called
+  /// and it retrieves the [image] selected from the user either by the camera or by the gallery and calls [_detectImage].
   Future pickImage(ImageSource source) async {
     try {
       final image = await ImagePicker().pickImage(source: source);
@@ -124,7 +131,7 @@ class _ScanPageState extends State<ScanPage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: const FABWidget(),
       appBar: const AppBarWidget(),
-      bottomNavigationBar: const CustomBottomNavigationBar(),
+      bottomNavigationBar: const BottomNavigationBarWidget(),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
@@ -132,7 +139,7 @@ class _ScanPageState extends State<ScanPage> {
             children: <Widget>[
               const Image(
                 image: AssetImage(
-                    "assets/images/camera-focus-frame-objective-photo.png"),
+                    "assets/images/camera_focus/camera-focus-frame-objective-photo.png"),
               ),
               Text(
                 AppLocalizations.of(context).position_in_the_center,
@@ -143,7 +150,7 @@ class _ScanPageState extends State<ScanPage> {
                 ),
               ),
               const SizedBox(height: 20),
-              //ElevatedButton(onPressed: () async { Plant p = (await PlantAPI.getData(plantPID: 'jasminum floridum', accuracy: 92.3))!; Utils.navigateToPage(context: context, page: Pages.scanResult, plant: p); }, child: Text('Test Pianta'),), //TODO: remove
+              //ElevatedButton(onPressed: () async { Plant p = (await PlantAPI.getData(plantPID: 'jasminum floridum', accuracy: 92.3))!; Utils.navigateToPage(context: context, page: Pages.scanResult, plant: p); }, child: Text('Test Pianta'),), //TODO: remove or just keep for testing
               ElevatedButton.icon(
                 onPressed: () => pickImage(ImageSource.gallery),
                 label: Text(
@@ -181,7 +188,6 @@ class _ScanPageState extends State<ScanPage> {
     required String label,
     required IconData icon,
     required VoidCallback? onPressed,
-    ButtonStyle? style, //TODO: questo non lo sto usando!
   }) {
     return ElevatedButton.icon(
     onPressed: () async { onPressed; },

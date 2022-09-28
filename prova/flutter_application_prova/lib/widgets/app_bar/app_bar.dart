@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_prova/constants/constants.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_application_prova/screens/pages.dart';
 import 'package:flutter_application_prova/utils/utils.dart';
 import 'package:flutter_application_prova/widgets/language_picker/language_picker.dart';
-
-//TODO: rinominare in CustomAppBarWidget?
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   const AppBarWidget({Key? key, this.title = Constants.appName, /*this.hasIcons = true*/}) : super(key: key);
@@ -27,10 +24,6 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         const LanguagePickerWidget(),
         const SizedBox(width: 12), 
-        /*IconButton( 
-          icon: const Icon(Icons.search),
-          onPressed: () {},
-        ),*/
         /*IconButton( 
           icon: const Icon(Icons.notifications),
           onPressed: () {},

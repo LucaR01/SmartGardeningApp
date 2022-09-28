@@ -150,11 +150,13 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
     );
   }
   
+  /// If [FloatingActionButton] has been clicked, it adds the [plant] to the [DatabaseHelper.instance]
+  /// If the operation has been successful it shows a [SnackBarMessageWidget] with an [ErrorCodes.success]
+  /// else it shows a [SnackBarMessageWidget] with an [ErrorCodes.error].
   void _addToMyPlants() async {
     final int operationStatusCode = await DatabaseHelper.instance.add(widget.plant);
     print('operationStatusCode: $operationStatusCode');
 
-    //TODO: localizations
-    operationStatusCode != Constants.statusFAIL ? SnackBarMessageWidget.snackBarMessage(context: context, title: 'Success', msg: 'Plant added to MyPlants', errorCode: ErrorCodes.success) : SnackBarMessageWidget.snackBarMessage(context: context, title: 'Error', msg: 'Plant not added', errorCode: ErrorCodes.error);
+    operationStatusCode != Constants.statusFAIL ? SnackBarMessageWidget.snackBarMessage(context: context, title: AppLocalizations.of(context).success, msg: '${AppLocalizations.of(context).plant_added_to} ${AppLocalizations.of(context).my_plants}', errorCode: ErrorCodes.success) : SnackBarMessageWidget.snackBarMessage(context: context, title: AppLocalizations.of(context).error, msg: AppLocalizations.of(context).plant_not_added, errorCode: ErrorCodes.error);
   }
 }

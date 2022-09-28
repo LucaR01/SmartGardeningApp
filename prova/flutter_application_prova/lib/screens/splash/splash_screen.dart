@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
       ),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      nextScreen: showOnBoarding != null && showOnBoarding == false ? HomePage() : const OnBoardingPage(), //TODO: volendo usare Utils.navigateToPage()
+      nextScreen: showOnBoarding != null && showOnBoarding == false ? const HomePage() : const OnBoardingPage(), // non posso utilizzare Utils.navigateToPage() perché vuole un Widget non un void
       splashIconSize: 256,
       duration: 4000,
       splashTransition: SplashTransition.fadeTransition,

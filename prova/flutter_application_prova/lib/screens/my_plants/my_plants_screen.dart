@@ -28,7 +28,7 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
       appBar: const AppBarWidget(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: const FABWidget(),
-      bottomNavigationBar: const CustomBottomNavigationBar(),
+      bottomNavigationBar: const BottomNavigationBarWidget(),
       body: Container( //TODO: dovrà diventare una SingleChildScrollView per quando aumenteranno. (la SingleChildScrollView dava errore)
         child: SingleChildScrollView(
           child: Column(
@@ -46,9 +46,6 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
                   ),
                 ),
               ),
-              /*Flexible(
-                child: PlantsList(),
-              ),*/
               //ElevatedButton(onPressed: () => getPlants2(), child: const Text('getPlantsInDB')), //TODO: remove
               //ElevatedButton(onPressed: () => deleteAllPlantsFromDB(), child: const Text('delete plants')), //TODO: remove
               FutureBuilder<List<Plant>>(
@@ -58,7 +55,7 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
                     return SpinKitCircle(color: Colors.green[900], size: 90.0); //TODO: SpinKitCircle() LoadingScreen();
                   }
                   return snapshot.data!.isEmpty ? 
-                  Center(child: Text('No plants in List.')) //TODO: Localizations
+                  Center(child: Text(AppLocalizations.of(context).no_plants_in_list))
                   : ListView(
                     shrinkWrap: true,
                     children: snapshot.data!.map((plant) {
@@ -70,7 +67,7 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget> [
                               Text(
-                                'Nome: ${plant.pid}', //TODO: localizations
+                                plant.pid,
                                 style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
@@ -99,17 +96,17 @@ class _MyPlantsScreenState extends State<MyPlantsScreen> {
     );
   }
 
-  //TODO: comment or remove
-  void getPlants2() async {
+  //TODO: uncomment just for testing
+  /*void getPlants2() async {
     List<Plant> _plants = await DatabaseHelper.instance.getPlants();
     print('_plants2 dal database: ${_plants.toString()}');
     print('_plants2[0]: ${_plants[0].toString()}');
     inspect(_plants); //TODO: remove
-  }
+  }*/
 
-  //TODO: comment or remove
-  void deleteAllPlantsFromDB() async {
+  //TODO: uncomment just for testing
+  /*void deleteAllPlantsFromDB() async {
     List<Plant> plantsList = (await DatabaseHelper.instance.getPlants());
     plantsList.forEach((p) async { await DatabaseHelper.instance.remove(p.id != null ? p.id! : 0); });
-  }
+  }*/
 }

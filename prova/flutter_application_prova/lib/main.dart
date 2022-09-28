@@ -10,9 +10,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_application_prova/themes/themes.dart';
 
 //TODO: flutter run --release per lanciare in release mode
-
-//TODO: Localization per iOS
-//TODO: oauth2_client iOS podfile
+//TODO: oauth2_client iOS nel podfile scrivere: platform :ios, '11.0'
+//TODO: add dartdoc?
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,7 +56,7 @@ class App extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
 
-      initialRoute: '/splash',
+      initialRoute: Constants.initialScreenRoute,
       onGenerateRoute: RouteGenerator.generateRoute,
     );
     }

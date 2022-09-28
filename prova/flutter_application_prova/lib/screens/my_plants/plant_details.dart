@@ -1,14 +1,11 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 
 import 'package:flutter_application_prova/models/plant/plant.dart';
 import 'package:flutter_application_prova/widgets/app_bar/app_bar.dart';
 import 'package:flutter_application_prova/widgets/trash_bin_widget/trash_bin_widget.dart';
 
+import 'dart:io';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-//TODO: mettere questo folder dentro al folder my_plants?
 
 class PlantDetails extends StatelessWidget {
   const PlantDetails({Key? key, required this.plant}) : super(key: key);
@@ -23,7 +20,7 @@ class PlantDetails extends StatelessWidget {
       extendBodyBehindAppBar: true,
       body: Container(
         child: SingleChildScrollView(
-          child: Column( //TODO: ListView?, SingleChildScrollView?
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget> [
               ClipRect(

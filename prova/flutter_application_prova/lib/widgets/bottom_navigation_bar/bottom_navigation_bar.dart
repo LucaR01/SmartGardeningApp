@@ -5,14 +5,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class CustomBottomNavigationBar extends StatefulWidget {
-  const CustomBottomNavigationBar({Key? key}) : super(key: key);
+class BottomNavigationBarWidget extends StatefulWidget {
+  const BottomNavigationBarWidget({Key? key}) : super(key: key);
 
   @override
-  State<CustomBottomNavigationBar> createState() => _CustomBottomNavigationBarState();
+  State<BottomNavigationBarWidget> createState() => _BottomNavigationBarWidgetState();
 }
 
-class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
+class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   int currentIndex = 0;
   /*final screens = [ 
     HomePage(),
@@ -77,6 +77,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
     );
   }
 
+  /// It creates a [BottomNavigationBarItem] based on the [icon] and [label] passed as arguments.
   BottomNavigationBarItem _buildBottomNavigationBarItem({required Icon icon, required String label}) {
     return BottomNavigationBarItem(
       icon: icon,

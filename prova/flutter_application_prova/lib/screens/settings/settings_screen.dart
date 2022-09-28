@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_prova/api/snackbar_messages/custom_snackbar_message.dart';
 import 'package:flutter_application_prova/api/snackbar_messages/error_codes.dart';
+import 'package:flutter_application_prova/constants/colors_constants.dart';
 import 'package:flutter_application_prova/constants/constants.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_application_prova/models/shared_preferences/user_preferences.dart';
@@ -44,6 +45,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     });
   }*/
 
+  /// It updates the value of this.showOnBoarding with the value passed as argument when the [_buildSlideOption] is clicked.
   onShowOnBoarding(bool showOnBoarding) {
     setState(() {
       this.showOnBoarding = showOnBoarding;
@@ -120,9 +122,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Icons.integration_instructions_outlined,
                   color: Theme.of(context).primaryColor, 
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(
-                  'Intro screens', //TODO: localizations; Screens di benvenuto in italiano
+                  AppLocalizations.of(context).onboarding_screen, 
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -133,7 +135,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             const Divider(height: 20, thickness: 1),
             const SizedBox(height: 10),
-            _buildSlideOption('Activate Intro Pages', showOnBoarding ?? true, onShowOnBoarding), //TODO: localizations
+            _buildSlideOption('${AppLocalizations.of(context).enable} ${AppLocalizations.of(context).onboarding_screen}', showOnBoarding ?? true, onShowOnBoarding), 
             const SizedBox(height: 60),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -181,6 +183,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
+  /// It creates a [GestureDetector] that show an [AlertDialog] with two [TextButton] to choose from.
   GestureDetector _buildOption(BuildContext context, String title) {
     return GestureDetector(
       onTap: () {
@@ -193,11 +196,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     TextButton(
-                      onPressed: () => _setLanguage(language: 'it'),
+                      onPressed: () => _setLanguage(language: Constants.italianLangCode),
                       child: Text(AppLocalizations.of(context).italian, style: TextStyle(color: Theme.of(context).textTheme.bodyText1!.color)),
                     ),
                     TextButton(
-                      onPressed: () => _setLanguage(language: 'en'),
+                      onPressed: () => _setLanguage(language: Constants.englishLangCode),
                       child: Text(AppLocalizations.of(context).english, style: TextStyle(color: Theme.of(context).textTheme.bodyText1!.color)),
                     ),
                   ],
@@ -236,6 +239,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
+  /// When it is clicked it calls the [onChangeMethod] function.
   Padding _buildSlideOption(String title, bool value, Function onChangeMethod) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
@@ -252,8 +256,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
           Transform.scale(
             scale: 0.7,
             child: CupertinoSwitch(
-              activeColor: Colors.green[600], //TODO: use themes 
-              trackColor: Colors.grey, //TODO: use themes
+              activeColor: ColorConstants.settingsSlideOptionActiveColor,
+              trackColor: ColorConstants.settingsSlideOptionTrackColor,
               value: value,
               onChanged: (bool newValue) {
                 onChangeMethod(newValue);
@@ -265,6 +269,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
+  /// It sets the [language] and updates the [provider] of [LocaleProvider].
   void _setLanguage({required String language}) {
     final provider = Provider.of<LocaleProvider>(context, listen: false);
     this.language = language;
@@ -272,12 +277,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
     provider.setLocale(Locale(this.language ?? Constants.defaultLanguage));
   }
 
-  /*void _setTheme({required bool isDarkTheme}) {
-    final provider = Provider.of<ThemeProvider>(context, listen: false);
-    this.isDarkTheme = isDarkTheme;
-    print('_setTheme: ${this.isDarkTheme}');
-  }*/
-
+  /// It saves the data based on the settings of the [SettingsScreen], so it sets:
+  /// [isDarkTheme], [language] and [showOnBoarding] variables and saves them in the [UserPreferences].
+  /// If it is not clicked, data will not be automatically be saved.
+  /// If the operation successed then a [SnackBarMessageWidget] with an [ErrorCodes.success] is shown
+  /// otherwise one with an [ErrorCodes.error].
   void _save() async {
     isDarkTheme = Provider.of<ThemeProvider>(context, listen: false).isDarkMode;
     language = Provider.of<LocaleProvider>(context, listen: false).locale.languageCode;
@@ -294,8 +298,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     print('hasSavedLanguage: $hasSavedLanguage');
     print('hasSavedShowOnBoarding: $hasSavedShowOnBoarding');
 
-    //TODO: localizations
-    (hasSavedTheme && hasSavedLanguage && hasSavedShowOnBoarding) == true ? SnackBarMessageWidget.snackBarMessage(context: context, title: 'Saved', msg: 'Data saved successfully!', errorCode: ErrorCodes.success) : SnackBarMessageWidget.snackBarMessage(context: context, title: 'Failed to save', msg: 'Data not saved!', errorCode: ErrorCodes.error);
+    (hasSavedTheme && hasSavedLanguage && hasSavedShowOnBoarding) == true ? SnackBarMessageWidget.snackBarMessage(context: context, title: AppLocalizations.of(context).saved_message, msg: '${AppLocalizations.of(context).saved_message_body}!', errorCode: ErrorCodes.success) : SnackBarMessageWidget.snackBarMessage(context: context, title: AppLocalizations.of(context).failed_to_save_message, msg: '${AppLocalizations.of(context).failed_to_save_message_body}!', errorCode: ErrorCodes.error);
 
     print('SALVATAGGIO IMPOSTAZIONI');
     print('isDarkTheme: ${isDarkTheme ?? true}');
@@ -303,13 +306,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
     print('language: $language');
   }
 
+  /// It resets the data based on the default values: 
+  /// [Constants.defaultThemeIsDark], [Constants.defaultLanguage], [Constants.defaultShowOnBoarding] and [Constants.defaultThemeMode] and sets them
+  /// in the [UserPreferences].
+  /// If the operation successed then a [SnackBarMessageWidget] with an [ErrorCodes.success] is shown
+  /// otherwise one with an [ErrorCodes.error].
   void _reset() async {
     dynamic hasResetTheme = await UserPreferences.setTheme(Constants.defaultThemeIsDark);
     dynamic hasResetLanguage = await UserPreferences.setLanguage(Constants.defaultLanguage);
     dynamic hasResetShowOnBoarding =await UserPreferences.setShowOnBoarding(Constants.defaultShowOnBoarding);
 
-    this.isDarkTheme = Constants.defaultThemeIsDark;
-    this.language = Constants.defaultLanguage; 
+    isDarkTheme = Constants.defaultThemeIsDark;
+    language = Constants.defaultLanguage; 
 
     Provider.of<ThemeProvider>(context, listen: false).setThemeMode(Constants.defaultThemeMode);
     Provider.of<LocaleProvider>(context, listen: false).setLocale(const Locale(Constants.defaultLanguage));
@@ -320,8 +328,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     print('hasSavedLanguage: $hasResetLanguage');
     print('hasSavedShowOnBoarding: $hasResetShowOnBoarding');
 
-    //TODO: localizations
-    hasResetTheme && hasResetLanguage && hasResetShowOnBoarding == true ? SnackBarMessageWidget.snackBarMessage(context: context, title: 'Reset', msg: 'Data reset successfully!', errorCode: ErrorCodes.success) : SnackBarMessageWidget.snackBarMessage(context: context, title: 'Failed to reset', msg: 'Data not reset!', errorCode: ErrorCodes.error);
+    hasResetTheme && hasResetLanguage && hasResetShowOnBoarding == true ? SnackBarMessageWidget.snackBarMessage(context: context, title: AppLocalizations.of(context).reset_message, msg: '${AppLocalizations.of(context).reset_message_body}!', errorCode: ErrorCodes.success) : SnackBarMessageWidget.snackBarMessage(context: context, title: AppLocalizations.of(context).failed_to_reset_message, msg: '${AppLocalizations.of(context).failed_to_reset_message_body}!', errorCode: ErrorCodes.error);
 
     print('RESET IMPOSTAZIONI');
     print('isDarkTheme: $isDarkTheme');

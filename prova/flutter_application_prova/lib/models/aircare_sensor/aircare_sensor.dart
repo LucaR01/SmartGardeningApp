@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_application_prova/models/aircare_sensor/health_index.dart';
 
+/// It represents an Netatmo Home Care Sensor
 class AirCareSensor {
   final int timeUtc;
   final double temperature;
@@ -19,6 +19,7 @@ class AirCareSensor {
   required this.pressure, required this.absolutePressure, required this.healthIndex, required this.minTemp, required this.maxTemp, 
   required this.dateMaxTemp, required this.dateMinTemp});
 
+  /// It creates an [AirCareSensor] from the json passed in.
   factory AirCareSensor.fromJson(Map<String, dynamic> json) => AirCareSensor(
     timeUtc: json["time_utc"],
     temperature: json["Temperature"],

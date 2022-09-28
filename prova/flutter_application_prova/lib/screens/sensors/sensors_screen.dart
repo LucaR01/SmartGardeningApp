@@ -34,7 +34,7 @@ class _SensorPageState extends State<SensorPage> {
       appBar: const AppBarWidget(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: const FABWidget(),
-      bottomNavigationBar: const CustomBottomNavigationBar(),
+      bottomNavigationBar: const BottomNavigationBarWidget(),
       body: Container(
         child: SingleChildScrollView(
           child: Column(

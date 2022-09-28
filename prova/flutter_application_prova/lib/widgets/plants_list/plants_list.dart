@@ -25,6 +25,8 @@ final GlobalKey _listKey = GlobalKey();
     _getPlantsFromDB();
   }
 
+  /// It retrieves the data from the database [DatabaseHelper.instance] and save them in a [List]
+  /// and for each [Plant], it adds it to a widget with [_buildPlant].
   void _getPlantsFromDB() async {
     List<Plant> _plants = await DatabaseHelper.instance.getPlants();
     print('_plants dal database: ${_plants.toString()}');
@@ -49,6 +51,7 @@ final GlobalKey _listKey = GlobalKey();
     );
   }
 
+  /// It returns a [ListTile] of all the plants that were retrieved [_getPlantsFromDB] from the database [DatabaseHelper.instance].
   Widget _buildPlant(Plant plant) {
     return ListTile(
       onTap: () => Utils.navigateToPage(context: context, page: Pages.myPlantsDetails, plant: plant),
@@ -57,7 +60,7 @@ final GlobalKey _listKey = GlobalKey();
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget> [
           Text(
-            'Nome: ${plant.pid}', //TODO: localizations
+            plant.pid,
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.bold,

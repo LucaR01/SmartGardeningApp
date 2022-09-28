@@ -5,6 +5,11 @@ import 'package:flutter_application_prova/screens/pages.dart';
 import 'package:flutter_application_prova/models/plant/plant.dart';
 
 class Utils {
+  
+  /// It allows to move from a page to another.
+  /// [shouldPop] permits to close the navigation drawer and what was open in the old page before the move.
+  /// [Plant] and [PlantDisease] are only needed for certain pages which require an argument as parameter like
+  /// [Pages.myPlantsDetails] and [Pages.scanResult].
   static void navigateToPage(
       {required BuildContext context,
       required Pages page,
@@ -26,9 +31,6 @@ class Utils {
       case Pages.myPlantsDetails:
         Navigator.of(context).pushNamed('/myplants/details', arguments: plant);
         break;
-      /*case Pages.tasks: //TODO: remove
-        Navigator.of(context).pushNamed('/tasks');
-        break;*/
       case Pages.diagnosis:
         Navigator.of(context).pushNamed('/diagnosis');
         break;
@@ -48,8 +50,7 @@ class Utils {
         Navigator.of(context).pushNamed('/scan');
         break;
       case Pages.scanResult:
-        Navigator.of(context)
-            .pushReplacementNamed('/scan/result', arguments: plant);
+        Navigator.of(context).pushReplacementNamed('/scan/result', arguments: plant);
         break;
       case Pages.sensors:
         Navigator.of(context).pushNamed('/sensors');
