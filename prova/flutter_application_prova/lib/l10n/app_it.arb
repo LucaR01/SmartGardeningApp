@@ -69,5 +69,35 @@
     "greener_is_more_beautiful": "Più verde è più bello",
     "start_your_journey": "Inizia il tuo viaggio",
     "get_started": "Inizia",
-    "skip": "Salta"
+    "skip": "Salta",
+
+    "error": "Errore",
+    "collect_plants": "Colleziona piante",
+    "scan_plants": "Scansiona le tue piante",
+    "diagnose_plants": "Diagnostica le tue piante",
+    "update_settings": "Aggiorna le impostazioni",
+    "collect_sensors": "Colleziona i dati dei tuoi sensori",
+
+    "no_plants_in_list": "Nessuna pianta nella lista",
+    "plant_added_to": "Pianta aggiunta a",
+    "plant_not_added": "Pianta non aggiunta",
+    "plant_saxon_genitive": "della Pianta",
+    "unable_to_retrieve": "Non in grado di recuperare",
+    "data": "dati",
+
+    "onboarding_screen": "Pagine di benvenuto",
+    "enable": "Abilita",
+    "saved_message": "Salvato",
+    "saved_message_body": "Dati salvati correttamente",
+    "failed_to_save_message": "Salvataggio fallito",
+    "failed_to_save_message_body": "Dati non salvati",
+    "reset_message": "Reset",
+    "reset_message_body": "Dati resettati correttamente",
+    "failed_to_reset_message": "Reset fallito",
+    "failed_to_reset_message_body": "Dati non resettati",
+
+    "remove_element_from_database_message": "Rimuovere elemento",
+    "remove_element_from_database_message_body": "Sei sicuro di volere rimuovere l'elemento",
+    "yes": "Sì",
+    "no": "No"
 }

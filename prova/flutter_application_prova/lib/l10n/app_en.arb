@@ -309,7 +309,7 @@
       "description": "Onboarding's screen cure body."
     },
 
-    "greener_is_more_beautiful": "Discover their needs and how to take care of them",
+    "greener_is_more_beautiful": "Greener is more beautiful",
     "@greener_is_more_beautiful": {
       "description": "Onboarding's screen final PageViewModel."
     },
@@ -327,5 +327,136 @@
     "skip": "Skip",
     "@skip": {
       "description": "Onboarding's screen Skip button."
+    },
+
+    "error": "Error",
+    "@error": {
+      "description": "An error message."
+    },
+
+    "collect_plants": "Collect Plants",
+    "@collect_plants": {
+      "description": "Home screen's MyPlants subtitle."
+    },
+
+    "scan_plants": "Scan your plants",
+    "@scan_plants": {
+      "description": "Home screen's Scan subtitle."
+    },
+
+    "diagnose_plants": "Diagnose your plants' health status",
+    "@diagnose_plants": {
+      "description": "Home screen's Diagnosis subtitle."
+    },
+
+    "update_settings": "Update app's settings",
+    "@update_settings": {
+      "description": "Home screen's Settings subtitle."
+    },
+
+    "collect_sensors": "Collect your sensor's data",
+    "@collect_sensors": {
+      "description": "Home screen's MySensor subtitle."
+    },
+
+    "no_plants_in_list": "No plants in list",
+    "@no_plants_in_list": {
+      "description": "MyPlants' screen no plants in the database."
+    },
+
+    "plant_added_to": "Plant added to",
+    "@plant_added_to": {
+      "description": "Plant added to MyPlants' database."
+    },
+
+    "plant_not_added": "Plant not added",
+    "@plant_not_added": {
+      "description": "Plant not added to MyPlants' database."
+    },
+
+    "plant_saxon_genitive": "Plan's",
+    "@plant_saxon_genitive": {
+      "description": "Saxon genitive of plant."
+    },
+
+    "unable_to_retrieve": "Unable to retrieve",
+    "@unable_to_retrieve": {
+      "description": "Error Message."
+    },
+
+    "data": "data",
+    "@data": {
+      "description": "retrieve some device or API's data."
+    },
+
+    "onboarding_screen": "Onboarding Screen",
+    "@onboarding_screen": {
+      "description": "OnBoarding's screen."
+    },
+
+    "enable": "Enable",
+    "@enable": {
+      "description": "Enable setting."
+    },
+
+    "saved_message": "Saved",
+    "@saved_message": {
+      "description": "Saved data message."
+    },
+
+    "saved_message_body": "Data saved successfully",
+    "@saved_message_body": {
+      "description": "Save data message body."
+    },
+
+    "failed_to_save_message": "Failed to save",
+    "@failed_to_save_message": {
+      "description": "Failed to save data message."
+    },
+
+    "failed_to_save_message_body": "Data not saved",
+    "@failed_to_save_message_body": {
+      "description": "Failed to save data message body."
+    },
+
+    "reset_message": "Reset",
+    "@reset_message": {
+      "description": "Reset data message title."
+    },
+
+    "reset_message_body": "Data reset successfully",
+    "@reset_message_body": {
+      "description": "Reset data message body."
+    },
+
+    "failed_to_reset_message": "Failed to reset",
+    "@failed_to_reset_message": {
+      "description": "Failed to reset data message title."
+    },
+
+    "failed_to_reset_message_body": "Data not reset",
+    "@failed_to_reset_message_body": {
+      "description": "Failed to reset data message body."
+    },
+
+    "remove_element_from_database_message": "Remove element",
+    "@remove_element_from_database_message": {
+      "description": "Remove element message title."
+    },
+
+    "remove_element_from_database_message_body": "Do you really want to remove element",
+    "@remove_element_from_database_message_body": {
+      "description": "Remove element message confirmation body."
+    },
+
+    "yes": "Yes",
+    "@yes": {
+      "description": "Confirmation."
+    },
+
+    "no": "No",
+    "@no": {
+      "description": "Disagreement."
     }
+
 }
