@@ -109,6 +109,7 @@ flutter:
     - assets/icons/
     - assets/icons/home/
     - assets/images/
+    - assets/images/camera_focus/
     - assets/images/scan/
     - assets/plants/plant_model.tflite
     - assets/plants/plant_labels.txt
