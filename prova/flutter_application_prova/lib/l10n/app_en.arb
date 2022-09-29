@@ -374,7 +374,7 @@
       "description": "Plant not added to MyPlants' database."
     },
 
-    "plant_saxon_genitive": "Plan's",
+    "plant_saxon_genitive": "Plant's",
     "@plant_saxon_genitive": {
       "description": "Saxon genitive of plant."
     },
@@ -457,6 +457,16 @@
     "no": "No",
     "@no": {
       "description": "Disagreement."
+    },
+
+    "element_removed": "element removed",
+    "@element_removed": {
+      "description": "Element removed message body."
+    },
+
+    "element_not_removed": "element not removed",
+    "@element_not_removed": {
+      "description": "Element not removed message body."
     }
 
 }

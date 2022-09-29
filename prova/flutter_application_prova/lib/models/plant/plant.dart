@@ -28,7 +28,7 @@ class Plant {
 
   /// It creates a [Plant] from the json retrieved from the API. 
   factory Plant.fromMap(Map<String, dynamic> json) => Plant( 
-    //id: json['id'], //TODO: remove?
+    id: json['id'], //TODO: remove?
     pid: json['pid'],
     displayPid: json['displayPid'],
     alias: json['alias'],

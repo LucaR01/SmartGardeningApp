@@ -36,7 +36,7 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
               children: [
 
                 Container(
-                  padding: const EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(5), // 10
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.stretch, //TODO: prima era start
@@ -46,7 +46,7 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                         style:TextStyle(fontSize: 28, color: Theme.of(context).textTheme.bodyText1!.color),
                       ),
                       Text(
-                          "${AppLocalizations.of(context).confidence}: ${widget.plant.accuracy}%",
+                          "${AppLocalizations.of(context).confidence}: ${widget.plant.accuracy * 100.0}%",
                         style: TextStyle(fontSize: 18, color: Theme.of(context).textTheme.bodyText1!.color),
                       ),
                     ],
@@ -57,68 +57,74 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                     children: [
                       Expanded(
                           child: Container(
-                            padding: const EdgeInsets.only(left:10),
+                            padding: const EdgeInsets.only(left:5), //10
                             alignment: Alignment.centerLeft,
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.stretch, //TODO: prima era .start
                               children: [
                                 Container(
-                                  margin: const EdgeInsets.only(top:10, bottom: 10),
+                                  margin: const EdgeInsets.only(top:5, bottom: 5), // entrambi 10
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.stretch, //TODO: prima era .start
                                     children: [
-                                      Text("${AppLocalizations.of(context).min_light_mmol} ${widget.plant.minLightMmol} ${AppLocalizations.of(context).mmol}", style: TextStyle(fontSize: 18, color: Theme.of(context).textTheme.bodyText1!.color),),
-                                      Text("${AppLocalizations.of(context).max_light_mmol} ${widget.plant.maxLightMmol} ${AppLocalizations.of(context).mmol}", style: TextStyle(fontSize: 24, color: Theme.of(context).textTheme.bodyText1!.color)),
+                                      Text("${AppLocalizations.of(context).min_light_mmol} ${widget.plant.minLightMmol} ${AppLocalizations.of(context).mmol}", style: TextStyle(fontSize: 15, color: Theme.of(context).textTheme.bodyText1!.color),),
+                                      Text("${AppLocalizations.of(context).max_light_mmol} ${widget.plant.maxLightMmol} ${AppLocalizations.of(context).mmol}", style: TextStyle(fontSize: 15, color: Theme.of(context).textTheme.bodyText1!.color)),
                                     ],
                                   ),
                                 ),
                                 Container(
-                                  margin: const EdgeInsets.only(top:10, bottom: 10),
+                                  margin: const EdgeInsets.only(top:5, bottom: 5), // entrambi 10
                                   child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment: CrossAxisAlignment.stretch, //TODO: prima era .start
                                     children: [
-                                      Text("${AppLocalizations.of(context).min_light_lux} ${widget.plant.minLightLux}", style: TextStyle(fontSize: 16, color: Theme.of(context).textTheme.bodyText1!.color),),
-                                      Text("${AppLocalizations.of(context).max_light_lux} ${widget.plant.maxLightLux}", style: TextStyle(fontSize: 24, color: Theme.of(context).textTheme.bodyText1!.color)),
+                                      Text("${AppLocalizations.of(context).min_light_lux} ${widget.plant.minLightLux}", style: TextStyle(fontSize: 15, color: Theme.of(context).textTheme.bodyText1!.color),),
+                                      Text("${AppLocalizations.of(context).max_light_lux} ${widget.plant.maxLightLux}", style: TextStyle(fontSize: 15, color: Theme.of(context).textTheme.bodyText1!.color)),
                                     ],
                                   ),
                                 ),
                                 Container(
-                                  margin: const EdgeInsets.only(top:10, bottom: 10),
+                                  margin: const EdgeInsets.only(top:5, bottom: 5), // entrambi 10
                                   child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment: CrossAxisAlignment.stretch, //TODO: prima era .start
                                     children: [
-                                      Text("${AppLocalizations.of(context).max_env_humid} ${widget.plant.maxEnvHumid}", style: TextStyle(fontSize: 16, color: Theme.of(context).textTheme.bodyText1!.color),),
-                                      Text("${AppLocalizations.of(context).min_env_humid} ${widget.plant.minEnvHumid}", style: TextStyle(fontSize: 24, color: Theme.of(context).textTheme.bodyText1!.color)),
+                                      Text("${AppLocalizations.of(context).max_env_humid} ${widget.plant.maxEnvHumid}", style: TextStyle(fontSize: 18, color: Theme.of(context).textTheme.bodyText1!.color),),
+                                      Text("${AppLocalizations.of(context).min_env_humid} ${widget.plant.minEnvHumid}", style: TextStyle(fontSize: 12, color: Theme.of(context).textTheme.bodyText1!.color)),
                                     ],
                                   ),
                                 ),
                                 Container(
-                                  margin: const EdgeInsets.only(bottom: 20),
+                                  margin: const EdgeInsets.only(bottom: 10), // 20
                                   child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment: CrossAxisAlignment.stretch, //TODO: prima era .start
                                     children: [
-                                      Text("${AppLocalizations.of(context).min_temp} ${widget.plant.minTemp}", style: TextStyle(fontSize: 16, color: Theme.of(context).textTheme.bodyText1!.color)),
-                                      Text("${AppLocalizations.of(context).max_temp} ${widget.plant.maxTemp}", style: TextStyle(fontSize: 24, color: Theme.of(context).textTheme.bodyText1!.color),),
+                                      Text("${AppLocalizations.of(context).min_temp} ${widget.plant.minTemp}", style: TextStyle(fontSize: 15, color: Theme.of(context).textTheme.bodyText1!.color)),
+                                      Text("${AppLocalizations.of(context).max_temp} ${widget.plant.maxTemp}", style: TextStyle(fontSize: 15, color: Theme.of(context).textTheme.bodyText1!.color),),
                                     ],
                                   ),
                                 ),
                                 Container(
-                                  margin: const EdgeInsets.only(bottom: 20),
+                                  margin: const EdgeInsets.only(bottom: 10), // 20
                                   child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment: CrossAxisAlignment.stretch, //TODO: prima era .start
                                     children: [
-                                      Text("${AppLocalizations.of(context).max_soil_moist} ${widget.plant.maxSoilMoist}", style: TextStyle(fontSize: 16, color: Theme.of(context).textTheme.bodyText1!.color)),
-                                      Text("${AppLocalizations.of(context).min_soil_moist} ${widget.plant.minSoilMoist}", style: TextStyle(fontSize: 24, color: Theme.of(context).textTheme.bodyText1!.color),),
+                                      Text("${AppLocalizations.of(context).max_soil_moist} ${widget.plant.maxSoilMoist}", style: TextStyle(fontSize: 15, color: Theme.of(context).textTheme.bodyText1!.color)),
+                                      Text("${AppLocalizations.of(context).min_soil_moist} ${widget.plant.minSoilMoist}", style: TextStyle(fontSize: 15, color: Theme.of(context).textTheme.bodyText1!.color),),
                                     ],
                                   ),
                                 ),
                                 Container(
-                                  margin: const EdgeInsets.only(bottom: 20),
+                                  margin: const EdgeInsets.only(bottom: 10), // 20
                                   child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment: CrossAxisAlignment.stretch, //TODO: prima era .start
                                     children: [
-                                      Text("${AppLocalizations.of(context).max_soil_ec} ${widget.plant.maxSoilEC} ${AppLocalizations.of(context).ec}", style: TextStyle(fontSize: 16, color: Theme.of(context).textTheme.bodyText1!.color)),
-                                      Text("${AppLocalizations.of(context).min_soil_ec} ${widget.plant.minSoilEC} ${AppLocalizations.of(context).ec}", style: TextStyle(fontSize: 24, color: Theme.of(context).textTheme.bodyText1!.color),),
+                                      Text("${AppLocalizations.of(context).max_soil_ec} ${widget.plant.maxSoilEC} ${AppLocalizations.of(context).ec}", style: TextStyle(fontSize: 15, color: Theme.of(context).textTheme.bodyText1!.color)),
+                                      Text("${AppLocalizations.of(context).min_soil_ec} ${widget.plant.minSoilEC} ${AppLocalizations.of(context).ec}", style: TextStyle(fontSize: 15, color: Theme.of(context).textTheme.bodyText1!.color),),
                                     ],
                                   ),
                                 ),
@@ -132,8 +138,8 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
                             Container(
                               child: Image.file(
                                 File(widget.plant.imageUrl), 
-                                height: 436, 
-                                width: 220
+                                height: 256, //436
+                                width: 196, //220
                               ),
                             ),
                           ],

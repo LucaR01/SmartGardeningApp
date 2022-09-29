@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-//TODO: rename folder from 'api' to 'services'?
-
 class NotificationsAPI {
   static final _notifications = FlutterLocalNotificationsPlugin();
   //static final onNotifications = BehaviorSubject<String?>(); //TODO: uncomment
 
   static Future _notificationsDetails() async {
-    return NotificationDetails(
+    return const NotificationDetails(
       android: AndroidNotificationDetails(
         'channel id',
         'channel name',

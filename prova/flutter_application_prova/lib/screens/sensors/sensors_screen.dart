@@ -88,7 +88,7 @@ class _SensorPageState extends State<SensorPage> {
               const SizedBox(height: 30.0,),
               ListTile(
                 title: Text(
-                  airCareSensor != null ? airCareSensor!.timeUtc.toString() : '',
+                  airCareSensor != null ? '${AppLocalizations.of(context).time_utc}: ${airCareSensor!.timeUtc.toString()}' : '',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
@@ -112,14 +112,14 @@ class _SensorPageState extends State<SensorPage> {
                     children: <Widget>[
                       //Icon(Icons.water),
                       Text(
-                        airCareSensor != null ? '${AppLocalizations.of(context).co2}: ${airCareSensor?.co2 ?? ''}, ${AppLocalizations.of(context).humidity}: ${airCareSensor?.humidity}' : '', 
+                        airCareSensor != null ? '${AppLocalizations.of(context).co2}: ${airCareSensor!.co2}, ${AppLocalizations.of(context).humidity}: ${airCareSensor!.humidity}' : '', 
                         style: TextStyle(
                           color: Theme.of(context).textTheme.bodyText2!.color,
                         ),
                       ),
                       //Icon(Icons.sunny),
                       Text(
-                        airCareSensor != null ? '${AppLocalizations.of(context).min_temp}: ${airCareSensor?.minTemp} | ${AppLocalizations.of(context).max_temp}: ${airCareSensor?.maxTemp}' : '', 
+                        airCareSensor != null ? '${AppLocalizations.of(context).min_temp}: ${airCareSensor!.minTemp} | ${AppLocalizations.of(context).max_temp}: ${airCareSensor!.maxTemp}' : '', 
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
@@ -137,7 +137,7 @@ class _SensorPageState extends State<SensorPage> {
                       ),
                       //SizedBox(height: 30),
                       Text(
-                        airCareSensor != null ? '${AppLocalizations.of(context).health_index}: ${airCareSensor?.healthIndex.name.toString()}' : '',
+                        airCareSensor != null ? '${AppLocalizations.of(context).health_index}: ${airCareSensor!.healthIndex.name.toString()}' : '',
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
@@ -146,7 +146,7 @@ class _SensorPageState extends State<SensorPage> {
                         ),
                       ),
                       Text(
-                        airCareSensor != null ? '${AppLocalizations.of(context).pressure}: ${airCareSensor?.pressure.toString()}' : '',
+                        airCareSensor != null ? '${AppLocalizations.of(context).pressure}: ${airCareSensor!.pressure.toString()}' : '',
                         style: TextStyle(
                           height: 1.4,
                           color: Theme.of(context).textTheme.bodyText2!.color, 
@@ -154,7 +154,7 @@ class _SensorPageState extends State<SensorPage> {
                         ),
                       ),
                       Text(
-                        airCareSensor != null ? '${AppLocalizations.of(context).absolute_pressure}: ${airCareSensor?.absolutePressure}' : '',
+                        airCareSensor != null ? '${AppLocalizations.of(context).absolute_pressure}: ${airCareSensor!.absolutePressure}' : '',
                         style: TextStyle(
                           height: 1.4,
                           color: Theme.of(context).textTheme.bodyText2!.color, 
@@ -163,7 +163,7 @@ class _SensorPageState extends State<SensorPage> {
                       ),
                       const SizedBox(height: 30.0,),
                       Text(
-                        airCareSensor != null ? '${AppLocalizations.of(context).date_max_temp}: ${airCareSensor?.dateMaxTemp}' : '',
+                        airCareSensor != null ? '${AppLocalizations.of(context).date_max_temp}: ${airCareSensor!.dateMaxTemp}' : '',
                         style: TextStyle(
                           height: 1.4,
                           color: Theme.of(context).textTheme.bodyText2!.color, 
@@ -171,7 +171,7 @@ class _SensorPageState extends State<SensorPage> {
                         ),
                       ),
                       Text(
-                        airCareSensor != null ? '${AppLocalizations.of(context).date_min_temp}: ${airCareSensor?.dateMinTemp}' : '',
+                        airCareSensor != null ? '${AppLocalizations.of(context).date_min_temp}: ${airCareSensor!.dateMinTemp}' : '',
                         style: TextStyle(
                           height: 1.4,
                           color: Theme.of(context).textTheme.bodyText2!.color, 

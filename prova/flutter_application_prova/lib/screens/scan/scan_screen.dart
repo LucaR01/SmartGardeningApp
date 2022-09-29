@@ -7,6 +7,7 @@ import 'package:flutter_application_prova/api/snackbar_messages/error_codes.dart
 import 'package:flutter_application_prova/constants/constants.dart';
 import 'package:flutter_application_prova/models/plant/plant.dart';
 import 'package:flutter_application_prova/provider/locale_provider.dart';
+import 'package:flutter_application_prova/screens/loading/loading.dart';
 import 'package:flutter_application_prova/screens/pages.dart';
 import 'package:flutter_application_prova/utils/utils.dart';
 import 'package:flutter_application_prova/widgets/FAB/FABWidget.dart';
@@ -39,7 +40,7 @@ class _ScanPageState extends State<ScanPage> {
 
   Plant? scannedPlant;
 
-  double _confidence = 0.0;
+  final double _confidence = 0.0;
 
   @override
   void initState() {

@@ -99,5 +99,7 @@
     "remove_element_from_database_message": "Rimuovere elemento",
     "remove_element_from_database_message_body": "Sei sicuro di volere rimuovere l'elemento",
     "yes": "Sì",
-    "no": "No"
+    "no": "No",
+    "element_removed": "elemento rimosso",
+    "element_not_removed": "elemento non rimosso"
 }

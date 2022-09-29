@@ -51,7 +51,8 @@ class Themes {
       backgroundColor: Colors.green[600],
     ),
 
-    backgroundColor: Colors.grey.shade300, //TODO: questo sembra non funzionare correttamente
+    backgroundColor: Colors.green[300], //Colors.grey.shade300, //TODO: questo sembra non funzionare correttamente
+    primaryColorLight: Colors.green[600], 
   );
 
   static final ThemeData darkTheme = ThemeData(
@@ -104,5 +105,6 @@ class Themes {
     ),
 
     backgroundColor: Colors.grey.shade900,
+    primaryColorLight: Colors.green[900],
   );
 }

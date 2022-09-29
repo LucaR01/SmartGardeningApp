@@ -2,18 +2,18 @@ import 'package:flutter_application_prova/models/aircare_sensor/health_index.dar
 
 /// It represents an Netatmo Home Care Sensor
 class AirCareSensor {
-  final int timeUtc;
-  final double temperature;
-  final int co2;
-  final int humidity;
-  final int noise;
-  final double pressure;
-  final double absolutePressure;
+  final dynamic timeUtc;
+  final dynamic temperature;
+  final dynamic co2;
+  final dynamic humidity;
+  final dynamic noise;
+  final dynamic pressure;
+  final dynamic absolutePressure;
   final HealthIndex healthIndex;
-  final int minTemp;
-  final double maxTemp;
-  final int dateMaxTemp;
-  final int dateMinTemp;
+  final dynamic minTemp;
+  final dynamic maxTemp;
+  final dynamic dateMaxTemp;
+  final dynamic dateMinTemp;
 
   AirCareSensor({required this.timeUtc, required this.temperature, required this.co2, required this.humidity, required this.noise, 
   required this.pressure, required this.absolutePressure, required this.healthIndex, required this.minTemp, required this.maxTemp, 

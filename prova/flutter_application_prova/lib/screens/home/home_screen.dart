@@ -32,7 +32,7 @@ class _MyHomePageState extends State<HomePage> {
           color: Colors.grey.withOpacity(0.5),
           spreadRadius: 1,
           blurRadius: 2,
-          offset: Offset(0, 1), // cambia la posizione dell'ombra
+          offset: const Offset(0, 1), // cambia la posizione dell'ombra
             ),
       ],
     );
@@ -50,7 +50,7 @@ class _MyHomePageState extends State<HomePage> {
                 Center(
                   child: Image.asset(
                     '${Constants.iconHomeAssetsPath}$imageName',
-                    height: 80.0,
+                    height: 60.0, //80.0
                   ),
                 ),
                 const SizedBox(height: 5.0),
@@ -58,7 +58,7 @@ class _MyHomePageState extends State<HomePage> {
                   title,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 15.0,
+                    fontSize: 12.0, //15.0
                     color: Theme.of(context).textTheme.bodyText1!.color,
                   ),
                 ),
@@ -66,14 +66,14 @@ class _MyHomePageState extends State<HomePage> {
                 Text(
                   subtitle,
                   style: TextStyle(
-                    fontSize: 10.0,
+                    fontSize: 8.0, //10.0
                     color: Theme.of(context).textTheme.bodyText1!.color,
                   ),
                 ),
               ],
             ),
           ),
-          margin: const EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0, bottom: 10.0),
+          //margin: const EdgeInsets.only(left: 3.0, top: 3.0, right: 3.0, bottom: 3.0), //tutti 10.0
           decoration: getBoxDecoration(),
         ),
         onPressed: () { Utils.navigateToPage(context: context, page: page); },

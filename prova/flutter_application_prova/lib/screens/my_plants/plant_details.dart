@@ -15,7 +15,7 @@ class PlantDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green[600],
+      backgroundColor: Theme.of(context).primaryColorLight,
       appBar: const AppBarWidget(),
       extendBodyBehindAppBar: true,
       body: Container(
@@ -38,7 +38,7 @@ class PlantDetails extends StatelessWidget {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
-                    color: Theme.of(context).secondaryHeaderColor, 
+                    color: Theme.of(context).textTheme.bodyText1!.color, 
                   ),
                 ),
                 subtitle: Text(
@@ -46,7 +46,7 @@ class PlantDetails extends StatelessWidget {
                   style: TextStyle(
                     letterSpacing: 0.9,
                     fontSize: 14,
-                    color: Theme.of(context).primaryColor, 
+                    color: Theme.of(context).textTheme.bodyText1!.color, 
                   ),
                 ),
                 trailing: TrashBinWidget(plant: plant), // prima c'era il Icons.favorite

@@ -135,7 +135,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             const Divider(height: 20, thickness: 1),
             const SizedBox(height: 10),
-            _buildSlideOption('${AppLocalizations.of(context).enable} ${AppLocalizations.of(context).onboarding_screen}', showOnBoarding ?? true, onShowOnBoarding), 
+            _buildSlideOption(AppLocalizations.of(context).onboarding_screen, showOnBoarding ?? true, onShowOnBoarding), //${AppLocalizations.of(context).enable} 
             const SizedBox(height: 60),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
