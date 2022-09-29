@@ -25,5 +25,20 @@ class Constants {
   static const String iconHomeAssetsPath = 'assets/icons/home/';
 
   static const String initialScreenRoute = '/splash';
+
+  static const String sensorAPIGrantTypePassword = 'password';
+  static const String sensorAPIGrantTypeRefreshToken = 'refresh_token';
+
+  static const String sensorAPIScope = 'read_homecoach';
+
+  static const String sensorAPIMethod = 'POST';
+  static const String sensorAPICharset = 'UTF-8';
+
+  static const String sensorAPIAcceptJson = 'application/json';
+  static const String sensorAPIContentType = 'application/x-www-form-urlencoded';
+
+  static const String sensorAPITokenUrl = 'https://api.netatmo.com/oauth2/token';
+  static const String sensorAPIApiUrl = 'https://api.netatmo.com/api';
+  static const String sensorAPIGetHomeCoachsDataUrl = '/gethomecoachsdata?device_id=';
   
 }
