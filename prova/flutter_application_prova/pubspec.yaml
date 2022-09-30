@@ -63,6 +63,7 @@ dependencies:
   flutter_markdown: ^0.6.9
 
   flutter_launcher_icons: ^0.9.2
+  dartdoc: ^5.1.2
 
 flutter_icons:
   android: true
