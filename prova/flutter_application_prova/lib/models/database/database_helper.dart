@@ -13,7 +13,7 @@ class DatabaseHelper {
   static Database? _database;
   Future<Database> get database async => _database ??= await _initDatabase();
 
-  /// It inits the database by creating a new db called [Constants.databaseName] in the user's [documentsDirectory] folder.
+  /// It inits the database by creating a new db called [Constants.databaseName] in the user's documents [Directory].
   /// It returns a [Database] if everything successed.
   Future<Database> _initDatabase() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();

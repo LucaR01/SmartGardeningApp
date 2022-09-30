@@ -25,7 +25,7 @@ class PlantAPI {
 
   /// Returns a [Plant] if it has been retrieved from the API, otherwise it returns null.
   /// It creates an [AccessTokenResponse] to get access to the API after passing [clientId], [clientSecret] and the scopes, if it is valid, 
-  /// it sends a [Response] with the Authorization Bearer and the [tokenResponse] to get the json data
+  /// it sends a [Response] with the Authorization Bearer and the [AccessTokenResponse] to get the json data
   /// After it has been decoded from json it saves and returns a [Plant] or a null value.
   /// ```dart
   /// Plant p = await SensorAPI.getData('jasminum floridum', 0.98);

@@ -26,8 +26,7 @@ class DiagnosisScreen extends StatefulWidget {
 class _DiagnosisScreenState extends State<DiagnosisScreen> {
   File? image;
 
-  final List _outputs = [];
-  final bool _loading = false;
+  //final bool _loading = false;
 
   PlantDisease? plantDisease;
 
@@ -67,9 +66,9 @@ class _DiagnosisScreenState extends State<DiagnosisScreen> {
   }
 
   /// It runs the model on the [image] passed as argument.
-  /// It creates a new [PlantDisease] and passes the name retrieved from the [output] of the [runModelOnImage].
-  /// If [plantDisease] is not null, it updates the [build] with [setState] and it shows [plantDisease.name] and 
-  /// [plantDisease.diseaseConfidence] on the screen.
+  /// It creates a new [PlantDisease] and passes the name retrieved from the output of the [Tflite.runModelOnImage].
+  /// If [plantDisease] is not null, it updates the [build] with [setState] and it shows [plantDisease] name and 
+  /// diseaseConfidence on the screen.
   /// If [plantDisease] is null, it shows a [SnackBarMessageWidget] with an [ErrorCodes.error],
   /// otherwise it doesn't do anything.
   _detectImage(File image) async { 

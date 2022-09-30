@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_prova/constants/constants.dart';
 
 class Languages {
   static final languages = [
-    const Locale('en'),
-    const Locale('it'),
+    const Locale(Constants.englishLangCode),
+    const Locale(Constants.italianLangCode),
   ];
 
   static String getFlag(String code) {
     switch(code) {
-      case 'it':
+      case Constants.italianLangCode:
         return '🇮🇹'; //"U+1F1EE U+1F1F9"; //'U+1F1EE'; 
-      case 'en':
+      case Constants.englishLangCode:
       default:
         return '🇬🇧'; //'U+1F1EC U+1F1E7'; //'U+1F1EC';
     }

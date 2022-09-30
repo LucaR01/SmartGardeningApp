@@ -156,7 +156,7 @@ class _ScanResultScreenState extends State<ScanResultScreen> {
     );
   }
   
-  /// If [FloatingActionButton] has been clicked, it adds the [plant] to the [DatabaseHelper.instance]
+  /// If [FloatingActionButton] has been clicked, it adds the [Plant] to the [DatabaseHelper.instance]
   /// If the operation has been successful it shows a [SnackBarMessageWidget] with an [ErrorCodes.success]
   /// else it shows a [SnackBarMessageWidget] with an [ErrorCodes.error].
   void _addToMyPlants() async {

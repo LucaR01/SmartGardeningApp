@@ -40,8 +40,6 @@ class _ScanPageState extends State<ScanPage> {
 
   Plant? scannedPlant;
 
-  final double _confidence = 0.0;
-
   @override
   void initState() {
     super.initState();
@@ -70,8 +68,8 @@ class _ScanPageState extends State<ScanPage> {
   }
 
   /// It runs the model on the [image] passed as argument.
-  /// If the API ([PlantAPI.getData]) has found a match of the [plantPID] passed then it saves the data in [scannedPlant].
-  /// [scannedPlant.imageUrl] is updated with the image passed by the user ([image.path]) instead of the one retrieved from the API.
+  /// If the API ([PlantAPI.getData]) has found a match of the [Plant.pid] passed then it saves the data in [scannedPlant].
+  /// [Plant.imageUrl] is updated with the image passed by the user ([image] path) instead of the one retrieved from the API.
   /// If [scannedPlant] is null, then it shows a [SnackBarMessageWidget] with an [ErrorCodes.error]
   /// otherwise it calls [Utils.navigateToPage] to move to page: [Pages.scanResult].
   _detectImage(File image) async {

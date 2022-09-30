@@ -18,7 +18,7 @@ class SensorAPI {
   static const String email = ''; //TODO: 
   static const String password = ''; //TODO: 
 
-  /// It sends a [Request] to the API by passing the grant type, [clientId], [clientSecret], [email] (username aka email), [password] and [scope]
+  /// It sends a [Request] to the API by passing the grant type, [clientId], [clientSecret], [email] (username), [password] and [Constants.sensorAPIScope]
   /// and returns either an [AccessTokenResponse] or a null value.
   static Future<AccessTokenResponse?> _getAccessTokenResponse() async {
     var headers = {
@@ -60,7 +60,7 @@ class SensorAPI {
 
   /// It sends a [Request] to the API if it has been able to retrieve the [AccessTokenResponse]
   /// and if the [deviceId] is valid, it retrieves the data and returns a [AirCareSensor]
-  /// otherwise it returns null
+  /// otherwise it returns null.
   static Future<AirCareSensor?> getAirCareSensorData({required String deviceId}) async {
 
     AccessTokenResponse? tokenResponse = await _getAccessTokenResponse(); //TODO: recuperarlo dalle SharedPreferences prima di chiamare _getAccessTokenResponse();

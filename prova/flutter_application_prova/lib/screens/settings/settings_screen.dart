@@ -269,7 +269,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  /// It sets the [language] and updates the [provider] of [LocaleProvider].
+  /// It sets the [language] and updates the [Provider] of [LocaleProvider].
   void _setLanguage({required String language}) {
     final provider = Provider.of<LocaleProvider>(context, listen: false);
     this.language = language;

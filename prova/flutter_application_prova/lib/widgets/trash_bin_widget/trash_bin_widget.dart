@@ -26,7 +26,7 @@ class _TrashBinWidgetState extends State<TrashBinWidget> {
   }
 
   /// It shows a [AlertDialog] with 'yes' or 'no' buttons.
-  /// If 'yes' is clicked, then a [widget.plant] is removed from the database [DatabaseHelper.instance] and then exits the dialog.
+  /// If 'yes' is clicked, then a [Plant] is removed from the database [DatabaseHelper.instance] and then exits the dialog.
   /// If 'no' is clicked, then it just pops from the dialog.
   Future openDialog() => showDialog(
     context: context,
