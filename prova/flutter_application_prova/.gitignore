@@ -21,7 +21,8 @@
 #.vscode/
 
 # Flutter/Dart/Pub related
-!/doc/api/
+**/doc/api/
+# !/doc/api/index.html
 **/ios/Flutter/.last_build_id
 .dart_tool/
 .flutter-plugins
@@ -44,6 +45,10 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+#Windows and Web
+/windows/
+/web/
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
