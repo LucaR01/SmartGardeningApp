@@ -235,3 +235,5 @@ If you want to modify the code, in order for the app to work:
   - clientSecret
   - email
   - password
+  
+<hr>
