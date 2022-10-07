@@ -112,8 +112,6 @@ flutter:
     - assets/images/
     - assets/images/camera_focus/
     - assets/images/scan/
-    - assets/plants/plant_model.tflite
-    - assets/plants/plant_labels.txt
     - assets/plants/model_unquant.tflite
     - assets/plants/labels.txt
     - assets/plants_diseases/model_unquant.tflite
