@@ -25,11 +25,7 @@ This app presents the following features:
 This are the screens of the app:
 
 ### Splash Screen
-<!-- volendo ridurre il size delle immagini -->
 <img src="https://github.com/LucaR01/SmartGardeningApp/blob/main/report/images/splash/splash_screen.PNG" width="20%" heigth="20%" /> <img src="https://github.com/LucaR01/SmartGardeningApp/blob/main/report/images/splash/splash_screen_dark.PNG" width="20%" heigth="20%" />
-<!--
-![Screenshot](report/images/splash/splash_screen.PNG)
-![Screenshot](report/images/splash/splash_screen_dark.PNG) -->
 
 <hr>
 
@@ -37,12 +33,6 @@ This are the screens of the app:
 These are the welcome screens that show the user the features of the app.
 
 <img src="https://github.com/LucaR01/SmartGardeningApp/blob/main/report/images/onboarding/onboarding_screen0.png" width="20%" heigth="20%"/> <img src="https://github.com/LucaR01/SmartGardeningApp/blob/main/report/images/onboarding/onboarding_screen1_dark.png" width="20%" heigth="20%"/> <img src="https://github.com/LucaR01/SmartGardeningApp/blob/main/report/images/onboarding/onboarding_screen2.png" width="20%" heigth="20%"/> <img src="https://github.com/LucaR01/SmartGardeningApp/blob/main/report/images/onboarding/onboarding_screen3_dark.png" width="20%" heigth="20%"/>
-<!--
-![Screenshot](report/images/onboarding/onboarding_screen0.png)
-![Screenshot](report/images/onboarding/onboarding_screen1_dark.png)
-![Screenshot](report/images/onboarding/onboarding_screen2.png)
-![Screenshot](report/images/onboarding/onboarding_screen3_dark.png) -->
-
 <hr>
 
 ### Homepage
@@ -68,9 +58,7 @@ This is the page where the scanned plants are stored.
 <hr>
 
 ### Diagnosis Screen
-# SmartGardeningApp
-
-An app for plant's care for a stage at the university _Alma Mater Studiorum_ of Bologna.
+<img src="https://github.com/LucaR01/SmartGardeningApp/blob/main/report/images/diagnosis/diagnosis_screen.png" width="20%" heigth="20%"/>
 
 <hr>
 
