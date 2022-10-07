@@ -83,32 +83,22 @@
 	
 \section{Introduzione}
 
-\textsf{\small L'obiettivo del tirocinio era quello di sviluppare un'applicazione mobile per il monitoraggio della qualità dell'ambiente attraverso dei sensori e la cura delle piante.}
+\textsf{\small L'obiettivo del tirocinio era quello di sviluppare un'applicazione mobile per il monitoraggio della qualità dell'aria dell'ambiente attraverso dei sensori e la cura delle piante.}
 
-\textsf{\small Il tirocinio si è svolto dal 23-24 maggio ai primi di ottobre 2022.} %TODO: prima è durato
-%\textsf{\small Tutto il codice dell'applicazione si trova su github nella repository, al seguente link: \href{https://github.com/LucaR01/SmartGardeningApp}{Smart Gardening App}.}
-
-\begin{comment}
-\begin{figure}[ht] 
-	\centering
-	\includegraphics[width=1.2\textwidth, height=1.2\textheight, keepaspectratio]{./images/}
-	\caption{Homepage}
-	\label{fig:homepage}
-\end{figure}
-\end{comment}
+\textsf{\small Il tirocinio si è svolto dal 23-24 maggio ai primi di ottobre 2022.}
 
 % ============================== TECNOLOGIE ===========================================
 
 \section{Tecnologie}
 
-\textsf{\small Le tecnologie utilizzate sono state: \emph{Flutter}, framework per la creazione dell'app, \emph{dart}, il linguaggio del framework, \emph{TensorFlowLite} che è una libreria per il machine learning che ho usato per il riconoscimento delle piante e delle malattie di queste, \emph{Postman} che è un tool per il testing delle API che ho utilizzato per interfacciarmi con le api: \href{open.plantbook.io}{Plantbook} e \href{https://dev.netatmo.com/apidocumentation/oauth}{Netatmo API} attraverso il protocollo standard \emph{OAuth2}.} %TODO: volendo aggiungere che ho utilizzato l'emulatore di Android Studio e teachable machine
+\textsf{\small Le tecnologie utilizzate sono state: \emph{Flutter}, framework per la creazione dell'app, \emph{dart}, il linguaggio del framework, \emph{TensorFlowLite} che è una libreria per il machine learning che ho usato per il riconoscimento delle piante e delle malattie di queste, \emph{Postman} che è un tool per il testing delle API che ho utilizzato per interfacciarmi con le api: \href{open.plantbook.io}{Plantbook} e \href{https://dev.netatmo.com/apidocumentation/oauth}{Netatmo API} attraverso il protocollo standard \emph{OAuth2}.} 
 \textsf{\small Ho usufruito del sito \href{https://teachablemachine.withgoogle.com/}{Teachable Machine} per creare il modello tflite delle piante e quello delle loro malattie.}
 
 % ============================== ATTIVITA' ============================================
 
 \section{Attività}
 
-\textsf{\small Qui, di seguito vado a presentare le varie \emph{features}, sia con tema chiaro che scuro e con lingua italiana e inglese, dell'applicazione: } %TODO: o i vari screens; prima era senza: ", sia con tema chiaro che scuro e con lingua italiana e inglese,"
+\textsf{\small Qui, di seguito vado a presentare le varie \emph{features} e i vari \emph{screens}, sia con tema chiaro che scuro e con lingua italiana e inglese, dell'applicazione: }
 
 \subsection{Splash Screen}
 
@@ -180,11 +170,13 @@
 
 \subsection{Navigation Drawer}
 
+%\label{navigation_drawer}
+
 \textsf{\small Questo è un pannello menù che permette di visitare tutte le pagine dell'app, anche quelle non presenti nella \emph{HomePage} e nella \emph{BottomNavigationBar}.}
 
 \begin{figure}[H]
 	
-	\begin{subfigure}{0.3\textwidth} %TODO: volendo metterli tutti a 0.2, oppure no, va bene anche così
+	\begin{subfigure}{0.3\textwidth}
 		\includegraphics[width=\textwidth]{./images/navigation_drawer/navigation_drawer.png}
 		\caption{Navigation Drawer}
 		\label{fig:navigation_drawer}
@@ -202,7 +194,7 @@
 %\textsf{\small Si accede a questa pagina attraverso l'icona della camera in alto a destra nella \emph{Homepage}.}
 \textsf{\small In questa schermata è possibile premere due pulsanti: uno per caricare un'immagine dalla galleria e l'altro per caricarla dalla fotocamera scattando una foto.}
 \textsf{\small Una volta scelta l'immagine questa andrà eseguita sul modello di piante tflite che riconoscerà di quale pianta si tratta.}
-\textsf{\small Nel modello sono presenti ... piante da giardino comuni.} %TODO: inserire numero piante del modello. 
+\textsf{\small Nel modello sono presenti 58 piante da giardino comuni.}
 \textsf{\small Se la pianta non è presente, verrà mostrato, sullo schermo, un errore.}
 
 \begin{figure}[ht] 
@@ -218,7 +210,7 @@
 
 \begin{figure}[H]
 	
-	\begin{subfigure}{0.3\textwidth} %TODO: volendo metterli tutti a 0.2, oppure no, va bene anche così
+	\begin{subfigure}{0.3\textwidth}
 		\includegraphics[width=\textwidth]{./images/scan_result/scan_result_screen.png}
 		\caption{Scan Result Screen}
 		\label{fig:scan_result}
@@ -245,7 +237,7 @@
 \textsf{\small Come tutte le schermate è possibile cambiare lingua del testo in tempo reale.}
 
 \begin{figure}[H]	
-	\begin{subfigure}{0.3\textwidth} %TODO: volendo metterli tutti a 0.2, oppure no, va bene anche così
+	\begin{subfigure}{0.3\textwidth}
 		\includegraphics[width=\textwidth]{./images/my_plants/my_plants_screen2.png}
 		\caption{My Plants Screen 0}
 		\label{fig:my_plants}
@@ -284,7 +276,8 @@
 
 \subsection{Diagnosis Screen}
 
-\textsf{\small In questo screen, come nello screen dello scan, possiamo caricare una foto, nelle stesse identiche procedure di prima e queste verranno eseguite sul modello che ne ricaverà la malattia della pianta, se ne ha, altrimenti indicherà che è sana.}
+\textsf{\small In questo screen, come nello screen dello \emph{Scan}, possiamo caricare una foto, nelle stesse identiche procedure di prima e queste verranno eseguite sul modello che ne ricaverà la malattia della pianta, se ne ha, altrimenti indicherà che è sana.}
+\textsf{\small Il modello delle malattie presenta 60 malattie diverse delle piante.}
 
 \begin{figure}[ht] 
 	\centering
@@ -383,7 +376,7 @@
 	
 % ============================== GUIDA UTENTE =========================================
 	
-\newpage %TODO: comment?
+\newpage
 
 \section{Guida utente}
 
@@ -394,7 +387,7 @@
 	\item \textsf{\small Oppure installare .ipa sul proprio dispositivo iOS.}
 \end{itemize}
 
-\textsf{\small Se, invece, si vuole modificare il codice occorrerà:} %TODO: Se si vuole modificare il codice, invece, occorrerà:
+\textsf{\small Se si vuole modificare il codice, invece, occorrerà:}
 
 \begin{itemize}
 	\item \textsf{\small Flutter 2.10.5}
@@ -416,11 +409,9 @@
 
 \section{Conclusioni}
 
-\textsf{\small Questa esperienza mi è stata molto utile per migliorare la mia capacità di creare applicazioni e mobile e per capire meglio l'importanza che ricoprono e svolgono le piante nel nostro ambiente.}\break
+\textsf{\small Questa esperienza mi è stata molto utile per migliorare la mia capacità di creare applicazioni mobile e per capire meglio l'importanza che ricoprono e svolgono le piante nel nostro ambiente.}\break
 
 \textsf{\small Luca Rengo}
-
-%TODO: magari dire che ho utilizzato una tecnologia nuova che non avevamo visto a lezione.
 
 \end{document}
 
