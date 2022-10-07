@@ -1,4 +1,58 @@
-0 jasminum floridum
+0 jasminum officinale
 1 leucanthemum maximum
 2 centaurea cyanus
 3 lavandula angustifolia 'Blue River'
+4 rosmarinus officinalis
+5 hedera helix
+6 salvia officinalis
+7 thymus
+8 tilia cordata
+9 prunus x domestica
+10 zingiber officinale
+11 strelitzia reginae
+12 trachelospermum jasminoides
+13 petroselinum crispum
+14 nerium oleander
+15 origanum majorana
+16 mespilus germanica
+17 punica granatum
+18 rosa chinensis
+19 aloysia triphylla
+20 acacia dealbata
+21 calendula officinalis
+22 tulipa 'christmas marvel'
+23 begonia 'Benitochiba'
+24 mentha spicata
+25 melissa officinalis
+26 dionaea muscipula
+27 valerianella locusta
+28 helleborus niger
+29 coriandrum sativum
+30 aquilegia vulgaris
+31 pimpinella anisum
+32 aloe vera
+33 laurus nobilis
+34 antirrhinum majus
+35 juniperus communis
+36 ilex aquifolium
+37 artemisia vulgaris
+38 rhododendron hippophaeoides
+39 crataegus monogyna
+40 camellia grijsii
+41 deutzia scabra
+42 crossandra infundibuliformis
+43 erica arborea
+44 cytisus scoparius
+45 lilium bulbiferum
+46 syringa vulgaris
+47 citrus limon
+48 myrtus communis
+49 viola cornuta
+50 hydrangea m. glowing alps
+51 osmanthus heterophyllus
+52 protea 'Waratah'
+53 trifolium repens
+54 olea europaea
+55 vinca minor
+56 petunia x hybrida
+57 hedychium coronarium

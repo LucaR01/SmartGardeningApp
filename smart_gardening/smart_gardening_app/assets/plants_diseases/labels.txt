@@ -36,3 +36,25 @@
 35 Tomato Target Spot
 36 Tomato Mosaic Virus
 37 Tomato Yellow Leaf Curl Virus
+38 Alstonia Scholaris healthy
+39 Alstonia Scholaris diseased
+40 Arjun healthy
+41 Arjun diseased
+42 Bael diseased
+43 Basil healthy
+44 Chinar healthy
+45 Chinar diseased
+46 Gauva healthy
+47 Gauva diseased
+48 Jamun healthy
+49 Jamun diseased
+50 Jatropha healthy
+51 Jatropha diseased
+52 Lemon healthy
+53 Lemon diseased
+54 Mango healthy
+55 Mango diseased
+56 Pomegranate healthy
+57 Pomegranate diseased
+58 Pongamia Pinnata healthy
+59 Pongamia Pinnata diseased
