@@ -2,6 +2,15 @@
 
 An app for plant's care for a stage at the university _Alma Mater Studiorum_ of Bologna.
 
+![GitHub repo size](https://img.shields.io/github/repo-size/LucaR01/SmartGardeningApp) [![GitHub issues](https://img.shields.io/github/issues/LucaR01/SmartGardeningApp)](https://github.com/LucaR01/SmartGardeningApp/issues) 
+[![Lines of code](https://img.shields.io/tokei/lines/github.com/LucaR01/SmartGardeningApp)](https://github.com/LucaR01/SmartGardeningApp/pulse)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/LucaR01/SmartGardeningApp)](https://github.com/LucaR01/SmartGardeningApp/releases)
+[![GitHub Release Date](https://img.shields.io/github/release-date/LucaR01/SmartGardeningApp)](https://github.com/LucaR01/SmartGardeningApp/releases)
+[![GitHub last commit](https://img.shields.io/github/last-commit/LucaR01/SmartGardeningApp)](https://github.com/LucaR01/SmartGardeningApp/graphs/commit-activity)
+
+<!-- [![GitHub License](https://img.shields.io/github/license/LucaR01/SmartGardeningApp)](https://github.com/LucaR01/SmartGardeningApp/blob/main/LICENSE)-->
+<!--![GitHub Repo stars](https://img.shields.io/github/stars/LucaR01/SmartGardeningApp?style=social)-->
+
 <hr>
 
 ## Features
