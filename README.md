@@ -95,7 +95,7 @@ This is the page where the scanned plants are stored.
 
 ## User guide
 If you want to modify the code, in order for the app to work:
-- In the 'plant_api.dart' in the directory `/lib/api/plant_api/` to be able to connect to [OpenPlantBook](open.plantbook.io), you'll need to update:
+- In the 'plant_api.dart' in the directory `/lib/api/plant_api/` to be able to connect to [OpenPlantBook](https://open.plantbook.io/), you'll need to update:
   - clientId
   - clientSecret
 - In the 'sensor_api.dart' in order to be able to connect to [Netatmo API](https://dev.netatmo.com/apidocumentation/oauth) you'll need to modify:
